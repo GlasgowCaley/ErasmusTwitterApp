@@ -217,7 +217,6 @@ public class Landpage extends Application{
                for (final Node node : nodes) {
                    if (node instanceof ScrollBar) {
                        ScrollBar sb = (ScrollBar) node;
-                   	System.out.println(sb.getOrientation());
                        if (sb.getOrientation() == Orientation.VERTICAL)
                        	contentScrollBar = sb;
                    }
