@@ -1,3 +1,4 @@
+package org.tweet_tea.model;
 /**
  * User_mantions from a tweet (meta-info) like "Hi @Tony !"
  * @author Geoffrey

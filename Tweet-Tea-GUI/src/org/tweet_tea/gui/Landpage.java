@@ -1,18 +1,23 @@
+package org.tweet_tea.gui;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -30,7 +35,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.util.Set;
 import java.util.Stack;
+
+import org.tweet_tea.console.Console;
+import org.tweet_tea.model.Tweet;
+import org.tweet_tea.model.TwitterAPI;
 
 /**
  * The GUI Landpage
@@ -57,8 +67,7 @@ public class Landpage extends Application{
 	@FXML private  HBox footer;				// the footer
 	@FXML private  	Button btnRefold;		// Used to reduce the window height .
 	
-	@FXML private  	Button btnPrev;         // Used to go to next page
-	@FXML private  	Button btnNext;         // Used to go to previous page
+	@FXML private ScrollBar contentScrollBar;
 	
 	//We use pop-ups to send messages and tweets
 	private PopupPerso tweets_sender;
@@ -71,6 +80,7 @@ public class Landpage extends Application{
 	private double initialX;			// positions, Used to drag the window
 	private double initialY;
 	
+	private String lastTweetID;
 
 	
 	/**
@@ -90,8 +100,6 @@ public class Landpage extends Application{
 	
 	private TweetSectionGenerator tweetSection;		// allow to format the Tweets
 	private WebView tweetView;						// the view in the content pane
-	
-	private Stack<String> lastTweetID;				// Stack to store the Id from of the last Tweet on every page
 
 	/**
 	 * This method do (and must do) only ONE thing : call launch(args);
@@ -112,12 +120,12 @@ public class Landpage extends Application{
 		
 		// We define the application's icon
 		// using getClass().getResourceAsStream(""); is essential! it allow us to use relative paths
-		Image icon = new Image( getClass().getResourceAsStream("res/img/greenteaLeaf.png") );
+		Image icon = new Image( getClass().getResourceAsStream("/res/img/greenteaLeaf.png") );
 		landpage.getIcons().add(icon);
 		
 		
 		// we load the FXML.
-		Parent fxml = FXMLLoader.load(getClass().getResource("landpage.fxml"));
+		Parent fxml = FXMLLoader.load(getClass().getResource("/landpage.fxml"));
 		
 		// We create a window containing a first container like a JPanel in a JFrame , here StackPane is like the disposition management in JPanel
 		root = new StackPane();
@@ -161,9 +169,6 @@ public class Landpage extends Application{
         	
         	footer = (HBox) main.lookup("#footer");
         		btnRefold = (Button) main.lookup("#btnRefold");
-
-            btnPrev = (Button) main.lookup("#btnPrev");
-            btnNext = (Button) main.lookup("#btnNext");
         
    
         tweetSection = new TweetSectionGenerator();		// Allow us to dialog with JS
@@ -207,6 +212,47 @@ public class Landpage extends Application{
            public void handle(ActionEvent event) {
                
                getHomeTimeline();
+               
+               Set<Node> nodes = tweetView.lookupAll(".scroll-bar");
+               for (final Node node : nodes) {
+                   if (node instanceof ScrollBar) {
+                       ScrollBar sb = (ScrollBar) node;
+                   	System.out.println(sb.getOrientation());
+                       if (sb.getOrientation() == Orientation.VERTICAL)
+                       	contentScrollBar = sb;
+                   }
+               }
+               
+               if(contentScrollBar!=null)
+               	contentScrollBar.valueProperty().addListener(new ChangeListener<Number>() {
+       	            public void changed(ObservableValue<? extends Number> ov,
+       	                Number old_val, Number new_val) {
+       	                    if(contentScrollBar.getValue()>=contentScrollBar.getMax()*9/10)
+       	                    {
+       	
+       	    					// we collect tweets 
+       	    					Tweet[] tweets = null;
+       	    					try {
+       	    						tweets = TwitterAPI.getPage(lastTweetID);
+       	    					} catch (Exception e) {
+       	    						
+       	    						goToAuthen();
+       	    					}
+       	    					
+       	    					// if we have tweets 
+       	    					if (tweets != null){
+       	    						
+       	    						for(Tweet t : tweets){
+       	    							tweetSection.addTweet(t);
+       	    						}
+       	    						
+       	    						lastTweetID = tweets[tweets.length-1].getID();
+       	    						
+       	    						tweetSection.showTweets();
+       	    					}	
+       	                    }
+       	                }
+       	        });
            }
        }));
        
@@ -390,69 +436,6 @@ public class Landpage extends Application{
 					landpage.setIconified(true);
 				}
 			});
-	        
-	        btnNext.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-
-					// we collect tweets 
-					Tweet[] tweets = null;
-					try {
-						tweets = TwitterAPI.getPage(lastTweetID.peek());
-					} catch (Exception e) {
-						
-						goToAuthen();
-					}
-					
-					// if we have tweets 
-					if (tweets != null){
-							
-						tweetSection.clear();
-						for(Tweet t : tweets){
-							tweetSection.addTweet(t);
-						}
-						
-						lastTweetID.add(tweets[tweets.length-1].getID());
-						
-						tweetSection.showTweets();
-					}	
-				}
-			});
-	        
-	        btnPrev.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-
-					// we collect tweets 
-					Tweet[] tweets = null;
-					try {
-						lastTweetID.pop();
-						if(!lastTweetID.isEmpty()) lastTweetID.pop();
-						if(lastTweetID.isEmpty())
-							tweets = TwitterAPI.getHomeTimeline();
-						else
-							tweets = TwitterAPI.getPage(lastTweetID.peek());
-					} catch (Exception e) {
-						
-						goToAuthen();
-					}
-					
-					// if we have tweets 
-					if (tweets != null){
-							
-						tweetSection.clear();
-						for(Tweet t : tweets){
-							tweetSection.addTweet(t);
-						}
-						
-						lastTweetID.add(tweets[tweets.length-1].getID());
-						
-						tweetSection.showTweets();
-					}	
-				}
-			});
 	        	        
 	        
 	        /**
@@ -581,8 +564,7 @@ public class Landpage extends Application{
 				tweetSection.addTweet(t);
 			}
 			
-			lastTweetID = new Stack<String>();
-			lastTweetID.add(tweets[tweets.length-1].getID());
+			lastTweetID = tweets[tweets.length-1].getID();
 			
 			tweetSection.showTweets();
 		}		

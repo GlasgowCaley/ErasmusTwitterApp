@@ -1,3 +1,4 @@
+package org.tweet_tea.model;
 
 /**
  * Hashtags from a tweet ( meta info )

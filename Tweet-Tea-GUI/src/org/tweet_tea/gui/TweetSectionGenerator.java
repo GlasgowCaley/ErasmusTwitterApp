@@ -1,3 +1,5 @@
+package org.tweet_tea.gui;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -28,6 +30,8 @@ import javafx.scene.web.WebView;
 
 
 import org.apache.commons.*;
+import org.tweet_tea.Json.JsonWrapper;
+import org.tweet_tea.model.Tweet;
 
 //TODO : add addFirst() to automaticaly inject new tweets (whithout refreshing manualy)
 

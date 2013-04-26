@@ -1,3 +1,5 @@
+package org.tweet_tea.model;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,6 +25,7 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.tweet_tea.resources.Res;
 
 import com.google.gson.*;
 

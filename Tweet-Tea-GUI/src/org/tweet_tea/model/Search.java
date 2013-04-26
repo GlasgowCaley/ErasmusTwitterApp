@@ -1,3 +1,4 @@
+package org.tweet_tea.model;
 
 /**
  * Used to parse researches

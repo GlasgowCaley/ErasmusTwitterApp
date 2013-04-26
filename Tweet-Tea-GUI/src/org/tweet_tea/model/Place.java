@@ -1,3 +1,4 @@
+package org.tweet_tea.model;
 /**
  * Define a geographic place
  * @author Geoffrey

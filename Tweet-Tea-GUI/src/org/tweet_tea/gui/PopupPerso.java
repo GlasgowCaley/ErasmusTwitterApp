@@ -1,3 +1,7 @@
+package org.tweet_tea.gui;
+
+import org.tweet_tea.model.TwitterAPI;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

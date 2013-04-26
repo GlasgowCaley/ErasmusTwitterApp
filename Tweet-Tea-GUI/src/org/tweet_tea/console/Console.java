@@ -1,3 +1,5 @@
+package org.tweet_tea.console;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,6 +11,9 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.tweet_tea.model.Tweet;
+import org.tweet_tea.model.TwitterAPI;
+import org.tweet_tea.model.User;
 
 
 /**
