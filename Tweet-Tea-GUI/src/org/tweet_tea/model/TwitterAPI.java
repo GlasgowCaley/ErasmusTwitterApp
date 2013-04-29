@@ -178,6 +178,7 @@ public final class TwitterAPI {
 		
 		AuthentificationService.signRequest(accessToken, request);
 		Response response = request.send();
+	
 		
 		Tweet [] parsed;
 		try{
