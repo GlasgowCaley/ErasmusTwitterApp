@@ -1,3 +1,9 @@
+package org.tweet_tea.Json;
+
+import org.tweet_tea.model.Tweet;
+import org.tweet_tea.model.User;
+import org.tweet_tea.resources.Res;
+
 /**
  * 
  * Give a good structure to parse a Tweet to JSON.
