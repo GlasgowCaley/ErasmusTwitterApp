@@ -46,8 +46,8 @@ public class TwitterAnalyticsTest
 		testTweets[3] = new Tweet(new User("user3"));
 		
 		// act
-		ArrayList<String> distinctUserNames = analytics.distinctUserNames(testTweets);
-		int numberOfDistinctUserNamesFound = distinctUserNames.size();
+		String[] distinctUserNames = analytics.distinctUserNames(testTweets);
+		int numberOfDistinctUserNamesFound = distinctUserNames.length;
 		
 		// assert
 		assertEquals("should be 3 distinct names", 3, numberOfDistinctUserNamesFound);

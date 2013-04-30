@@ -13,6 +13,7 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
+import org.tweet_tea.model.TwitterAnalytics;
 import org.tweet_tea.model.User;
 
 
@@ -196,8 +197,25 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-				
 			case 15:
+				try {
+					tweets = TwitterAPI.getHomeTimeline();
+					TwitterAnalytics analytics = new TwitterAnalytics();
+					String[] usernames = analytics.distinctUserNames(tweets);
+					
+					if(usernames!=null){
+						for(String username : usernames){	print(username);	}
+					}
+					
+					sleep(1000);
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();	// is usefull for the moment 
+					print("Need to be authenticated, authenticate first");
+				}
+				
+				break;	
+			case 16:
 				clear();
 				print("Bye!");
 				System.exit(0);
@@ -244,7 +262,8 @@ public class Console {
 				   +"12- Set a new favorite\n"
 				   +"13- Remove a tweet from favorites\n"
 				   +"14- Delete a tweet\n"
-				   +"15- Quit";
+				   +"15- Distinct users in home timeline\n"
+				   +"16- Quit";
 		print(menu);
 		
 		Scanner sc = new Scanner(System.in);

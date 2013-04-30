@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class TwitterAnalytics
 {
-	public ArrayList<String> distinctUserNames(Tweet[] tweets)
+	public String[] distinctUserNames(Tweet[] tweets)
 	{
 		// use ArrayList instead of array as we don't know how many results
 		// there will be and want to be able to use contains method
@@ -25,7 +25,8 @@ public class TwitterAnalytics
 			}
 		}
 
-		return results;
+		String[] resultArray = new String[results.size()];
+		return results.toArray(resultArray);
 	}
 
 }
