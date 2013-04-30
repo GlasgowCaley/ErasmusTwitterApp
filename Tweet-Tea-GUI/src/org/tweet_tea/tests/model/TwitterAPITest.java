@@ -19,9 +19,9 @@ public class TwitterAPITest
 	@Test
 	public void testGetHomeTimeline() throws Exception
 	{
-		Tweet[] tweets = TwitterAPI.getHomeTimeline();
+		Tweet[] tweets = TwitterAPI.getHomeTimeline(20);
 		
-		// assertEquals("Should get 20 tweets", 20, tweets.length);   // not a good test - see https://dev.twitter.com/issues/396
+	   //  assertEquals("Should get 20 tweets", 20, tweets.length);   // not a good test - see https://dev.twitter.com/issues/396
 		
 		assertTrue("Should get between 1 and 20 tweets", 
 				tweets.length >= 1 && tweets.length <= 20);

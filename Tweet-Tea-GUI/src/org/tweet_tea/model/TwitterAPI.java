@@ -140,6 +140,7 @@ public final class TwitterAPI {
 	}
 	
 	
+	
 	/**
 	 * Give the user's Timeline
 	 * @return Array of tweets from the user timeline
@@ -147,12 +148,33 @@ public final class TwitterAPI {
 	 */
 	public static Tweet[] getHomeTimeline() throws Exception{
 		
-
-//		if(accessToken==null){
-//			//throw new Exception("Need to be authenticated");
-//		}
-
 		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true&exclude_replies=true";
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
+		
+		AuthentificationService.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		Tweet [] parsed;
+		try{
+			parsed = gson.fromJson( response.getBody() , Tweet[].class);
+		}
+		catch(Exception e){
+			throw new Exception("Unable to get this screen.");
+		}
+		
+		return parsed;
+	}
+	
+	/**
+	 * Give the user's Timeline
+	 * @param count the number of tweets to be retrieved
+	 * @return Array of tweets from the user timeline
+	 * @throws Exception timeline unreachable or user not authenticated
+	 */
+	public static Tweet[] getHomeTimeline(int count) throws Exception{
+		
+		String url = Res.domain+Res.home_timeline_prefix+"&count="+count+"&include_retweets=true&exclude_replies=true";
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
 		

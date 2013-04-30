@@ -87,8 +87,14 @@ public class Tweet
 	private String profile_image_url;
 	private String profile_image_url_https;
 
+	public Tweet()
+	{}
 	
-	
+	public Tweet(User user)
+	{
+		this.user = user;
+	}
+		
 	public String toString()
 	{
 		String to_return= "Posted " + text + " by " ;
