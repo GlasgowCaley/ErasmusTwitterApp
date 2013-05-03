@@ -217,9 +217,12 @@ public final class TwitterAPI {
 	 */
 	public static Tweet[] search(String query){
 		String formated_query= createUrlArgsFromString(query);
-		String url = Res.search_prefix+"?q="+formated_query+"&include_entities=false&result_type=mixed";
-		  System.out.println(url);
-		String json = getJSON(url);
+		String url = Res.search_prefix+"&q="+formated_query+"&result_type=mixed";
+		System.out.println(url);
+		OAuthRequest request = new OAuthRequest(Verb.POST, url);
+		AuthentificationService.signRequest(accessToken, request);
+		Response r = request.send();
+		String json = r.getBody();
 		  System.out.println(json);					// you can look to objects in the console to understand how they are structured
 		Search search = parseJSONSearchfromString(json);
 		Tweet[] tweets = search.extractTweets();
@@ -655,7 +658,7 @@ public final class TwitterAPI {
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!followed.equals(verif.getName()))
-				throw new Exception("L'utilisateur ne peut être suivi");
+				throw new Exception("L'utilisateur ne peut ï¿½tre suivi");
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to follow this user");
