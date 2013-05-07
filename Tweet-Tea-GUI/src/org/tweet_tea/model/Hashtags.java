@@ -13,6 +13,10 @@ public class Hashtags {
 	 * end at index [1] in the
 	 * @see JSON object directly
 	 */
-	private int[] indices; 
+	private int[] indices;
+	
+	public String getText(){
+		return text;
+	}
 
 }

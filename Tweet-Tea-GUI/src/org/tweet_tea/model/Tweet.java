@@ -139,5 +139,7 @@ public class Tweet
 	public String getProfileImageURL(){
 		return profile_image_url_https;
 	}
-	
+	public Entities getEntities(){
+		return entities;
+	}
 }

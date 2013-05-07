@@ -35,10 +35,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
 import org.tweet_tea.console.Console;
+import org.tweet_tea.model.TopHagstaghs;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
 
@@ -192,7 +194,11 @@ public class Landpage extends Application{
           
         initializeTwitter();
         
+        /*Tweet[] test = TwitterAPI.getTweets();*/
         
+        /*List<TopHagstaghs> listatest = TwitterAPI.getTopHagstaghs(test);
+        
+        int zero = 0;*/
                
 	}
 	

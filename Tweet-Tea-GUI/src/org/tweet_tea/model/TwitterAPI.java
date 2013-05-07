@@ -1,5 +1,6 @@
 package org.tweet_tea.model;
 
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -188,6 +189,69 @@ public final class TwitterAPI {
 		}
 		
 		return java.util.Arrays.copyOfRange(parsed, 1, parsed.length);
+	}
+	
+	public static Tweet[] combine(Tweet[]a,Tweet[]b){
+		int length =a.length+b.length;
+		Tweet[] result = new Tweet[length];
+		System.arraycopy(a, 0, result, 0, a.length);
+		System.arraycopy(b, 0, result, a.length, b.length);
+		return result;
+	}
+	
+	public static Tweet[] getTweets() throws Exception{
+
+		String url = Res.domain+Res.home_timeline_prefix+"&count=20";
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
+		
+		AuthentificationService.signRequest(accessToken, request);
+		
+		int countTweets = 0;
+		Tweet [] Total = null;
+		
+		while (Total == null || Total.length<=100)
+		{
+			Response response = request.send();
+			
+			Tweet [] parsed;
+			try{
+				parsed = gson.fromJson( response.getBody() , Tweet[].class);
+				if(Total==null)
+					System.arraycopy(parsed, 0, Total, 0, parsed.length);
+			}
+			catch(Exception e){
+				throw new Exception("Unable to get this screen.");
+			}
+			
+			Total = combine(Total,parsed);
+		}
+		
+		return Total;
+	}
+	
+	public static List<TopHagstaghs> getTopHagstaghs(Tweet[] Total) throws Exception{
+		
+		boolean found;
+		List<TopHagstaghs> list = new ArrayList<TopHagstaghs>();
+		
+		for(int i=0;i<Total.length;i++)
+		{
+			if(Total[i].getEntities().getHashtags()!=null){
+				for(int j=0;j<Total[i].getEntities().getHashtags().length;j++){
+					found = false;
+					for(TopHagstaghs hagstag : list)
+					if(hagstag.Hagstagh==Total[i].getEntities().getHashtags()[j].getText()){
+						found=true;
+						hagstag.count++;
+					}
+					if(!found)
+						list.add(new TopHagstaghs(Total[i].getEntities().getHashtags()[j].getText()));
+				}		
+			}
+		}
+		
+		return list;
 	}
 	
 	/**

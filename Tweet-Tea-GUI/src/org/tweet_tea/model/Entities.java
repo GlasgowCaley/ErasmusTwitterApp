@@ -35,5 +35,9 @@ public class Entities {
 		
 		return retour;
 	}
+	
+	public Hashtags[] getHashtags(){
+		return hashtags;
+	}
 
 }
