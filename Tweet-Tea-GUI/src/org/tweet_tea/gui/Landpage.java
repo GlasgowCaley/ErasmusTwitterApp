@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -441,6 +443,19 @@ public class Landpage extends Application{
 	         * Research
 	         */
 	        
+	        searchField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+
+				@Override
+				public void handle(KeyEvent event) {
+					// TODO Auto-generated method stub
+					
+					if(event.getCode() == KeyCode.ENTER){
+						btnSearch.fire();
+					}
+					
+				}
+	        	
+	        });	        
 	        btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 				
 				@Override
