@@ -447,8 +447,7 @@ public class Landpage extends Application{
 
 				@Override
 				public void handle(KeyEvent event) {
-					// TODO Auto-generated method stub
-					
+										
 					if(event.getCode() == KeyCode.ENTER){
 						btnSearch.fire();
 					}
@@ -506,9 +505,10 @@ public class Landpage extends Application{
 	        	public void handle(ActionEvent ae){
 	        		try{
 	        			//We create a pop-up. All is done in this object
-	        			tweets_sender = new PopupPerso("tweet_popup.fxml");
+	        			tweets_sender = new PopupPerso("/tweet_popup.fxml");
 	        		}catch(Exception e){
 	        			//TODO: make somthing better GG-FR
+	        			System.out.println(e);
 	        		}
 	        		
 	        	}

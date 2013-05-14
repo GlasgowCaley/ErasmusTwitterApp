@@ -53,6 +53,7 @@ public class PopupPerso{
 	public PopupPerso(String name) throws Exception{	
 		popup = new Stage();
 		
+		System.out.println(name);
 		Parent fxml = FXMLLoader.load(getClass().getResource(name));
 		
 		root = new StackPane();
@@ -92,7 +93,7 @@ public class PopupPerso{
 			}
 		});
 		
-		if(name.equals("tweet_popup.fxml"))
+		if(name.equals("/tweet_popup.fxml"))
 			this.setBindingsTweet();
 		else
 			this.setBindingsPM();
