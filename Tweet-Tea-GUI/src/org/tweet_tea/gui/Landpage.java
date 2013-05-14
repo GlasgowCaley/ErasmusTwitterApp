@@ -519,9 +519,10 @@ public class Landpage extends Application{
 	        	public void handle(ActionEvent ae){
 	        		try{
 	        			//We create a pop-up.
-	        			messages_sender = new PopupPerso("privateMess_popup.fxml");
+	        			messages_sender = new PopupPerso("/privateMess_popup.fxml");
 	        		}catch(Exception e){
 	        			//TODO: make somthing better GG-FR
+	        			System.out.println(e);
 	        		}
 	        	}
 	        });
