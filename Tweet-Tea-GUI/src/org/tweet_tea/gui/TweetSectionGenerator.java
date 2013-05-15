@@ -120,7 +120,7 @@ public class TweetSectionGenerator {
 				+				mainJs
 				+			"</script>"
 				+		"</head>"
-				+		"<script > initialize(); </script>"
+				+		"<script > initialize(); </script>"		// very important
 				+"		<body>");
 		
 		
@@ -145,16 +145,9 @@ public class TweetSectionGenerator {
 							
 					      
 							window = (JSObject) engine.executeScript("window");
-							
-							window.eval("$(\"body\").append(\"YAAAAAHHH\");");
-							window.eval("initialize();");
-							
 							window.setMember("java", new Bridge());
+							window.eval("upcall('hello');");
 						}
-						
-						
-						//engine.executeScript("upcall();");
-						
 					}
 		        });
 

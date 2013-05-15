@@ -269,7 +269,7 @@ public class Landpage extends Application{
 	private void initializeTwitter(){
 		try {
 			TwitterAPI.loadAuthToken();
-			//goToHomeTimeline();
+			goToHomeTimeline();
 			
 		} catch (Exception e) {
 			

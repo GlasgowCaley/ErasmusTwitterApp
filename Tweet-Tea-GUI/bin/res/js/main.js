@@ -31,17 +31,17 @@ function initialize(){
 	
 }
 
-function upcall (){
-	setTimeout(function(){
+function upcall ( text ){
+	
 		try{
 			
-			java.print();
+			java.print(text);
 			
 		}
 		catch(e){
 			$("body").prepend(e.message);
 		}
-	}, 2000);
+	
 }
 
 /*
@@ -55,8 +55,7 @@ function clearAll(){
 	Add a JSON tweet to the view (but by default it is hidden)
 */
 function add( json ){
-	return;
-
+	
 	json = json.replace("\\\"","\"");
 	json = json.replace("\\'","'");
 	/*json = json.replace("\\\n","\n");*/
@@ -202,4 +201,4 @@ function formatTweets(){
 		});
 
 	});
-}*/
+}

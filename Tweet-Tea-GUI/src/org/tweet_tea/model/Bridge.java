@@ -6,8 +6,17 @@ public class Bridge {
 		System.out.println("Bridge init");	
 		
 	}
-	public void print(){
-		System.out.println("Up call");
+	public void print( String text ){
+		System.out.println(text);
+	}
+	
+	public void retweet(String tweetId){
+		try {
+			TwitterAPI.retweet(tweetId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
