@@ -25,10 +25,24 @@ var tabTweet = [];
 
 /* initialize the webview by showing a prompt text and make JS working correctly */
 function initialize(){
+
 	$("body").append("<div id='promptStartText' class='tweetBloc'></div>");
 	$(".tweetBloc").eq(0).text("Click Home or Search something to Start");
+	
 }
 
+function upcall ( text ){
+	
+		try{
+			
+			java.print(text);
+			
+		}
+		catch(e){
+			$("body").prepend(e.message);
+		}
+	
+}
 
 /*
 	Remove all tweets
@@ -101,7 +115,12 @@ function makeTweetBloc(jsonTweet){
 										  +		"</tr>"
 										  +		"<tr>"
 										  +			"<td >"
-										  +				"<table><tr class='options' ><td>Add favorite</td><td>opt2</td></tr></table>"
+										  +				"<table>"
+										  +					"<tr class='options' >"
+										  +						"<td>Add favorite</td>"
+										  +						"<td class='retweetBtn'>Re-tweet</td>"
+										  +					"</tr>"
+										  +				"</table>"
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr class='replyContainer'>"
@@ -180,8 +199,12 @@ function formatTweets(){
 			$(optionRow).css("opacity","0.01");
 		});
 
+		$(optionRow).children(".retweetBtn").on("click", function(){
+			$(this).css("color","green");
+			var id = $(this).closest(".tweetBloc").attr("id");
+			$("body").prepend(id);
+			java.retweet(id);
+		});
+
 	});
-
-
 }
-

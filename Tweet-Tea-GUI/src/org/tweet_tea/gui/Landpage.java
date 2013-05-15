@@ -241,7 +241,7 @@ public class Landpage extends Application{
 				}
 
 				if(tweets[tweets.length - 1] != null){
-					if(!tweets[tweets.length - 1].equals(refreshTweets[tweets.length - 1])){
+					if(!tweets[tweets.length - 1].equals(refreshTweets[refreshTweets.length - 1])){
 						btnNewTweets.setDisable(false);
 						btnNewTweets.setOpacity(1);
 					}

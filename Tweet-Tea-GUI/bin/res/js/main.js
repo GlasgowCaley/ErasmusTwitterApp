@@ -115,7 +115,12 @@ function makeTweetBloc(jsonTweet){
 										  +		"</tr>"
 										  +		"<tr>"
 										  +			"<td >"
-										  +				"<table><tr class='options' ><td>Add favorite</td><td>Re-tweet</td></tr></table>"
+										  +				"<table>"
+										  +					"<tr class='options' >"
+										  +						"<td>Add favorite</td>"
+										  +						"<td class='retweetBtn'>Re-tweet</td>"
+										  +					"</tr>"
+										  +				"</table>"
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr class='replyContainer'>"
@@ -194,10 +199,11 @@ function formatTweets(){
 			$(optionRow).css("opacity","0.01");
 		});
 
-		$(this).children("img").on("mouseenter", function(){
-			$(this).animate({
-				"font-size": "150%"
-			}, 1000);
+		$(optionRow).children(".retweetBtn").on("click", function(){
+			
+			var id = $(this).closest(".tweetBloc").attr("id");
+			/*$("body").prepend(id);*/
+			java.retweet(id);
 		});
 
 	});

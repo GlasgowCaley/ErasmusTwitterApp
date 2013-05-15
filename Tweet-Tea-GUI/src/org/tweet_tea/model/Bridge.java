@@ -11,6 +11,7 @@ public class Bridge {
 	}
 	
 	public void retweet(String tweetId){
+		System.out.println("Retweet : "+tweetId);
 		try {
 			TwitterAPI.retweet(tweetId);
 		} catch (Exception e) {
