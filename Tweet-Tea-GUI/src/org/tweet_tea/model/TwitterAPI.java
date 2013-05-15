@@ -200,7 +200,7 @@ public final class TwitterAPI {
 	 */
 	public static Tweet[] getScreen(String screenName) throws Exception{
 		if(screenName.isEmpty()) return null;
-		String url = Res.domain+Res.timeline_prefix+"?screen_name="+screenName+"&include_entities=true";
+		String url = Res.domain+Res.timeline_prefix+"screen_name="+screenName+"&include_entities=true";
 		System.out.println(url);
 		Tweet [] response;
 		try{
@@ -699,7 +699,7 @@ public final class TwitterAPI {
 				throw new Exception("The tweet wasn't retweeted");
 			
 		}catch(Exception e){
-			throw new Exception("this tweet does´t exist");
+			throw new Exception("this tweet doesï¿½t exist");
 		}	
 	}
 	

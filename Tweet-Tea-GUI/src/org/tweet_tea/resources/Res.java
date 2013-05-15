@@ -16,7 +16,7 @@ public class Res {
 	public static final String api_key = "ylVhrIQ6Yooukipyz1Qjw";							// comming from your twitter account
 	public static final String api_secret = "s8zxt9BNbrynTwccPdkCqUYlngLc36Ta6OPp3RHL3E";
 	
-	public static final String timeline_prefix = "statuses/user_timeline.json?include_entities=true";
+	public static final String timeline_prefix = "statuses/user_timeline.json?";
 	public static final String home_timeline_prefix= "statuses/home_timeline.json?include_entities=true";
 	public static final String search_prefix= "http://search.twitter.com/search.json?include_entities=true";
 	public static final String update_prefix = "statuses/update.json";
