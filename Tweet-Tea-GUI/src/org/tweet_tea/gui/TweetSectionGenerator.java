@@ -3,6 +3,7 @@ package org.tweet_tea.gui;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Stack;
 
 
 import com.google.gson.Gson;
@@ -61,6 +62,11 @@ public class TweetSectionGenerator {
 	 * The google JSON parser
 	 */
 	Gson serializer ;
+	
+	/**
+	 * The window object in javascript
+	 */
+	JSObject window;
 
 	
 	public TweetSectionGenerator(){
@@ -114,6 +120,7 @@ public class TweetSectionGenerator {
 				+				mainJs
 				+			"</script>"
 				+		"</head>"
+				+		"<script > initialize(); </script>"
 				+"		<body>");
 		
 		
@@ -127,19 +134,26 @@ public class TweetSectionGenerator {
 		
 		
 		engine.getLoadWorker().stateProperty().addListener(
-		        new ChangeListener<State>() {
-		           
+		        new ChangeListener<State>() {          
 
 					
 					public void changed(ObservableValue<? extends State> arg0,
-							State arg1, State arg2) {
+							State arg1, State newState) {
 						// TODO Auto-generated method stub
-						
+						if ( newState == State.SUCCEEDED){
+							
+							
 					      
-				      	JSObject jsobj = (JSObject) engine.executeScript("window");
-						jsobj.setMember("java", new Bridge());
+							window = (JSObject) engine.executeScript("window");
+							
+							window.eval("$(\"body\").append(\"YAAAAAHHH\");");
+							window.eval("initialize();");
+							
+							window.setMember("java", new Bridge());
+						}
 						
-						engine.executeScript("initialize();");
+						
+						//engine.executeScript("upcall();");
 						
 					}
 		        });
