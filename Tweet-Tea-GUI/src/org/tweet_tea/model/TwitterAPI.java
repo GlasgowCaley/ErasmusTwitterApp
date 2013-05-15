@@ -683,7 +683,7 @@ public final class TwitterAPI {
 		url = Res.domain+"statuses/retweet/"+id+".json";
 		
 		//We create the request
-		request = new OAuthRequest(Verb.POST, url);
+ 		request = new OAuthRequest(Verb.POST, url);
 		
 		//We sign the request
 		AuthentificationService.signRequest(accessToken, request);
@@ -695,13 +695,12 @@ public final class TwitterAPI {
 		try{
 			Tweet t = gson.fromJson(r.getBody(), Tweet.class);
 			
-			if(!id.equals(t.getID()))
+			if(t.getMessage()==null)
 				throw new Exception("The tweet wasn't retweeted");
 			
 		}catch(Exception e){
-			throw new Exception("this tweet does'nt exist");
-		}
-		System.out.println(r.getBody());
+			throw new Exception("this tweet does´t exist");
+		}	
 	}
 	
 	/**
