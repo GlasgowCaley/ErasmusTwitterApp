@@ -1,3 +1,6 @@
+
+package org.tweet_tea.model;
+
 /**
  * This class represents direct messages sent to the authenticated user
  * @author Vincent
@@ -14,7 +17,7 @@ public class DirectMessage{
 	private String id_str;
 	
 	/*Getters*/
-	public String getMsg(){
+	public String getMsg(){ 
 		return this.text;
 	}
 	
@@ -36,9 +39,11 @@ public class DirectMessage{
 	
 	public String toString(){
 		StringBuffer s = new StringBuffer();
+		s.append("________________________________________\n");	
 		s.append("From : "+sender.getScreenName()+"\n");
 		s.append("Message : "+text+"\n");
 		s.append("\nAt : "+created_at);
+		s.append("\n________________________________________\n");
 		
 		return s.toString();
 	}

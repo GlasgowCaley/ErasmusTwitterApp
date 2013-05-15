@@ -32,6 +32,8 @@ import com.google.gson.*;
 import java.awt.Desktop;
 import java.net.*;
 
+import javax.naming.spi.DirectoryManager;
+
 
 /**
  * Represents the Twitter API
@@ -576,6 +578,61 @@ public final class TwitterAPI {
 		return retour;
 	}
 	
+	
+	public static DirectMessage[] getRecivedPrivateMessages(int page){
+		
+		String url = Res.private_message_feed_received+"count="+page+"";
+		//System.out.println(url);
+		//String json = getJSON(url);
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);
+		AuthentificationService.signRequest(accessToken, request); // the access token from step 4
+		Response response = request.send();
+		String json = response.getBody();
+		//System.out.println(json);					// you can look to objects in the console to understand how they are structured
+		
+		DirectMessage[] list = null;
+		
+		if( json.contains("{\"errors\":") ){
+			ErrorWrapper e = gson.fromJson(json, ErrorWrapper.class);
+			Error[] errors = e.getErrors();
+			for (int i = 0; i < errors.length; i++) {
+				System.out.println(errors[i].getMessage());
+			}			
+			
+		}else{
+			list = gson.fromJson(json, DirectMessage[].class);	
+		}
+		
+		
+		return list;
+	}
+	public static DirectMessage[] getSentPrivateMessages(int page){
+		
+		String url = Res.private_message_feed_sent+"count="+page+"";
+		  //System.out.println(url);
+		  
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);
+		AuthentificationService.signRequest(accessToken, request); // the access token from step 4
+		Response response = request.send();
+		String json = response.getBody();
+		//System.out.println(json);					// you can look to objects in the console to understand how they are structured
+		
+		DirectMessage[] list = null;
+		
+		if( json.contains("{\"errors\":") ){
+			ErrorWrapper e = gson.fromJson(json, ErrorWrapper.class);
+			Error[] errors = e.getErrors();
+			for (int i = 0; i < errors.length; i++) {
+				System.out.println(errors[i].getMessage());
+			}			
+			
+		}else{
+			list = gson.fromJson(json, DirectMessage[].class);	
+		}
+		
+		
+		return list;
+	}
 	
 	
 	/**

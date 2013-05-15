@@ -11,6 +11,7 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.tweet_tea.model.DirectMessage;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
 import org.tweet_tea.model.User;
@@ -148,8 +149,35 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			
+				
 			case 10:
+				DirectMessage[] list = TwitterAPI.getRecivedPrivateMessages(1);
+				if(list != null){
+					for (DirectMessage directMessage : list) {
+						System.out.println(directMessage);
+					}
+				}
+				else{
+					System.out.println("No messages to show");
+				}
+				
+				
+				break;
+			case 11:
+				DirectMessage[] list2 = TwitterAPI.getSentPrivateMessages(1);
+				if(list2 != null){
+					for (DirectMessage directMessage : list2) {
+						System.out.println(directMessage);
+					}
+				}
+				else{
+					System.out.println("No messages to show");
+				} 
+				
+				
+				break;
+			
+			case 12:
 				System.out.println("Enter a Tweet id : ");
 				String id = scanner.nextLine();
 				try{
@@ -159,7 +187,7 @@ public class Console {
 				}
 				break;
 				
-			case 11:
+			case 13:
 				System.out.println("Enter a screen name : ");
 				String followed = scanner.nextLine();
 				try{
@@ -170,7 +198,7 @@ public class Console {
 				
 				break;
 				
-			case 12:
+			case 14:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.setFavorite(scanner.nextLine());
@@ -179,7 +207,7 @@ public class Console {
 				}
 				break;
 				
-			case 13:
+			case 15:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.removeFavorite(scanner.nextLine());
@@ -188,7 +216,7 @@ public class Console {
 				}
 				break;
 				
-			case 14:
+			case 16:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.delete_tweet(scanner.nextLine());
@@ -197,7 +225,7 @@ public class Console {
 				}
 				break;
 				
-			case 15:
+			case 17:
 				clear();
 				print("Bye!");
 				System.exit(0);
@@ -239,12 +267,14 @@ public class Console {
 				   +"6- Change my description\n"
 				   +"8- Auth\n"
 				   +"9- Send a private message\n"
-				   +"10- Retweet with the ID\n"
-				   +"11- Follow a new user\n"
-				   +"12- Set a new favorite\n"
-				   +"13- Remove a tweet from favorites\n"
-				   +"14- Delete a tweet\n"
-				   +"15- Quit";
+				   +"10- Get last received private messages\n"
+				   +"11- Get last sent private messages\n"
+				   +"12- Retweet with the ID\n"
+				   +"13- Follow a new user\n"
+				   +"14- Set a new favorite\n"
+				   +"15- Remove a tweet from favorites\n"
+				   +"16- Delete a tweet\n"
+				   +"17- Quit";
 		print(menu);
 		
 		Scanner sc = new Scanner(System.in);
