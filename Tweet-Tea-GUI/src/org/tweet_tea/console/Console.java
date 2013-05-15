@@ -224,8 +224,21 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-				
+			
 			case 17:
+				try {
+					tweets = TwitterAPI.getScreen(TwitterAPI.getMyUserInfo().getScreenName());
+					
+					if(tweets!=null){
+						for(Tweet tweet : tweets){	print(tweet.toString());	}
+					}
+					
+				} catch (Exception e1) {
+					
+					print("Screen not found");
+				}
+				break;
+			case 18:
 				clear();
 				print("Bye!");
 				System.exit(0);
@@ -274,7 +287,8 @@ public class Console {
 				   +"14- Set a new favorite\n"
 				   +"15- Remove a tweet from favorites\n"
 				   +"16- Delete a tweet\n"
-				   +"17- Quit";
+				   +"17- Get own tweets\n"
+				   +"18- Quit";
 		print(menu);
 		
 		Scanner sc = new Scanner(System.in);

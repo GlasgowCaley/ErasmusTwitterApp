@@ -200,7 +200,7 @@ public final class TwitterAPI {
 	 */
 	public static Tweet[] getScreen(String screenName) throws Exception{
 		if(screenName.isEmpty()) return null;
-		String url = Res.domain+Res.timeline_prefix+"screen_name="+screenName+"&include_entities=true";
+		String url = Res.domain+Res.timeline_prefix+"screen_name="+screenName+"&include_entities=true&include_rts=true";
 		System.out.println(url);
 		Tweet [] response;
 		try{
