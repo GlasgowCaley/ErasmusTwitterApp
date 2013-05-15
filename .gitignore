@@ -172,3 +172,4 @@ pip-log.txt
 
 # Oauth tokens
 *.oauth
+/bin1

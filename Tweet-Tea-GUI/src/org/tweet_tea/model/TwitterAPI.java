@@ -32,6 +32,11 @@ import com.google.gson.*;
 import java.awt.Desktop;
 import java.net.*;
 
+import java.util.ArrayList;
+
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Represents the Twitter API
@@ -89,6 +94,18 @@ public final class TwitterAPI {
 			e.printStackTrace();
 		}		
 		
+	}
+	
+	public static void logOut() throws Exception{
+		try {
+			Path path = FileSystems.getDefault().getPath("token.oauth");
+			Files.deleteIfExists(path);
+			AuthentificationService = null;
+			requestToken = null;
+			accessToken = null;
+		} catch(Exception e){
+			throw new Exception ("Token could not be deleted");
+		}
 	}
 	
 	
@@ -662,7 +679,7 @@ public final class TwitterAPI {
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!followed.equals(verif.getName()))
-				throw new Exception("L'utilisateur ne peut �tre suivi");
+				throw new Exception("L'utilisateur ne peut ���tre suivi");
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to follow this user");
@@ -736,6 +753,107 @@ public final class TwitterAPI {
 			}
 		}catch(Exception e){
 			throw new Exception ("The tweet does'nt exist");
+		}
+	}
+	
+	public static User[] getFollowers(String screenname) throws Exception{
+		String url;
+		OAuthRequest request;
+		Response r;
+		FollowersList listParse;
+		
+		url = "https://api.twitter.com/1/followers/ids.json?cursor=-1&screen_name=" + screenname;
+		
+		request = new OAuthRequest(Verb.GET, url);
+		
+		AuthentificationService.signRequest(accessToken, request);
+		
+		r = request.send();
+
+		try{
+			listParse = gson.fromJson(r.getBody(), FollowersList.class);
+		}catch(Exception e){
+			throw new Exception ("Bad Response");
+		}
+		
+		if(listParse.getIds().length == 0){
+			System.out.println("No followers found");
+			return null;
+		}
+		else
+			return getUsers(listParse.getIds());
+		
+	}
+	
+	public static User[] getUsers(String[] FollowerIDs) throws Exception{
+
+		String url = "https://api.twitter.com/1/users/lookup.json?user_id=";
+		OAuthRequest request;
+		Response r;
+		User[] parse;
+		
+			for(int i=0;i<FollowerIDs.length;i++){
+				url += FollowerIDs[i] + ",";
+			}
+				
+				request = new OAuthRequest(Verb.GET, url);
+				
+				AuthentificationService.signRequest(accessToken, request);
+				
+				r = request.send();
+
+				try{
+					parse = gson.fromJson(r.getBody(), User[].class);
+				}catch(Exception e){
+					throw new Exception ("Bad Response 2");
+			
+		}
+		
+		return parse;
+		
+	}
+	
+public static void blockUser (String screenName) throws Exception{
+		
+		String url = "https://api.twitter.com/1/blocks/create.json?screen_name=" + screenName + "&include_entities=true";
+		OAuthRequest request;
+		Response r;
+		User blockedUser;
+		request = new OAuthRequest(Verb.POST, url);
+		AuthentificationService.signRequest(accessToken, request);
+		r = request.send();
+		
+		try{
+			blockedUser = gson.fromJson(r.getBody(), User.class);
+			if (blockedUser.getScreenName() == null){
+				System.out.println("User doesn't exist");
+			} else {
+				System.out.println("User has been blocked");
+			}
+		}catch(Exception e){
+			throw new Exception ("Block was unsuccessful");
+		}
+	}
+
+	public static void unblockUser (String screenName) throws Exception{
+		
+		String url = "https://api.twitter.com/1/blocks/destroy.json?screen_name=" + screenName + "&include_entities=true";
+		OAuthRequest request;
+		Response r;
+		User blockedUser;
+		request = new OAuthRequest(Verb.DELETE, url);
+		AuthentificationService.signRequest(accessToken, request);
+		r = request.send();
+		
+		try{
+			blockedUser = gson.fromJson(r.getBody(), User.class);
+			if (blockedUser.getScreenName() == null){
+				System.out.println("User doesn't exist");
+			} else {
+				System.out.println("User has been unblocked");
+			}
+		}catch(Exception e){
+			throw new Exception ("Unblock was unsuccessful");
 		}
 	}
 }

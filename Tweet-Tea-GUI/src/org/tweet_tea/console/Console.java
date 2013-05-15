@@ -1,6 +1,7 @@
 package org.tweet_tea.console;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
@@ -27,7 +28,7 @@ public class Console {
 	// TODO : Change all strings by a constant in Res
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		Scanner scanner = new Scanner(System.in);
 		String scanned;		// declared here because multiple declaration aren't allowed in swicth/case
@@ -203,6 +204,45 @@ public class Console {
 				System.exit(0);
 				break;
 				
+			case 16:
+				User[] followers;
+				String screenName;
+				
+				System.out.print("Enter Screen Name: ");
+				screenName = scanner.nextLine();
+				
+				followers = TwitterAPI.getFollowers(screenName);
+				if(followers!=null){
+				for(User follower: followers){
+					System.out.println(follower.getScreenName());
+				}
+				}
+				break;
+			case 17:
+				System.out.println("Enter the screen name you want to block: ");
+				try{
+					TwitterAPI.blockUser(scanner.nextLine());
+				}catch(Exception e){
+					System.out.println(e.getMessage());
+				}
+				break;
+			case 18:
+				System.out.println("Enter the screen name you want to unblock: ");
+				try{
+					TwitterAPI.unblockUser(scanner.nextLine());
+				}catch(Exception e){
+					System.out.println(e.getMessage());
+				}
+				break;
+			case 19:
+				try{
+					TwitterAPI.logOut();
+					TwitterAPI.loadAuthToken();
+				}catch(Exception e){
+					System.out.println(e.getMessage());
+				}
+				break;
+				
 			default:
 				print("Please enter a correct value.");
 				sleep(1000);
@@ -244,7 +284,12 @@ public class Console {
 				   +"12- Set a new favorite\n"
 				   +"13- Remove a tweet from favorites\n"
 				   +"14- Delete a tweet\n"
-				   +"15- Quit";
+				   +"15- Quit\n"
+				   +"16- Show Folowers\n"
+				   +"17- Block User\n"
+				   +"18- Unblock User\n"
+				   +"19- Log Out";
+		
 		print(menu);
 		
 		Scanner sc = new Scanner(System.in);
