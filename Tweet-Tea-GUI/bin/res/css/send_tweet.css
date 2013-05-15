@@ -3,15 +3,16 @@
 */
 
 .root{
-	-fx-background-color: rgb(142,193,218);   /* Twitter's colors */	
+	/*-fx-background-color: rgb(142,193,218);   /* Twitter's colors */	
+	-fx-background-color: rgb(255,0,0);
 }
 
 #btnSend{
-	-fx-graphic:url("/res/img/btnTweet_25.png");		/*Image in a button*/
+	-fx-graphic:url("../img/btnTweet_25.png");		/*Image in a button*/
 }
 
 #btnCancel{
-	-fx-graphic:url("/res/img/btnCancel.png");
+	-fx-graphic:url("../img/btnCancel.png");
 }
 
 #mainVbox{
@@ -24,7 +25,7 @@
 	-fx-padding: 10px;	
 	-fx-background-color:linear-gradient(#3e3e3e,#262626);
 	-fx-background-position:center;
-	-fx-background-image:url("../bin/res/img/icone_twitter.png");
+	-fx-background-image:url("../img/icone_twitter.png");
 	-fx-background-repeat:no-repeat;
 }
 
