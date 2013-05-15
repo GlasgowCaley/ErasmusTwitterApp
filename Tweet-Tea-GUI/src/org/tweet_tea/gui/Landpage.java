@@ -43,6 +43,9 @@ import java.util.Stack;
 import org.tweet_tea.console.Console;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
+import org.tweet_tea.resources.Res;
+
+import javafx.concurrent.Worker.State;;
 
 /**
  * The GUI Landpage
@@ -65,6 +68,8 @@ public class Landpage extends Application{
 	
 	@FXML private 	TextField searchField;	// The search TextField
 	@FXML private 	Button btnSearch;		// To start the search
+	@FXML private  HBox newTweets;
+	@FXML private  		Button btnNewTweets;
 	@FXML private  HBox contentPane;		// To main content pane
 	@FXML private  HBox footer;				// the footer
 	@FXML private  	Button btnRefold;		// Used to reduce the window height .
@@ -75,7 +80,6 @@ public class Landpage extends Application{
 	private PopupPerso tweets_sender;
 	private PopupPerso messages_sender;
 	
-	
 	private StackPane root;					// The root invisible container
 	
 	
@@ -83,6 +87,9 @@ public class Landpage extends Application{
 	private double initialY;
 	
 	private String lastTweetID;
+	
+	//An array that contains previous tweets
+	private Tweet [] refreshTweets;
 
 	
 	/**
@@ -107,7 +114,7 @@ public class Landpage extends Application{
 	 * This method do (and must do) only ONE thing : call launch(args);
 	 */
 	public static void main(String[] args) {
-		
+		//We initialize the tweets array
 		launch(args);
 	}
 
@@ -167,6 +174,13 @@ public class Landpage extends Application{
         		searchField = (TextField) main.lookup("#searchField");
         		btnSearch = (Button) main.lookup("#btnSearch");
         		
+        		newTweets = (HBox) main.lookup("#newTweets");
+        		btnNewTweets = (Button) main.lookup("#btnNewTweets");
+        		
+        		//firstly this button is disabled
+        		btnNewTweets.setDisable(true);
+        		btnNewTweets.setOpacity(0.8);
+        		
         	contentPane = (HBox) main.lookup("#contentPane");
         	
         	footer = (HBox) main.lookup("#footer");
@@ -188,14 +202,75 @@ public class Landpage extends Application{
         
         setBindings();				// set Bindings on buttons
         addDraggableNode(menuBar);	// we make the window drag by the menuBar
-        
+
         
         // The GUI is ready, we can connect to twitter. The home timeline is called automatically 
           
         initializeTwitter();
         
+        //We initalize the array when the javascript is ready
+        tweetView.getEngine().getLoadWorker().stateProperty().addListener(
+		        new ChangeListener<State>() {
+		           
+
+					
+					public void changed(ObservableValue<? extends State> arg0,
+							State arg1, State arg2) {
+						// TODO Auto-generated method stub
+						try {
+							refreshTweets = TwitterAPI.getHomeTimeline();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					}
+		});
         
-               
+        
+        Timeline tl = new Timeline(new KeyFrame(Duration.seconds(Res.refreshTime), new EventHandler <ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent ae) {
+				Tweet [] tweets = null;
+				try {
+					tweets = TwitterAPI.getHomeTimeline();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				if(tweets[tweets.length - 1] != null){
+					if(!tweets[tweets.length - 1].equals(refreshTweets[tweets.length - 1])){
+						btnNewTweets.setDisable(false);
+						btnNewTweets.setOpacity(1);
+					}
+				}
+			}
+        	
+        }));
+        
+        //We set the cycle infinite
+        tl.setCycleCount(Timeline.INDEFINITE);
+        tl.play();
+        
+        //A timeline to initialize the array of tweets
+        /*Timeline t2 = new Timeline(new KeyFrame(Duration.seconds(Res.refreshTime - 10), new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				try {
+					refreshTweets = TwitterAPI.getHomeTimeline();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        }));
+        
+        t2.play();*/
 	}
 	
 	
@@ -417,7 +492,8 @@ public class Landpage extends Application{
 				@Override
 				public void handle(ActionEvent event) {
 					
-					getHomeTimeline();					
+					getHomeTimeline();	
+					
 				}
 			});
 	        
@@ -437,6 +513,27 @@ public class Landpage extends Application{
 					landpage.setIconified(true);
 				}
 			});
+	        btnNewTweets.setOnAction(new EventHandler<ActionEvent>(){
+
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					getHomeTimeline();
+					
+					//We set the button disabled
+					btnNewTweets.setDisable(true);
+					btnNewTweets.setOpacity(0.8);
+					
+					//We save tweets
+					try {
+						refreshTweets = TwitterAPI.getHomeTimeline();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+	        	
+	        });
 	        	        
 	        
 	        /**
@@ -566,6 +663,7 @@ public class Landpage extends Application{
 		Tweet[] tweets = null;
 		try {
 			tweets = TwitterAPI.getHomeTimeline();
+			refreshTweets = tweets;
 		} catch (Exception e) {
 			
 			goToAuthen();
@@ -595,6 +693,6 @@ public class Landpage extends Application{
 		Platform.exit();
 	}
 	
-
+	
 	
 }

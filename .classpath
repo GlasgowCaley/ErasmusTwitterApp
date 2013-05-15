@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Tweet-Tea-GUI/src"/>
+	<classpathentry kind="lib" path="Tweet-Tea-GUI/libs/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="Tweet-Tea-GUI/libs/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="Tweet-Tea-GUI/libs/scribe-1.3.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="S:/Programmation/JavaFX/jfxrt.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -140,4 +140,17 @@ public class Tweet
 		return profile_image_url_https;
 	}
 	
+	@Override
+	public boolean equals(Object o){
+		boolean r = true;
+		Tweet t = (Tweet)o;
+		
+		if(!t.getID().equals(this.getID()))
+			r = false;
+		if(!t.getMessage().equals(this.getMessage()))
+			r = false;
+		
+		return r;
+	}
+	
 }
