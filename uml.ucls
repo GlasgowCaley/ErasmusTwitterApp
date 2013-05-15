@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="org.tweet_tea.model.TwitterAPI" project="Tweet-Tea-GUI" 
     file="/Tweet-Tea-GUI/Tweet-Tea-GUI/src/org/tweet_tea/model/TwitterAPI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="612" y="267"/>    
+    <position height="-1" width="-1" x="124" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      

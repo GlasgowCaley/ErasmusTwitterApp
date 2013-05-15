@@ -20,6 +20,7 @@ public class Res {
 	public static final String home_timeline_prefix= "statuses/home_timeline.json?include_entities=true";
 	public static final String search_prefix= "http://search.twitter.com/search.json?include_entities=true";
 	public static final String update_prefix = "statuses/update.json";
+	public static final String private_message_prefix = "https://api.twitter.com/1.1/direct_messages/new.json?";
 
 	/**
 	 * Classic Domain

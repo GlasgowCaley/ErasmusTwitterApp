@@ -1,4 +1,4 @@
-package org.tweet_tea.model;
+ package org.tweet_tea.model;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -591,10 +591,25 @@ public final class TwitterAPI {
 		String formated = createUrlArgsFromString(mess);
 		target = createUrlArgsFromString(target);
 		
-		url = "https://api.twitter.com/1.1/direct_messages/new.json?screen_name="+target+"&text="+formated;
+		url = Res.private_message_prefix+ "screen_name="+target+"&text="+formated;
+		
+		//System.out.println(url);
+		
 		request = new OAuthRequest(Verb.POST, url);
 		AuthentificationService.signRequest(accessToken, request);
 		Response r = request.send();
+		
+		String json = r.getBody();
+		//System.out.println(json);
+		if( json.contains("{\"errors\":") ){
+			ErrorWrapper e = gson.fromJson(json, ErrorWrapper.class);
+			Error[] errors = e.getErrors();
+			for (int i = 0; i < errors.length; i++) {
+				System.out.println(errors[i].getMessage());
+			}
+				
+			
+		}
 
 	}
 	
