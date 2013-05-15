@@ -1,37 +1,25 @@
 package org.tweet_tea.gui;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
-import org.apache.commons.codec.StringEncoderComparator;
-
-import netscape.javascript.JSObject;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.sun.javafx.scene.layout.region.BackgroundFill;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
-import javafx.concurrent.Worker.State;
-import javafx.geometry.Insets;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 
-import org.apache.commons.*;
+import netscape.javascript.JSObject;
+
 import org.tweet_tea.Json.JsonWrapper;
-import org.tweet_tea.model.Tweet;
+import org.tweet_tea.model.*;
+import org.w3c.dom.Document;
+import javafx.concurrent.Worker.State;
+
 
 //TODO : add addFirst() to automaticaly inject new tweets (whithout refreshing manualy)
 
@@ -82,6 +70,10 @@ public class TweetSectionGenerator {
 		view = new WebView();
 		engine = view.getEngine();
 		
+		
+		// Bridge between Javascript and Java
+		
+		
 		try {
 			
 			/* Warning !!!
@@ -125,13 +117,38 @@ public class TweetSectionGenerator {
 				+"		<body>");
 		
 		
-		s.append("			<script type='text/javascript'>"
-				+				"initialize();"
-				+			"</script>"
-				+	"</body>"
-				+"</html>");
+		
 		
 		engine.loadContent(s.toString());
+		
+
+		
+		
+		
+		
+		engine.getLoadWorker().stateProperty().addListener(
+		        new ChangeListener<State>() {
+		           
+
+					
+					public void changed(ObservableValue<? extends State> arg0,
+							State arg1, State arg2) {
+						// TODO Auto-generated method stub
+						
+					      
+				      	JSObject jsobj = (JSObject) engine.executeScript("window");
+						jsobj.setMember("java", new Bridge());
+						
+						engine.executeScript("initialize();");
+						
+					}
+		        });
+
+
+		
+	
+		
+
 		
 
 	}
@@ -232,7 +249,7 @@ public class TweetSectionGenerator {
 //		if(worker.getState()==Worker.State.SUCCEEDED)		return true;
 //		else return false;
 //		
-//		// ok ok c'est pas propre mais au moins c'est pas ambiguë
+//		// ok ok c'est pas propre mais au moins c'est pas ambiguï¿½
 //		
 //		
 //	}

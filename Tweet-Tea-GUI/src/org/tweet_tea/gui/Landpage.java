@@ -233,7 +233,7 @@ public class Landpage extends Application{
        	
        	    					// we collect tweets 
        	    					Tweet[] tweets = null;
-       	    					try {
+       	    					try {       	    						
        	    						tweets = TwitterAPI.getPage(lastTweetID);
        	    					} catch (Exception e) {
        	    						
@@ -269,7 +269,7 @@ public class Landpage extends Application{
 	private void initializeTwitter(){
 		try {
 			TwitterAPI.loadAuthToken();
-			goToHomeTimeline();
+			//goToHomeTimeline();
 			
 		} catch (Exception e) {
 			

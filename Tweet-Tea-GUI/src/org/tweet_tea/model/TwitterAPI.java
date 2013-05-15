@@ -653,6 +653,7 @@ public final class TwitterAPI {
 		//System.out.println(url);
 		
 		request = new OAuthRequest(Verb.POST, url);
+		
 		AuthentificationService.signRequest(accessToken, request);
 		Response r = request.send();
 		
