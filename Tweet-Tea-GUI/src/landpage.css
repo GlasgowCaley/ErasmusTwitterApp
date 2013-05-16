@@ -12,9 +12,9 @@
 #menuBar{
 	-fx-padding: 10px;	
 	-fx-background-color:linear-gradient(rgba(62,62,62,0.7) ,rgba(26,26,26, 0.6));
-	
-	
+	-fx-text-fill: lightblue ;
 }
+
 #menuBar .button{
 	
 	-fx-max-height: 20px;

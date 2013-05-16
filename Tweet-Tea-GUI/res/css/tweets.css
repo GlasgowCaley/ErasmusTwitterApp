@@ -6,13 +6,18 @@ html {
 	margin: 0;
 }
 body{
-	background-color: rgb(142,193,218);
+	background-color: #c0deed;
+	background-image: url("https://si0.twimg.com/images/themes/theme1/bg.png");
+	background-position: top;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
     text-decoration: none !important;
-    padding: 0;
+    padding: 2% 10% 2% 10%;
     margin: 0;
 }
 
 #loadPanel{
+	display: none;
 	position: absolute;
 	z-index: 9999;
 	width: 100%;
@@ -49,7 +54,7 @@ body{
 .tweetBloc{
 	background-color: rgba(255,255,255,0.75);
 	width: 100%;
-	visibility: hidden;	/*By default*/
+	opacity: 0;	/*By default*/
 }
 
 .tweetBloc:last-child{
@@ -110,4 +115,12 @@ body{
 .btnActivated{
 	color:green;
 	font-weight: bold;
+}
+
+textarea{
+	resize:none
+}
+.counter{
+	width: 100%;
+	text-align: center;
 }

@@ -26,17 +26,10 @@ var tabTweet = [];
 /* initialize the webview by showing a prompt text and make JS working correctly */
 function initialize(){
 
-	$("body").append("<div id='promptStartText' class='tweetBloc'></div>");
+
+	$("#tweetSection").append("<div id='promptStartText' class='tweetBloc'></div>");
 	$(".tweetBloc").eq(0).text("Click Home or Search something to Start");
-	$("tweetSection").css("display","none");
-	setTimeout(function(){
-		doneLoading(function(){
-			$("tweetSection").css("display","block");
-		});
-		
-	},2000);
-
-
+	
 }
 
 /* use a function for the exact format desired... */
@@ -58,27 +51,29 @@ function isLoading(){
 	$("#loadPanel").fadeIn('fast');
 }
 function doneLoading(callback){
-	$("#loadPanel").fadeOut('fast', callback);
+	$("#loadPanel").fadeOut('slow', callback);
+	$('#tweetSection').fadeTo(1);
 }
 
-function upcall ( text ){
-	
-		try{
-			
-			java.print(text);
-			
+function upcall ( text ){	
+		try{			
+			java.print(text);			
 		}
 		catch(e){
 			$("body").prepend(e.message);
-		}
-	
+		}	
 }
 
 /*
 	Remove all tweets
 */
 function clearAll(){
+	$('#tweetSection').fadeTo(1);
 	$('#tweetSection').empty();
+	
+		
+	/*isLoading();*/
+
 }
 
 /*
@@ -173,13 +168,39 @@ function appendRespondTools( domObject ){
 	var tweet = $(domObject);
 	$(tweet).addClass("replying");
 	var html = 	"<td class='respondBar'>"
-				
-				+		"<textarea rows='1' cols='55'>"
+				+		"<div class='counter'>140</div>"
+				+		"<textarea rows='5' cols='55'>"
 				+	 		"Reply to "+$(tweet).find(".screenName").text()
 				+		"</textarea>"
+
 				
 				+"</td>";
+	
 	$(tweet).find(".replyContainer").html(html);
+	var textarea = $(tweet).find(".respondBar > textarea");
+	$(textarea).on("click", function (event){
+		event.stopPropagation();
+		
+		var text = $(this).html();
+		text = text.replace("Reply to ", "");
+		text += " ";
+		$(this).html(text);
+	}); 
+	var lastText = "";
+	$(textarea).on('keyup', function (event){
+		
+		
+		var text = $(this).html();
+		$(this).siblings(".counter").html( 140 - text.length );
+
+
+		/*if(text.length > 140 ){
+			$(this).html(lastText);
+		}
+		else{
+			lastText = text;
+		}*/
+	});
 	
 }
 
@@ -188,7 +209,13 @@ function appendRespondTools( domObject ){
 function showTweets(){
 		
 	formatTweets();
-	$(".tweetBloc").css("visibility","visible");
+	
+	doneLoading(function(){
+		
+			$(".tweetBloc").animate({
+				opacity: 1
+			}, 1000);
+	});
 	
 }
 
@@ -227,6 +254,14 @@ function formatTweets(){
 
 			if(!$(this).hasClass('replying')){
 				appendRespondTools(this);
+				$(this).find(".respondBar").on("click", function (event){
+					event.stopPropagation();
+				});
+			}
+			else{
+				var replying = $(".replying");
+				$(replying).find(".respondBar").remove();
+				$(replying).removeClass("replying");
 			}
 			
 		});
