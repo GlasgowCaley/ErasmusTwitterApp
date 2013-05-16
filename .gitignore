@@ -174,4 +174,4 @@ pip-log.txt
 *.oauth
 
 # Useless Windows files
-Thumbs.db
+*Thumbs.db

@@ -3,6 +3,7 @@ package org.tweet_tea.gui;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Stack;
 
 
@@ -121,12 +122,22 @@ public class TweetSectionGenerator {
 				+			"</script>"
 				+		"</head>"
 				+		"<script > initialize(); </script>"		// very important
-				+"		<body>");
+				+		"<body>"
+				+			"<div id='other'>"
+				+				"<img src='res/img/ajax-loader.gif'>"
+				+			"</div>"
+				+			"<div id='tweetSection'></div>"
+				+		"</body>"
+				+ 	"</html>");
 		
 		
 		
 		
-		engine.loadContent(s.toString());
+		
+		//engine.loadContent(s.toString());
+		URL html = getClass().getResource("/res/main.html");
+		engine.load(html.toExternalForm());
+		System.out.println(html.toExternalForm());
 		
 
 		

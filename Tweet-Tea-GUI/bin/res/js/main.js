@@ -48,7 +48,7 @@ function upcall ( text ){
 	Remove all tweets
 */
 function clearAll(){
-	$('body').empty();
+	$('#tweetSection').empty();
 }
 
 /*
@@ -62,7 +62,7 @@ function add( json ){
 
 	var tweetBloc = makeTweetBloc(json);
 
-	$("body").append(tweetBloc);
+	$("#tweetSection").append(tweetBloc);
 }
 
 function makeTweetBloc(jsonTweet){
