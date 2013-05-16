@@ -131,7 +131,7 @@ function makeTweetBloc(jsonTweet){
 										  +			"<td >"
 										  +				"<table>"
 										  +					"<tr class='options' >"
-										  +						"<td>Add favorite</td>"
+										  +						"<td class='favoriteBtn'>Add favorite</td>"
 										  +						"<td class='retweetBtn'>Re-tweet</td>"
 										  +					"</tr>"
 										  +				"</table>"
@@ -213,11 +213,29 @@ function formatTweets(){
 			$(optionRow).css("opacity","0.01");
 		});
 
+
+		// retweet binding
+
 		$(optionRow).children(".retweetBtn").on("click", function(){
 			
 			var id = $(this).closest(".tweetBloc").attr("id");
 			/*$("body").prepend(id);*/
 			var res = java.retweet(id);
+
+			if(res){
+				$(this).css("color","green").css("font-weight","bold");
+			}
+
+		});
+
+
+		// Add favorite binding
+
+		$(optionRow).children(".favoriteBtn").on("click", function(){
+			
+			var id = $(this).closest(".tweetBloc").attr("id");
+			
+			var res = java.addFavorite(id);
 
 			if(res){
 				$(this).css("color","green").css("font-weight","bold");

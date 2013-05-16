@@ -687,7 +687,7 @@ public final class TwitterAPI {
 	 * Retweet the specified Tweet 
 	 * @param id Tweet's ID
 	 */
-	public static void retweet(String id) throws Exception{	
+	public static String retweet(String id) throws Exception{	
 		String url;
 		OAuthRequest request;
 		
@@ -704,16 +704,20 @@ public final class TwitterAPI {
 		//We send the request
 		Response r = request.send();
 		
+		String result = r.getBody();
+		
 		//We verify that the the Tweet was retweeted
 		try{
-			Tweet t = gson.fromJson(r.getBody(), Tweet.class);
+			Tweet t = gson.fromJson(result, Tweet.class);
 			
 			if(t.getMessage()==null)
 				throw new Exception("The tweet wasn't retweeted");
 			
 		}catch(Exception e){
-			throw new Exception("this tweet does�t exist");
-		}	
+			throw new Exception("this tweet doesn't exist");
+		}
+		
+		return result;
 	}
 	
 	/**
