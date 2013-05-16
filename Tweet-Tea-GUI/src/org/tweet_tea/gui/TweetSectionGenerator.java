@@ -9,6 +9,7 @@ import java.util.Stack;
 
 import com.google.gson.Gson;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.web.WebEngine;
@@ -80,6 +81,21 @@ public class TweetSectionGenerator {
 		view.setContextMenuEnabled(false);
 		view.setCache(true);
 		
+		// to cancel browsing
+//		engine.locationProperty().addListener(new ChangeListener<String>() {
+//		      @Override public void changed(ObservableValue<? extends String> ov, final String oldLocation, final String loc) {
+//		        if (!loc.contains("file")) {
+//		          Platform.runLater(new Runnable() {
+//		            @Override public void run() {
+//		              engine.getLoadWorker().cancel();
+//		            }
+//		          });
+//		        }
+//		      }
+//		    });
+//		
+		
+
 	
 		
 		

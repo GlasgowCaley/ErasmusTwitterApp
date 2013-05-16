@@ -675,14 +675,14 @@ public class Landpage extends Application{
 		// if we have tweets 
 		if (tweets != null){
 			final Tweet[] tweetsCopy = tweets;
-			final WebEngine engine = tweetView.getEngine();
-			engine.getLoadWorker().stateProperty().addListener(
-			        new ChangeListener<State>() { 
-						public void changed(ObservableValue<? extends State> arg0,
-								State arg1, State newState) {
-							// TODO Auto-generated method stub
-							if ( newState == State.SUCCEEDED){
-								engine.getLoadWorker().stateProperty().removeListener(this);
+//			final WebEngine engine = tweetView.getEngine();
+//			engine.getLoadWorker().stateProperty().addListener(
+//			        new ChangeListener<State>() { 
+//						public void changed(ObservableValue<? extends State> arg0,
+//								State arg1, State newState) {
+//							// TODO Auto-generated method stub
+//							if ( newState == State.SUCCEEDED){
+//								engine.getLoadWorker().stateProperty().removeListener(this);
 								tweetSection.clear();
 								for(Tweet t : tweetsCopy){
 									tweetSection.addTweet(t);
@@ -691,9 +691,9 @@ public class Landpage extends Application{
 								lastTweetID = tweetsCopy[tweetsCopy.length-1].getID();
 								
 								tweetSection.showTweets();
-							}
-						}
-			        });
+//							}
+//						}
+//			        });
 			
 			
 			

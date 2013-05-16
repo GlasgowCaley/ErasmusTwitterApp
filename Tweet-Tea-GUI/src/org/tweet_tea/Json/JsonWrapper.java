@@ -20,6 +20,7 @@ public class JsonWrapper {
 	String screen_name;
 	String pictureUrl;
 	String text;
+	String created_at;
 	
 	//TODO: add date, entities etc ...
 	
