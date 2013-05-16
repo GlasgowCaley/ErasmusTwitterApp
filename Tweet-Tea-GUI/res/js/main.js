@@ -35,8 +35,24 @@ function initialize(){
 		});
 		
 	},2000);
-	
+
+
 }
+
+/* use a function for the exact format desired... */
+function ISODateString(d){
+  function pad(n){return n<10 ? '0'+n : n}
+  var newDate =  d.getUTCFullYear()+'-'
+      + pad(d.getUTCMonth()+1)+'-'
+      + pad(d.getUTCDate())+'T'
+      + pad(d.getUTCHours())+':'
+      + pad(d.getUTCMinutes())+':'
+      + pad(d.getUTCSeconds())+'Z';
+   return newDate;
+}
+
+
+
 
 function isLoading(){
 	$("#loadPanel").fadeIn('fast');
@@ -96,7 +112,9 @@ function makeTweetBloc(jsonTweet){
 		var  screen_name= jsonTweet.screen_name;
 		var  text = jsonTweet.text;
 		var  time = new Date(jsonTweet.created_at);
+		var isoDate = ISODateString(time);
 		
+
 		var formatedTime= time.getHours()+":"+time.getMinutes();
 
 		var  pictureURL =  jsonTweet.pictureUrl;
@@ -116,8 +134,8 @@ function makeTweetBloc(jsonTweet){
 										  +					"<a href='"+profilUrl+"'>"+"@"+screen_name+"</a></span>"
 										  +			"</td>"	
 										  +			"<td class='time'>"
-										  /*+				tweet.getDate()   <-----   To do*/
-										  +					formatedTime
+										  +				"<abbr class='timeago' title='"+isoDate+"'></abbr> "
+										  					
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr>"
@@ -180,6 +198,8 @@ function popup(link){
 
 /*Make the tweetBlocs usables, we add bindings, links etc...*/
 function formatTweets(){
+
+	
 
 	$(".tweetBloc").each(function(){
 
@@ -250,6 +270,8 @@ function formatTweets(){
 		});
 
 	});
+
+	$(".timeago").timeago();
 }
 
 
