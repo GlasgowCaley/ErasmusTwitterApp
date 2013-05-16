@@ -1,6 +1,5 @@
 package org.tweet_tea.gui;
 
-
 import org.tweet_tea.model.TwitterAPI;
 import org.tweet_tea.model.User;
 import org.tweet_tea.resources.Res;
@@ -9,17 +8,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -42,7 +44,7 @@ public class User_Popup{
 	@FXML private 	HBox header;
 	@FXML private 		Text title;
 	@FXML private 	HBox informations; //Informaitions about the user : image, name, screen name, ...
-	@FXML private 		Image avatar;
+	@FXML private 		ImageView avatar;
 	@FXML private 		HBox userNameBox;
 	@FXML private 			Text username;
 	@FXML private 		HBox screenNameBox;
@@ -85,7 +87,9 @@ public class User_Popup{
 			header = (HBox) root.lookup("#menuBar");
 				title = (Text) root.lookup("#title");
 			informations = (HBox) root.lookup("#contentPane");
-				avatar = new Image(user.getImageURL());
+				avatar = new ImageView(user.getImageURL());
+				avatar.setViewport(new Rectangle2D(10, 50, 100, 100));
+				informations.getChildren().add(avatar);
 				userNameBox = (HBox) root.lookup("#userNameBox");
 					username = (Text) root.lookup("#user_name");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
@@ -98,7 +102,7 @@ public class User_Popup{
 				btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
 						
-		title.setText("User's informations");
+		title.setText("User's information");
 		title.setFont(new Font(20));
 		
 		//We set the text of informations
