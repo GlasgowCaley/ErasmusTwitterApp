@@ -22,4 +22,15 @@ public class Bridge {
 		return result;
 	}
 	
+	public boolean follow(String screen_name){
+		boolean result = true;
+		
+		try{
+			TwitterAPI.follow(screen_name);
+		}catch(Exception e){
+			result = false;
+		}
+		
+		return result;
+	}
 }
