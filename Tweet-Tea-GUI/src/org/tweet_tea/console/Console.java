@@ -124,7 +124,7 @@ public class Console {
 					print(updated_user.toString());
 				
 				break;
-			case 8:
+			case 7:
 				
 				try {
 					TwitterAPI.firstauth();
@@ -134,7 +134,7 @@ public class Console {
 				
 				break;
 				
-			case 9:
+			case 8:
 				String t, mess;
 				
 				System.out.println("For who ? Enter his screenName");
@@ -151,7 +151,7 @@ public class Console {
 				}
 				break;
 				
-			case 10:
+			case 9:
 				DirectMessage[] list = TwitterAPI.getRecivedPrivateMessages(1);
 				if(list != null){
 					for (DirectMessage directMessage : list) {
@@ -164,7 +164,7 @@ public class Console {
 				
 				
 				break;
-			case 11:
+			case 10:
 				DirectMessage[] list2 = TwitterAPI.getSentPrivateMessages(1);
 				if(list2 != null){
 					for (DirectMessage directMessage : list2) {
@@ -178,7 +178,7 @@ public class Console {
 				
 				break;
 			
-			case 12:
+			case 11:
 				System.out.println("Enter a Tweet id : ");
 				String id = scanner.nextLine();
 				try{
@@ -188,7 +188,7 @@ public class Console {
 				}
 				break;
 				
-			case 13:
+			case 12:
 				System.out.println("Enter a screen name : ");
 				String followed = scanner.nextLine();
 				try{
@@ -199,7 +199,7 @@ public class Console {
 				
 				break;
 				
-			case 14:
+			case 13:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.setFavorite(scanner.nextLine());
@@ -208,7 +208,7 @@ public class Console {
 				}
 				break;
 				
-			case 15:
+			case 14:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.removeFavorite(scanner.nextLine());
@@ -217,7 +217,7 @@ public class Console {
 				}
 				break;
 				
-			case 16:
+			case 15:
 				System.out.println("Enter the tweet ID: ");
 				try{
 					TwitterAPI.delete_tweet(scanner.nextLine());
@@ -226,7 +226,7 @@ public class Console {
 				}
 				break;
 			
-			case 17:
+			case 16:
 				try {
 					tweets = TwitterAPI.getScreen(TwitterAPI.getMyUserInfo().getScreenName());
 					
@@ -239,13 +239,8 @@ public class Console {
 					print("Screen not found");
 				}
 				break;
-			case 18:
-				clear();
-				print("Bye!");
-				System.exit(0);
-				break;
-				
-			case 16:
+			
+			case 17:
 				User[] followers;
 				String screenName;
 				
@@ -259,7 +254,7 @@ public class Console {
 				}
 				}
 				break;
-			case 17:
+			case 18:
 				System.out.println("Enter the screen name you want to block: ");
 				try{
 					TwitterAPI.blockUser(scanner.nextLine());
@@ -267,7 +262,7 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			case 18:
+			case 19:
 				System.out.println("Enter the screen name you want to unblock: ");
 				try{
 					TwitterAPI.unblockUser(scanner.nextLine());
@@ -275,7 +270,7 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			case 19:
+			case 20:
 				try{
 					TwitterAPI.logOut();
 					TwitterAPI.loadAuthToken();
@@ -283,6 +278,12 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
+			case 21:
+				clear();
+				print("Bye!");
+				System.exit(0);
+				break;
+				
 				
 			default:
 				print("Please enter a correct value.");
@@ -318,31 +319,22 @@ public class Console {
 				   +"4- Post a tweet\n"
 				   +"5- My info\n"
 				   +"6- Change my description\n"
-				   +"8- Auth\n"
-				   +"9- Send a private message\n"
-<<<<<<< HEAD
-				   +"10- Get last received private messages\n"
-				   +"11- Get last sent private messages\n"
-				   +"12- Retweet with the ID\n"
-				   +"13- Follow a new user\n"
-				   +"14- Set a new favorite\n"
-				   +"15- Remove a tweet from favorites\n"
-				   +"16- Delete a tweet\n"
-				   +"17- Get own tweets\n"
-				   +"18- Quit";
-=======
-				   +"10- Retweet with the ID\n"
-				   +"11- Follow a new user\n"
-				   +"12- Set a new favorite\n"
-				   +"13- Remove a tweet from favorites\n"
-				   +"14- Delete a tweet\n"
-				   +"15- Quit\n"
-				   +"16- Show Folowers\n"
-				   +"17- Block User\n"
-				   +"18- Unblock User\n"
-				   +"19- Log Out";
-		
->>>>>>> origin/Ivaylo
+				   +"7- Auth\n"
+				   +"8- Send a private message\n"
+				   +"9- Get last received private messages\n"
+				   +"10- Get last sent private messages\n"
+				   +"11- Retweet with the ID\n"
+				   +"12- Follow a new user\n"
+				   +"13- Set a new favorite\n"
+				   +"14- Remove a tweet from favorites\n"
+				   +"15- Delete a tweet\n"
+				   +"16- Get own tweets\n"
+				   +"17- Show Folowers\n"
+				   +"18- Block User\n"
+				   +"19- Unblock User\n"
+				   +"20- Log Out\n"
+				   +"21- Quit";
+
 		print(menu);
 		
 		Scanner sc = new Scanner(System.in);

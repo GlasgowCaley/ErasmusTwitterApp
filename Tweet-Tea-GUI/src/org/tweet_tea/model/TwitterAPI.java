@@ -7,9 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
@@ -32,16 +30,10 @@ import com.google.gson.*;
 import java.awt.Desktop;
 import java.net.*;
 
-<<<<<<< HEAD
-import javax.naming.spi.DirectoryManager;
-
-=======
-import java.util.ArrayList;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
->>>>>>> origin/Ivaylo
 
 /**
  * Represents the Twitter API
