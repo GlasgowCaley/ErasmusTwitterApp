@@ -661,45 +661,43 @@ public class Landpage extends Application{
 	 * Get the user tweets and folower's tweets
 	 */
 	private void getHomeTimeline(){
-		tweetView.getEngine().getLoadWorker().stateProperty().addListener(
-		        new ChangeListener<State>() {          
-
-					
-					public void changed(ObservableValue<? extends State> arg0,
-							State arg1, State newState) {
-						// TODO Auto-generated method stub
-						if ( newState == State.SUCCEEDED){
-							
-							
-							Tweet[] tweets = null;
-							try {
-								tweets = TwitterAPI.getHomeTimeline();
-								refreshTweets = tweets;
-							} catch (Exception e) {
-								
-								goToAuthen();
-							}
-							
-							// if we have tweets 
-							if (tweets != null){
-									
-								
-								
+		
+		// we collect tweets 
+		Tweet[] tweets = null;
+		try {
+			tweets = TwitterAPI.getHomeTimeline();
+			refreshTweets = tweets;
+		} catch (Exception e) {
+			
+			goToAuthen();
+		}
+		
+		// if we have tweets 
+		if (tweets != null){
+			final Tweet[] tweetsCopy = tweets;
+			final WebEngine engine = tweetView.getEngine();
+			engine.getLoadWorker().stateProperty().addListener(
+			        new ChangeListener<State>() { 
+						public void changed(ObservableValue<? extends State> arg0,
+								State arg1, State newState) {
+							// TODO Auto-generated method stub
+							if ( newState == State.SUCCEEDED){
+								engine.getLoadWorker().stateProperty().removeListener(this);
 								tweetSection.clear();
-								for(Tweet t : tweets){
+								for(Tweet t : tweetsCopy){
 									tweetSection.addTweet(t);
 								}
 								
-								lastTweetID = tweets[tweets.length-1].getID();
+								lastTweetID = tweetsCopy[tweetsCopy.length-1].getID();
 								
 								tweetSection.showTweets();
-								
-							}		
+							}
 						}
-					}
-		        });
-		// we collect tweets 
-		
+			        });
+			
+			
+			
+		}		
 	}
 	
 	
