@@ -38,6 +38,10 @@
 	-fx-background-color: lightblue  ;
 }
 
+#charRemaining{
+	-fx-fill: white;
+}
+
 .button{
 	
 	-fx-max-height: 20px;

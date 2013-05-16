@@ -19,7 +19,7 @@
 
 
 
-<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/landpage.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
+<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/res/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
   <children>
   
   	<HBox fx:id="menuBar" minHeight="41.0" prefHeight="49.0" alignment="CENTER">
@@ -30,52 +30,47 @@
   	
   	<HBox fx:id="contentPane" minHeight="100.0" prefHeight="150.0" alignment="CENTER">
   		<children>
+  			<VBox id="miseEnPage">
+  			<VBox.margin>
+  				<Insets top="100.0" bottom="2.0" fx:id="x2"/>
+  			</VBox.margin>
+  			
   			<HBox fx:id="userNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
-  				<HBox.margin>
-            		<Insets bottom="5.0" fx:id="x1" />
-          		</HBox.margin>
+  				
+          		
   				<children>
   					<Text id="user_name">
-  						<HBox.margin>
-            				<Insets bottom="5.0" fx:id="x1" />
-          				</HBox.margin>
   					</Text>
   				</children>
   			</HBox>
   			
   			<HBox fx:id="screenNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
-  				<HBox.margin>
-            		<Insets bottom="5.0" fx:id="x1" />
-          		</HBox.margin>
+  				
   				<children>
   					<Text id="screen_name">
-  						<HBox.margin>
-            				<Insets bottom="5.0" fx:id="x1" />
-          				</HBox.margin>
   					</Text>
   				</children>
   			</HBox>
   			
+  			<Text id="nbTweets">
+  	    	</Text>
   			
   			<Text id="nbFollowers">
-  	    		<HBox.margin>
-            		<Insets bottom="5.0" fx:id="x1" />
-          		</HBox.margin>
   	    	</Text>
   	    	
   	    	<Text id="nbFollowed">
-  	    		<HBox.margin>
-            		<Insets bottom="5.0" fx:id="x1" />
-          		</HBox.margin>
   	    	</Text>
-  		
+  			</VBox>
   		</children>
   	</HBox>
-  	
-  	<HBox fx:id="twitterInformations" alignment="CENTER" minWidth = "200.0" prefWidth="400.0" VBox.vgrow="NEVER">
-  	    <children>
-  	    
-  			<Button id="btnFollow" mnemonicParsing="false"  text="Follow">
+
+    <HBox fx:id="footer" alignment="CENTER" VBox.vgrow="NEVER">
+    	<HBox.margin>
+            		<Insets top="10.0" fx:id="x1" />
+        </HBox.margin>
+        
+        <children>
+        	<Button id="btnFollow" mnemonicParsing="false"  text="Follow">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
@@ -92,14 +87,7 @@
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
-    	</children>
-  	</HBox> 
-  	
-
-    <HBox fx:id="footer" alignment="CENTER" VBox.vgrow="NEVER">
-    	<HBox.margin>
-            		<Insets top="10.0" fx:id="x1" />
-        </HBox.margin>
+        </children>
     </HBox>
   </children>
 </VBox>

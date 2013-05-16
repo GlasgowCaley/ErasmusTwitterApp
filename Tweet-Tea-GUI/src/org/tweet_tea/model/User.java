@@ -74,4 +74,12 @@ public class User
 	public Integer getFollowedCount(){
 		return this.friends_count;
 	}
+	
+	public Integer getNbTweets(){
+		return listed_count;
+	}
+	
+	public String getImageURL(){
+		return this.profile_image_url_https;
+	}
 }

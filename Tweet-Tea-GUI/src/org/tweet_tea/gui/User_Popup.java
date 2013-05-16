@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -41,11 +42,13 @@ public class User_Popup{
 	@FXML private 	HBox header;
 	@FXML private 		Text title;
 	@FXML private 	HBox informations; //Informaitions about the user : image, name, screen name, ...
+	@FXML private 		Image avatar;
 	@FXML private 		HBox userNameBox;
 	@FXML private 			Text username;
 	@FXML private 		HBox screenNameBox;
 	@FXML private 			Text screen_name;
 	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
+	@FXML private		Text nbTweets;
 	@FXML private 		Text nbFollowers;
 	@FXML private		Text nbFollowed;
 	@FXML private 		Button btnFollow; //Button to follow the user
@@ -82,17 +85,18 @@ public class User_Popup{
 			header = (HBox) root.lookup("#menuBar");
 				title = (Text) root.lookup("#title");
 			informations = (HBox) root.lookup("#contentPane");
+				avatar = new Image(user.getImageURL());
 				userNameBox = (HBox) root.lookup("#userNameBox");
 					username = (Text) root.lookup("#user_name");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
 					screen_name = (Text) root.lookup("#screen_name");
-			twitterInformations = (HBox) root.lookup("#twitterInformations");
+				nbTweets = (Text) root.lookup("#nbTweets");
 				nbFollowers = (Text) root.lookup("#nbFollowers");
 				nbFollowed = (Text) root.lookup("#nbFollowed");
+			footer = (HBox) root.lookup("#footer");
 				btnFollow = (Button) root.lookup("#btnFollow");
 				btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
-			footer = (HBox) root.lookup("#footer");
 						
 		title.setText("User's informations");
 		title.setFont(new Font(20));
@@ -103,8 +107,9 @@ public class User_Popup{
 		screen_name.setText(user.getScreenName()+"\n");
 		screen_name.setFont(new Font(17));
 		
-		nbFollowers.setText(""+user.getFollowersCount());
-		nbFollowed.setText(""+user.getFollowedCount());
+		nbTweets.setText("Tweets : "+user.getNbTweets());
+		nbFollowers.setText("Followers : "+user.getFollowersCount());
+		nbFollowed.setText("Friends : "+user.getFollowedCount());
 			
 		btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 
