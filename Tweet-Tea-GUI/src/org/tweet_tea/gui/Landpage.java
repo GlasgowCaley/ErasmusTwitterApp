@@ -46,6 +46,7 @@ import org.tweet_tea.console.Console;
 import org.tweet_tea.model.Bridge;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
+import org.tweet_tea.model.User;
 import org.tweet_tea.resources.Res;
 
 import javafx.concurrent.Worker.State;;
@@ -82,6 +83,7 @@ public class Landpage extends Application{
 	//We use pop-ups to send messages and tweets
 	private PopupPerso tweets_sender;
 	private PopupPerso messages_sender;
+	private User_Popup user_informations;
 	
 	private StackPane root;					// The root invisible container
 	
@@ -215,8 +217,6 @@ public class Landpage extends Application{
         tweetView.getEngine().getLoadWorker().stateProperty().addListener(
 		        new ChangeListener<State>() {
 		           
-
-					
 					public void changed(ObservableValue<? extends State> arg0,
 							State arg1, State arg2) {
 						// TODO Auto-generated method stub
@@ -226,7 +226,6 @@ public class Landpage extends Application{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
 					}
 		});
         
@@ -710,6 +709,8 @@ public class Landpage extends Application{
 		Platform.exit();
 	}
 	
-	
+	public void addUserpopup(User_Popup up){
+		user_informations = up;
+	}
 	
 }

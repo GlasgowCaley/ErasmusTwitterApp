@@ -171,14 +171,17 @@ function showTweets(){
 	
 }
 
+function popup(link){
+	java.createUserPopup(link);
+}
 
 /*Make the tweetBlocs usables, we add bindings, links etc...*/
 function formatTweets(){
 
 	$(".tweetBloc").each(function(){
 
-		var link = $(this).find(".screenName").text();
-		var a = "<a href='"+link+"'></a>";
+		var link = $(this).find(".screenName").text().replace("@", "");
+		var a = "<a href='#' onclick=\"popup('"+link+"')\"></a>";
 		
 		$(this).find(".name").wrap(a);
 

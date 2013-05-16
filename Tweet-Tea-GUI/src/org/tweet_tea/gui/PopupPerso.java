@@ -53,7 +53,6 @@ public class PopupPerso{
 	public PopupPerso(String name) throws Exception{	
 		popup = new Stage();
 		
-		System.out.println(name);
 		Parent fxml = FXMLLoader.load(getClass().getResource(name));
 		
 		root = new StackPane();

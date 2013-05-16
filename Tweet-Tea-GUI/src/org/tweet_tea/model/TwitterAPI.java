@@ -928,4 +928,23 @@ public static void blockUser (String screenName) throws Exception{
 			throw new Exception ("Unblock was unsuccessful");
 		}
 	}
+	
+	public static User getUserByScreenName(String screenName){
+		User u = null;
+		OAuthRequest request;
+		Response r;
+		
+		String url = "https://api.twitter.com/1.1/users/lookup.json?screen_name="+screenName;
+		request = new OAuthRequest(Verb.GET, url);
+		AuthentificationService.signRequest(accessToken, request);
+		r = request.send();
+		
+		try{
+			u = gson.fromJson(r.getBody(), User.class);
+		}catch(Exception e){
+			System.out.println("An error occured in the parse");
+		}
+		
+		return u;
+	}
 }

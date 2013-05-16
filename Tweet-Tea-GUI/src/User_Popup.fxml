@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-stylesheet send_tweet.css?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+
+
+
+<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/landpage.css" xmlns:fx="http://javafx.com/fxml" fx:controller="Landpage">
+  <children>
+  
+  	<HBox fx:id="header" minHeight="41.0" prefHeight="49.0">
+  		<children>
+  			<Text value = "User's informations"></Text>
+  		</children>
+  	</HBox>
+  	
+  	<HBox fx:id="informations" minHeight="100.0" prefHeight="150.0">
+  		<children>
+  			<Text id="user_name" ></Text>
+  			<Text id="screen_name"></Text>
+  		</children>
+  	</HBox>
+  	
+  	<HBox fx:id="twitterInformations" alignment="CENTER" minWidth = "200.0" prefWidth="400.0" VBox.vgrow="NEVER">
+  	    <children>
+  			<Button id="btnFollow" mnemonicParsing="false"  text="Follow">
+    		   <HBox.margin>
+            		<Insets right="10.0" fx:id="x1" />
+          		</HBox.margin>
+    		</Button>
+    		
+    		<Button id="btnBlock" mnemonicParsing="false"  text="Block">
+    		   <HBox.margin>
+            		<Insets right="10.0" fx:id="x1" />
+          		</HBox.margin>
+    		</Button>
+    	</children>
+  	</HBox> 
+  	
+
+    <HBox fx:id="footer" alignment="CENTER" VBox.vgrow="NEVER">
+    	<HBox.margin>
+            		<Insets top="10.0" fx:id="x1" />
+        </HBox.margin>
+    </HBox>
+  </children>
+</VBox>

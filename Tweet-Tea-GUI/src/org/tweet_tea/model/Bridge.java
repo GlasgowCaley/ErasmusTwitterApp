@@ -1,5 +1,7 @@
 package org.tweet_tea.model;
 
+import org.tweet_tea.gui.User_Popup;
+
 public class Bridge {
 	public Bridge(){
 		super();		
@@ -55,5 +57,14 @@ public class Bridge {
 		}
 		
 		return result;
+	}
+	
+	public void createUserPopup(String screenName){
+		try {
+			User u = TwitterAPI.getUserByScreenName(screenName);
+			new User_Popup(u);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

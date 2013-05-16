@@ -24,6 +24,7 @@ public class Res {
 	public static final String private_message_feed_received = "https://api.twitter.com/1/direct_messages.json?";
 	public static final String private_message_feed_sent = "https://api.twitter.com/1/direct_messages/sent.json?";
 	public static int refreshTime = 30;
+	public static String user_popup_path = "/User_Popup.fxml";
 
 	/**
 	 * Classic Domain
