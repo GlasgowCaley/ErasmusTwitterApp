@@ -31,6 +31,7 @@ public class JsonWrapper {
 		twitterPrefix = Res.twitterPrefix;
 		id= t.getID();
 		text = t.getMessage();
+		created_at = t.getDate();
 		User user;
 		if( (user= t.getUser())!=null ){
 			name = user.getName();
