@@ -77,6 +77,11 @@ public class TweetSectionGenerator {
 		view = new WebView();
 		engine = view.getEngine();
 		
+		view.setContextMenuEnabled(false);
+		view.setCache(true);
+		
+	
+		
 		
 		// Bridge between Javascript and Java
 		

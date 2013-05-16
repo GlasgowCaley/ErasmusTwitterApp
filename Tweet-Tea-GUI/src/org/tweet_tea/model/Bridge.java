@@ -16,6 +16,7 @@ public class Bridge {
 		String result = null;
 		try {
 			result = TwitterAPI.retweet(tweetId);
+			System.out.println(result);
 		} catch (Exception e) {
 			// nothing to do here, javascript will check if result is null or not
 		}

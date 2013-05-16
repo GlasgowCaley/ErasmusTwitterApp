@@ -346,6 +346,7 @@ public final class TwitterAPI {
 			if(!id.equals(verif.getID()))
 				throw new Exception("The tweet was'nt deleted");
 		}catch(Exception e){
+			System.out.println(r.getBody());
 			throw new Exception("This tweet does'nt exist");
 		}
 	}
