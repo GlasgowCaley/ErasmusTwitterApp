@@ -105,3 +105,9 @@ body{
 	text-decoration:underline;
 	cursor:pointer;
 }
+
+
+.btnActivated{
+	color:green;
+	font-weight: bold;
+}

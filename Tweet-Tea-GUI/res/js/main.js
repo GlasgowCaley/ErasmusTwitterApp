@@ -216,17 +216,14 @@ function formatTweets(){
 
 		// retweet binding
 
+		
 		$(optionRow).children(".retweetBtn").on("click", function(){
-			
-			var id = $(this).closest(".tweetBloc").attr("id");
-			/*$("body").prepend(id);*/
-			var res = java.retweet(id);
-
-			if(res){
-				$(this).css("color","green").css("font-weight","bold");
-			}
-
+			var tweet = $(this).closest(".tweetBloc");
+			$("body").prepend("|"+$(tweet).attr("retweet")+"|");
+			if($(tweet).attr("retweet")=="true") deleteReTweet(tweet);
+			else retweet(tweet);
 		});
+
 
 
 		// Add favorite binding
@@ -244,4 +241,38 @@ function formatTweets(){
 		});
 
 	});
+}
+
+
+function  retweet( domObject ){
+
+
+	var tweet = domObject;
+	var id = $(tweet).attr("id");
+	
+	var res = java.retweet(id);
+	if(res){
+		res = JSON.parse(res);
+	}
+
+	if(!res.error){
+		$(tweet).attr("id", res.id);
+		$(tweet).attr("retweet","true");
+		
+		$(domObject).addClass("btnActivated");
+	}
+	else{
+		
+		deleteReTweet(this);
+	}
+}
+
+function deleteReTweet( domObject ){
+	var tweet = domObject;
+	var id = $(tweet).attr("id");
+	var res = java.deleteReTweet(id);
+	if(res){		
+		$(this).removeClass("btnActivated");
+		$(tweet).attr("retweet","false");
+	}
 }
