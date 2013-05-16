@@ -203,7 +203,12 @@ function formatTweets(){
 			
 			var id = $(this).closest(".tweetBloc").attr("id");
 			/*$("body").prepend(id);*/
-			java.retweet(id);
+			var res = java.retweet(id);
+
+			if(res){
+				$(this).css("color","green").css("font-weight","bold");
+			}
+
 		});
 
 	});

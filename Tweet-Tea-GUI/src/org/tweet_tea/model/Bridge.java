@@ -10,14 +10,16 @@ public class Bridge {
 		System.out.println(text);
 	}
 	
-	public void retweet(String tweetId){
+	public boolean retweet(String tweetId){
 		System.out.println("Retweet : "+tweetId);
+		boolean result = true;
 		try {
 			TwitterAPI.retweet(tweetId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			result = false;
 		}
+		return result;
 	}
 	
 }
