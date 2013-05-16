@@ -242,8 +242,8 @@ public class Landpage extends Application{
 				try {
 					tweets = TwitterAPI.getHomeTimeline();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// TODO make somthing better
+					//e.printStackTrace();
 				}
 
 				if(tweets[tweets.length - 1] != null){

@@ -169,7 +169,7 @@ function appendRespondTools( domObject ){
 	$(tweet).addClass("replying");
 	var html = 	"<td class='respondBar'>"
 				+		"<div class='counter'>140</div>"
-				+		"<textarea rows='5' cols='55'>"
+				+		"<textarea rows='4' cols='55'>"
 				+	 		"Reply to "+$(tweet).find(".screenName").text()
 				+		"</textarea>"
 
@@ -186,20 +186,18 @@ function appendRespondTools( domObject ){
 		text += " ";
 		$(this).html(text);
 	}); 
-	var lastText = "";
-	$(textarea).on('keyup', function (event){
+	
+	$(textarea).on('keydown', function (event){
 		
 		
-		var text = $(this).html();
-		$(this).siblings(".counter").html( 140 - text.length );
+		var text = $(this).val();
+		$(this).siblings(".counter").text( 140 - text.length );
 
 
-		/*if(text.length > 140 ){
-			$(this).html(lastText);
+		if(text.length >= 140 ){
+			$(this).val( text.substring(0,139) );
 		}
-		else{
-			lastText = text;
-		}*/
+		
 	});
 	
 }
