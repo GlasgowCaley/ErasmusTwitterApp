@@ -28,7 +28,21 @@ function initialize(){
 
 	$("body").append("<div id='promptStartText' class='tweetBloc'></div>");
 	$(".tweetBloc").eq(0).text("Click Home or Search something to Start");
+	$("tweetSection").css("display","none");
+	setTimeout(function(){
+		doneLoading(function(){
+			$("tweetSection").css("display","block");
+		});
+		
+	},2000);
 	
+}
+
+function isLoading(){
+	$("#loadPanel").fadeIn('fast');
+}
+function doneLoading(callback){
+	$("#loadPanel").fadeOut('fast', callback);
 }
 
 function upcall ( text ){
