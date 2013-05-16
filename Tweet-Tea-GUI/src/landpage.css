@@ -11,7 +11,8 @@
 
 #menuBar{
 	-fx-padding: 10px;	
-	-fx-background-color:linear-gradient(#3e3e3e,#262626);
+	-fx-background-color:linear-gradient(rgba(62,62,62,0.7) ,rgba(26,26,26, 0.6));
+	
 	
 }
 #menuBar .button{
@@ -19,6 +20,7 @@
 	-fx-max-height: 20px;
 	-fx-font-family: "Verdana";
 	-fx-font-weight: bold;
+	
 	
 }
 #menuBar .button:hover{
@@ -54,8 +56,8 @@
 }
 
 #footer{
-	-fx-padding: 10px;
-	-fx-background-color:linear-gradient(#262626,#3e3e3e);
+	/*-fx-padding: 0px;*/
+	-fx-background-color:linear-gradient(rgba(26,26,26, 0.85), rgba(62,62,62,0.95) );
 }
 
 

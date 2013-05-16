@@ -114,6 +114,7 @@ public class Landpage extends Application{
 	
 	private TweetSectionGenerator tweetSection;		// allow to format the Tweets
 	private WebView tweetView;						// the view in the content pane
+	
 
 	/**
 	 * This method do (and must do) only ONE thing : call launch(args);
@@ -193,8 +194,11 @@ public class Landpage extends Application{
         
    
         tweetSection = new TweetSectionGenerator();		// Allow us to dialog with JS
+        
         tweetView = tweetSection.getWebView();			// Allow us to inject the WebView in the contentPane
+        
         contentPane.getChildren().add(tweetView);		// and we do it
+        
         	
         // We have our manipulable objects, now we set specifics dimensions. ( Why not in css ? css wasn't working when i have tried that...)
         
@@ -421,73 +425,73 @@ public class Landpage extends Application{
 	 * Bind events on buttons
 	 */
 	private void setBindings(){
-	        btnRefold.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					
-					if(contentPaneDisplayed){
-						lastContentPaneHeight = contentPane.getHeight();
-						Timeline hide = new Timeline();
-						hide.getKeyFrames().addAll(
-						        new KeyFrame(Duration.ZERO, // set start position at 0
-						           new KeyValue( contentPane.maxHeightProperty(), contentPane.getHeight())
-						            
-						            
-						        ),
-						        new KeyFrame(new Duration(100), // set end position at 100ms
-						        		new KeyValue( contentPane.maxHeightProperty(), 0 )
-						        		
-						          
-						        )
-						    );
-						
-						
-						
-						hide.play();
-						hide.setOnFinished(new EventHandler<ActionEvent>() {
-
-							@Override
-							public void handle(ActionEvent event) {
-								
-								mainVbox.getChildren().remove(contentPane);
-							}
-						});
-						
-						btnRefold.setText(">");
-						contentPaneDisplayed = false;
-					}
-					else{
-						Timeline show = new Timeline();
-						show.getKeyFrames().addAll(
-						        new KeyFrame(Duration.ZERO, // set start position at 0
-						            new KeyValue( contentPane.maxHeightProperty(), 0)
-						           
-						            
-						        ),
-						        new KeyFrame(new Duration(100), // set end position at 400ms
-						        		new KeyValue( contentPane.maxHeightProperty(), lastContentPaneHeight)
-						        		
-						          
-						        )
-						    );
-						
-						mainVbox.getChildren().add(2, contentPane);
-						show.play();
-						show.setOnFinished(new EventHandler<ActionEvent>() {
-
-							@Override
-							public void handle(ActionEvent event) {
-							
-								contentPane.setMaxHeight(Double.MAX_VALUE);
-							}
-						});
-						btnRefold.setText("<");
-						contentPaneDisplayed = true;
-					}
-				}
-	        	
-			});
+//	        btnRefold.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				@Override
+//				public void handle(ActionEvent event) {
+//					
+//					if(contentPaneDisplayed){
+//						lastContentPaneHeight = contentPane.getHeight();
+//						Timeline hide = new Timeline();
+//						hide.getKeyFrames().addAll(
+//						        new KeyFrame(Duration.ZERO, // set start position at 0
+//						           new KeyValue( contentPane.maxHeightProperty(), contentPane.getHeight())
+//						            
+//						            
+//						        ),
+//						        new KeyFrame(new Duration(100), // set end position at 100ms
+//						        		new KeyValue( contentPane.maxHeightProperty(), 0 )
+//						        		
+//						          
+//						        )
+//						    );
+//						
+//						
+//						
+//						hide.play();
+//						hide.setOnFinished(new EventHandler<ActionEvent>() {
+//
+//							@Override
+//							public void handle(ActionEvent event) {
+//								
+//								mainVbox.getChildren().remove(contentPane);
+//							}
+//						});
+//						
+//						btnRefold.setText(">");
+//						contentPaneDisplayed = false;
+//					}
+//					else{
+//						Timeline show = new Timeline();
+//						show.getKeyFrames().addAll(
+//						        new KeyFrame(Duration.ZERO, // set start position at 0
+//						            new KeyValue( contentPane.maxHeightProperty(), 0)
+//						           
+//						            
+//						        ),
+//						        new KeyFrame(new Duration(100), // set end position at 400ms
+//						        		new KeyValue( contentPane.maxHeightProperty(), lastContentPaneHeight)
+//						        		
+//						          
+//						        )
+//						    );
+//						
+//						mainVbox.getChildren().add(2, contentPane);
+//						show.play();
+//						show.setOnFinished(new EventHandler<ActionEvent>() {
+//
+//							@Override
+//							public void handle(ActionEvent event) {
+//							
+//								contentPane.setMaxHeight(Double.MAX_VALUE);
+//							}
+//						});
+//						btnRefold.setText("<");
+//						contentPaneDisplayed = true;
+//					}
+//				}
+//	        	
+//			});
 	        
 	        btnHome.setOnAction(new EventHandler<ActionEvent>() {
 

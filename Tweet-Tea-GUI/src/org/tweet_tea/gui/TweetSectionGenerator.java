@@ -81,88 +81,10 @@ public class TweetSectionGenerator {
 		view.setContextMenuEnabled(false);
 		view.setCache(true);
 		
-		// to cancel browsing
-//		engine.locationProperty().addListener(new ChangeListener<String>() {
-//		      @Override public void changed(ObservableValue<? extends String> ov, final String oldLocation, final String loc) {
-//		        if (!loc.contains("file")) {
-//		          Platform.runLater(new Runnable() {
-//		            @Override public void run() {
-//		              engine.getLoadWorker().cancel();
-//		            }
-//		          });
-//		        }
-//		      }
-//		    });
-//		
 		
-
-	
-		
-		
-		// Bridge between Javascript and Java
-		
-		
-//		try {
-//			
-//			/* Warning !!!
-//			 * getClass().getResource("res/css/tweets.css").toExternalForm()
-//			 * Give a string like that : file:c:/path/to/file.ext  if java is running from classical .class file
-//			 * And give rsrc:path/to/file.ext if run in a .jar
-//			 * Be sure to remove "file:" or "rscr:"
-//			 */
-//			
-//			String pathToCss = getClass().getResource("/res/css/tweets.css").toExternalForm().replaceAll("file:", "").replaceAll("rsrc:", "").replace("%20", " ");
-//			String pathTojQuery = getClass().getResource("/res/js/jquery-1.9.1.min.js").toExternalForm().replaceAll("file:", "").replaceAll("rsrc:", "").replace("%20", " ");
-//			String pathToJs = getClass().getResource("/res/js/main.js").toExternalForm().replaceAll("file:", "").replaceAll("rsrc:", "").replace("%20", " ");
-//			
-//			css = readFileAsString(pathToCss);
-//			jQuery = readFileAsString(pathTojQuery);
-//			mainJs = readFileAsString(pathToJs);
-//		
-//			
-//					
-//			
-//		} catch (Exception e) {
-//			
-//			System.out.println(e.getMessage());
-//		}
-		
-		
-		// we build the default page's body
-//		StringBuffer s= new StringBuffer("<!doctype html>"  // html 5 of course 
-//				+" <html>"
-//				+"		<head>" 
-//				+			"<style type='text/css'>" 
-//				+				 css
-//				+			"</style>"
-//				+			"<script type='text/javascript'>"
-//				+				jQuery
-//				+			"</script>"
-//				+			"<script type='text/javascript'>"		// need to be loaded after jQuery 
-//				+				mainJs
-//				+			"</script>"
-//				+		"</head>"
-//				+		"<script > initialize(); </script>"		// very important
-//				+		"<body>"
-//				+			"<div id='other'>"
-//				+				"<img src='res/img/ajax-loader.gif'>"
-//				+			"</div>"
-//				+			"<div id='tweetSection'></div>"
-//				+		"</body>"
-//				+ 	"</html>");
-//		
-//		
-//		
-//		
-//		
-		//engine.loadContent(s.toString());
 		URL html = getClass().getResource("/res/main.html");
 		engine.load(html.toExternalForm());
 		System.out.println(html.toExternalForm());
-		
-
-		
-		
 		
 		
 		engine.getLoadWorker().stateProperty().addListener(
