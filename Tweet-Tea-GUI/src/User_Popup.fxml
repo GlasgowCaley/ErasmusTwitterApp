@@ -28,6 +28,12 @@
   		</children>
   	</HBox>
   	
+  	<HBox fx:id="avatarPlace" alignment="CENTER">
+  		<HBox.margin>
+  			<Insets top="10" bottom="10" fx:id="avatarSpace"/>
+  		</HBox.margin>
+  	</HBox>
+  	
   	<HBox fx:id="contentPane" minHeight="100.0" prefHeight="150.0" alignment="CENTER">
   		<children>
   			<VBox id="miseEnPage">

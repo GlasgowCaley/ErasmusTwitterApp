@@ -44,11 +44,12 @@ public class User_Popup{
 	@FXML private 	HBox header;
 	@FXML private 		Text title;
 	@FXML private 	HBox informations; //Informaitions about the user : image, name, screen name, ...
-	@FXML private 		ImageView avatar;
-	@FXML private 		HBox userNameBox;
-	@FXML private 			Text username;
-	@FXML private 		HBox screenNameBox;
-	@FXML private 			Text screen_name;
+	@FXML private	HBox avatarPlace;
+	private 			ImageView avatar;
+	@FXML private 	HBox userNameBox;
+	@FXML private 		Text username;
+	@FXML private 	HBox screenNameBox;
+	@FXML private 		Text screen_name;
 	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
 	@FXML private		Text nbTweets;
 	@FXML private 		Text nbFollowers;
@@ -86,10 +87,8 @@ public class User_Popup{
 		mainVBox = (VBox) root.lookup("#mainVbox");
 			header = (HBox) root.lookup("#menuBar");
 				title = (Text) root.lookup("#title");
+			avatarPlace = (HBox) root.lookup("#avatarPlace");
 			informations = (HBox) root.lookup("#contentPane");
-				avatar = new ImageView(user.getImageURL());
-				avatar.setViewport(new Rectangle2D(10, 50, 100, 100));
-				informations.getChildren().add(avatar);
 				userNameBox = (HBox) root.lookup("#userNameBox");
 					username = (Text) root.lookup("#user_name");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
@@ -102,13 +101,18 @@ public class User_Popup{
 				btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
 						
+		avatar = new ImageView(user.getImageURL());
+		avatar.setLayoutX(50);
+		avatar.setLayoutY(50);
+		avatarPlace.getChildren().add(avatar);
+				
 		title.setText("User's information");
 		title.setFont(new Font(20));
 		
 		//We set the text of informations
 		username.setText(user.getName()+"\n");
 		username.setFont(new Font(17));
-		screen_name.setText(user.getScreenName()+"\n");
+		screen_name.setText("@"+user.getScreenName()+"\n");
 		screen_name.setFont(new Font(17));
 		
 		nbTweets.setText("Tweets : "+user.getNbTweets());

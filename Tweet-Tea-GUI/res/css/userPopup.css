@@ -90,3 +90,8 @@
 #miseEnPage{
 	-fx-margin-top: 10px;
 }
+
+#avatarPlace{
+	-fx-background-color: lightblue  ;
+	-fx-margin: 15px;
+}
