@@ -67,5 +67,11 @@ public class User
 		return profile_image_url_https;
 	}
 
-
+	public Integer getFollowersCount(){
+		return this.followers_count;
+	}
+	
+	public Integer getFollowedCount(){
+		return this.friends_count;
+	}
 }

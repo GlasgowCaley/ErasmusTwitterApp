@@ -9,14 +9,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -36,16 +41,25 @@ public class User_Popup{
 	@FXML private 	HBox header;
 	@FXML private 		Text title;
 	@FXML private 	HBox informations; //Informaitions about the user : image, name, screen name, ...
-	@FXML private 		Text username;
-	@FXML private 		Text screen_name;
+	@FXML private 		HBox userNameBox;
+	@FXML private 			Text username;
+	@FXML private 		HBox screenNameBox;
+	@FXML private 			Text screen_name;
 	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
+	@FXML private 		Text nbFollowers;
+	@FXML private		Text nbFollowed;
 	@FXML private 		Button btnFollow; //Button to follow the user
 	@FXML private 		Button btnBlock; //Button to block the user
+	@FXML private		Button btnCancel;
 	@FXML private 	HBox footer;
+	
+	private double initialX;
+	private double initialY;
 	
 	//Builder
 	public User_Popup(final User user)throws Exception{
 		popup = new Stage();
+		if(user == null) System.out.println("NULL");
 		
 		Parent fxml = FXMLLoader.load(getClass().getResource("/User_Popup.fxml"));
 		
@@ -64,20 +78,33 @@ public class User_Popup{
 		popup.setScene(scene);
 		popup.show();
 		
-		mainVBox = (VBox) root.lookup("#mainVBox");
-			header = (HBox) root.lookup("#header");
+		mainVBox = (VBox) root.lookup("#mainVbox");
+			header = (HBox) root.lookup("#menuBar");
 				title = (Text) root.lookup("#title");
-			informations = (HBox) root.lookup("#informations");
-				username = (Text) root.lookup("#user_name");
-				screen_name = (Text) root.lookup("#screen_name");
+			informations = (HBox) root.lookup("#contentPane");
+				userNameBox = (HBox) root.lookup("#userNameBox");
+					username = (Text) root.lookup("#user_name");
+				screenNameBox = (HBox) root.lookup("#screenNameBox");
+					screen_name = (Text) root.lookup("#screen_name");
 			twitterInformations = (HBox) root.lookup("#twitterInformations");
-				btnFollow = (Button) root.lookup("#follow");
-				btnBlock = (Button) root.lookup("#block");
+				nbFollowers = (Text) root.lookup("#nbFollowers");
+				nbFollowed = (Text) root.lookup("#nbFollowed");
+				btnFollow = (Button) root.lookup("#btnFollow");
+				btnBlock = (Button) root.lookup("#btnBlock");
+				btnCancel = (Button) root.lookup("#btnCancel");
 			footer = (HBox) root.lookup("#footer");
-			
+						
+		title.setText("User's informations");
+		title.setFont(new Font(20));
+		
 		//We set the text of informations
-		username.setText(user.getName());
-		screen_name.setText(user.getScreenName());
+		username.setText(user.getName()+"\n");
+		username.setFont(new Font(17));
+		screen_name.setText(user.getScreenName()+"\n");
+		screen_name.setFont(new Font(17));
+		
+		nbFollowers.setText(""+user.getFollowersCount());
+		nbFollowed.setText(""+user.getFollowedCount());
 			
 		btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -105,5 +132,44 @@ public class User_Popup{
 			}
 			
 		});
+		
+		btnCancel.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				popup.close();
+			}
+			
+		});
+		
+		addDraggableNode(mainVBox);
+	}
+	
+	/**
+	 * Same as in Landpage.java
+	 * @param node a Node
+	 */
+	private void addDraggableNode(final Node node) {
+
+	    node.setOnMousePressed(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent me) {
+	            if (me.getButton() != MouseButton.MIDDLE) {
+	                initialX = me.getSceneX();
+	                initialY = me.getSceneY();
+	            }
+	        }
+	    });
+
+	    node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+	        @Override
+	        public void handle(MouseEvent me) {
+	            if (me.getButton() != MouseButton.MIDDLE) {
+	                node.getScene().getWindow().setX(me.getScreenX() - initialX);
+	                node.getScene().getWindow().setY(me.getScreenY() - initialY);
+	            }
+	        }
+	    });
 	}
 }

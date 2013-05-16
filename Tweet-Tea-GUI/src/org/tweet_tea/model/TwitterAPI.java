@@ -934,7 +934,7 @@ public static void blockUser (String screenName) throws Exception{
 		OAuthRequest request;
 		Response r;
 		
-		String url = "https://api.twitter.com/1.1/users/lookup.json?screen_name="+screenName;
+		String url = "https://api.twitter.com/1.1/users/show.json?screen_name="+screenName;
 		request = new OAuthRequest(Verb.GET, url);
 		AuthentificationService.signRequest(accessToken, request);
 		r = request.send();
