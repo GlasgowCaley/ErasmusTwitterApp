@@ -48,7 +48,7 @@ function upcall ( text ){
 	Remove all tweets
 */
 function clearAll(){
-	$('body').empty();
+	$('#tweetSection').empty();
 }
 
 /*
@@ -62,7 +62,7 @@ function add( json ){
 
 	var tweetBloc = makeTweetBloc(json);
 
-	$("body").append(tweetBloc);
+	$("#tweetSection").append(tweetBloc);
 }
 
 function makeTweetBloc(jsonTweet){
@@ -200,10 +200,15 @@ function formatTweets(){
 		});
 
 		$(optionRow).children(".retweetBtn").on("click", function(){
-			$(this).css("color","green");
+			
 			var id = $(this).closest(".tweetBloc").attr("id");
-			$("body").prepend(id);
-			java.retweet(id);
+			/*$("body").prepend(id);*/
+			var res = java.retweet(id);
+
+			if(res){
+				$(this).css("color","green").css("font-weight","bold");
+			}
+
 		});
 
 	});
