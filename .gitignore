@@ -351,5 +351,9 @@ pip-log.txt
 
 # Oauth tokens
 *.oauth
+
+#JVM debug files
+*pid*.log
+
 /bin1
 >>>>>>> origin/Ivaylo
