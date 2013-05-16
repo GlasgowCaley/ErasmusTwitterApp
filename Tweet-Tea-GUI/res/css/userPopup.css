@@ -6,7 +6,6 @@
 #mainVbox{
 	-fx-padding: 20px;
 	-fx-effect: dropshadow(two-pass-box , black, 20, 0.0 , 0, 0); 
-	
 }
 
 #menuBar{
@@ -93,5 +92,9 @@
 
 #avatarPlace{
 	-fx-background-color: lightblue  ;
-	-fx-margin: 15px;
+	-fx-padding: 15px;
+	-fx-border-radius:30;
+}
+#avatarPlace  ImageView{
+   -fx-border-radius:30;
 }

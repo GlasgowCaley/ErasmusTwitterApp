@@ -82,4 +82,8 @@ public class User
 	public String getImageURL(){
 		return this.profile_image_url_https;
 	}
+	
+	public String getDescription(){
+		return description;
+	}
 }

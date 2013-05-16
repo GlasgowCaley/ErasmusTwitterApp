@@ -30,7 +30,7 @@
   	
   	<HBox fx:id="avatarPlace" alignment="CENTER">
   		<HBox.margin>
-  			<Insets top="10" bottom="10" fx:id="avatarSpace"/>
+  			<Insets top="10" fx:id="avatarSpace"/>
   		</HBox.margin>
   	</HBox>
   	
@@ -42,8 +42,6 @@
   			</VBox.margin>
   			
   			<HBox fx:id="userNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
-  				
-          		
   				<children>
   					<Text id="user_name">
   					</Text>
@@ -51,9 +49,15 @@
   			</HBox>
   			
   			<HBox fx:id="screenNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
-  				
   				<children>
   					<Text id="screen_name">
+  					</Text>
+  				</children>
+  			</HBox>
+  			
+  			<HBox fx:id="descriptionBox" minHeight="20.0" prefHeight="30" maxWidth="100" alignment="CENTER">
+  				<children>
+  					<Text id="description">
   					</Text>
   				</children>
   			</HBox>

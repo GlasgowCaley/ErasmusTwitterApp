@@ -50,6 +50,8 @@ public class User_Popup{
 	@FXML private 		Text username;
 	@FXML private 	HBox screenNameBox;
 	@FXML private 		Text screen_name;
+	@FXML private	HBox descriptionBox;
+	@FXML private		Text description;
 	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
 	@FXML private		Text nbTweets;
 	@FXML private 		Text nbFollowers;
@@ -93,6 +95,8 @@ public class User_Popup{
 					username = (Text) root.lookup("#user_name");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
 					screen_name = (Text) root.lookup("#screen_name");
+				descriptionBox = (HBox) root.lookup("#descriptionBox");
+					description = (Text) root.lookup("#description");
 				nbTweets = (Text) root.lookup("#nbTweets");
 				nbFollowers = (Text) root.lookup("#nbFollowers");
 				nbFollowed = (Text) root.lookup("#nbFollowed");
@@ -100,11 +104,15 @@ public class User_Popup{
 				btnFollow = (Button) root.lookup("#btnFollow");
 				btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
+				
+		popup.setHeight(800);
+		popup.setWidth(500);
 						
 		avatar = new ImageView(user.getImageURL());
 		avatar.setLayoutX(50);
 		avatar.setLayoutY(50);
 		avatarPlace.getChildren().add(avatar);
+		
 				
 		title.setText("User's information");
 		title.setFont(new Font(20));
@@ -114,8 +122,11 @@ public class User_Popup{
 		username.setFont(new Font(17));
 		screen_name.setText("@"+user.getScreenName()+"\n");
 		screen_name.setFont(new Font(17));
+		description.setText(user.getDescription());
+		description.setFont(new Font(14));
+		description.setWrappingWidth(300);
 		
-		nbTweets.setText("Tweets : "+user.getNbTweets());
+		//nbTweets.setText("Tweets : "+user.getNbTweets());
 		nbFollowers.setText("Followers : "+user.getFollowersCount());
 		nbFollowed.setText("Friends : "+user.getFollowedCount());
 			
