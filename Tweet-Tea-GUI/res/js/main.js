@@ -95,7 +95,10 @@ function makeTweetBloc(jsonTweet){
 		var  name = jsonTweet.name;
 		var  screen_name= jsonTweet.screen_name;
 		var  text = jsonTweet.text;
-		var  time = jsonTweet.created_at;
+		var  time = new Date(jsonTweet.created_at);
+		
+		var formatedTime= time.getHours()+":"+time.getMinutes();
+
 		var  pictureURL =  jsonTweet.pictureUrl;
 		var twitterPrefix = jsonTweet.twitterPrefix;
 
@@ -107,14 +110,14 @@ function makeTweetBloc(jsonTweet){
 										  +		"<tr>"
 										  +		"<td></td>"
 										  +			"<td colspan='2' >"
-										  +				"<a class='name' href='"+profilUrl+"'>"+name+"</a>"
+										  +				"<a class='name'>"+name+"</a>"
 										  +				"&nbsp;&nbsp;"	/* soit deux espaces */
 										  +				"<span class='screenName'>"
 										  +					"<a href='"+profilUrl+"'>"+"@"+screen_name+"</a></span>"
 										  +			"</td>"	
 										  +			"<td class='time'>"
 										  /*+				tweet.getDate()   <-----   To do*/
-										  +					"00:00"
+										  +					formatedTime
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr>"
@@ -180,8 +183,11 @@ function formatTweets(){
 
 	$(".tweetBloc").each(function(){
 
-		var link = $(this).find(".screenName").text().replace("@", "");
+		var screenName = $(this).find(".screenName");
+		var link = $(screenName).text().replace("@", "");
 		var a = "<a href='#' onclick=\"popup('"+link+"')\"></a>";
+
+		$(screenName).children("a").attr("href","#");
 		
 		$(this).find(".name").wrap(a);
 
