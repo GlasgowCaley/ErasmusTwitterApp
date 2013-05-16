@@ -40,7 +40,10 @@ import javafx.util.Duration;
 import java.util.Set;
 import java.util.Stack;
 
+import netscape.javascript.JSObject;
+
 import org.tweet_tea.console.Console;
+import org.tweet_tea.model.Bridge;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
 import org.tweet_tea.resources.Res;
@@ -658,29 +661,45 @@ public class Landpage extends Application{
 	 * Get the user tweets and folower's tweets
 	 */
 	private void getHomeTimeline(){
-		
+		tweetView.getEngine().getLoadWorker().stateProperty().addListener(
+		        new ChangeListener<State>() {          
+
+					
+					public void changed(ObservableValue<? extends State> arg0,
+							State arg1, State newState) {
+						// TODO Auto-generated method stub
+						if ( newState == State.SUCCEEDED){
+							
+							
+							Tweet[] tweets = null;
+							try {
+								tweets = TwitterAPI.getHomeTimeline();
+								refreshTweets = tweets;
+							} catch (Exception e) {
+								
+								goToAuthen();
+							}
+							
+							// if we have tweets 
+							if (tweets != null){
+									
+								
+								
+								tweetSection.clear();
+								for(Tweet t : tweets){
+									tweetSection.addTweet(t);
+								}
+								
+								lastTweetID = tweets[tweets.length-1].getID();
+								
+								tweetSection.showTweets();
+								
+							}		
+						}
+					}
+		        });
 		// we collect tweets 
-		Tweet[] tweets = null;
-		try {
-			tweets = TwitterAPI.getHomeTimeline();
-			refreshTweets = tweets;
-		} catch (Exception e) {
-			
-			goToAuthen();
-		}
 		
-		// if we have tweets 
-		if (tweets != null){
-				
-			tweetSection.clear();
-			for(Tweet t : tweets){
-				tweetSection.addTweet(t);
-			}
-			
-			lastTweetID = tweets[tweets.length-1].getID();
-			
-			tweetSection.showTweets();
-		}		
 	}
 	
 	
