@@ -23,19 +23,21 @@
 
 #menuBar{
 	-fx-padding: 10px;	
-	-fx-background-color:linear-gradient(#3e3e3e,#262626);
-	-fx-background-position:center;
+	-fx-background-color:linear-gradient(rgba(62,62,62,0.7) ,rgba(26,26,26, 0.6));
+	-fx-text-fill: lightblue ;
 	-fx-background-image:url("../img/icone_twitter.png");
 	-fx-background-repeat:no-repeat;
 }
 
 #footer{
-	-fx-padding: 10px;
-	-fx-background-color:linear-gradient(#262626,#3e3e3e);
+	-fx-padding: 5px;
+	-fx-background-color:linear-gradient(rgba(26,26,26, 0.85), rgba(62,62,62,0.95) );
 }
 
 #contentPane{
 	-fx-background-color: lightblue  ;
+	-fx-padding: 5px;
+	-fx-margin: 10px;
 }
 
 #charRemaining{
