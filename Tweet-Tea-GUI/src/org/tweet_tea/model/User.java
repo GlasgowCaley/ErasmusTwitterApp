@@ -36,6 +36,10 @@ public class User
 	private String profile_image_url;
 	private String profile_image_url_https;
 	
+	private String profile_background_image_url;
+	
+	private boolean following;
+	
 	
 	public String  getName(){
 		return name;
@@ -83,7 +87,15 @@ public class User
 		return this.profile_image_url_https;
 	}
 	
+	public String getbackgroundURL(){
+		return profile_background_image_url;
+	}
+	
 	public String getDescription(){
 		return description;
+	}
+	
+	public boolean isFollowed(){
+		return following;
 	}
 }

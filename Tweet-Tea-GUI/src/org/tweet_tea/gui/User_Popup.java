@@ -107,11 +107,11 @@ public class User_Popup{
 				
 		popup.setHeight(800);
 		popup.setWidth(500);
-						
-		avatar = new ImageView(user.getImageURL());
+		
+		avatar = new ImageView(user.getImageURL().replace("normal", "bigger"));
 		avatar.setLayoutX(50);
 		avatar.setLayoutY(50);
-		Rectangle r = new Rectangle(50, 50);
+		Rectangle r = new Rectangle(73, 73);
 		r.setArcHeight(10);
 		r.setArcWidth(10);
 		avatar.setClip(r);
@@ -134,19 +134,37 @@ public class User_Popup{
 		//nbTweets.setText("Tweets : "+user.getNbTweets());
 		nbFollowers.setText("Followers : "+user.getFollowersCount());
 		nbFollowed.setText("Friends : "+user.getFollowedCount());
-			
-		btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+		
+		if(!user.isFollowed()){
+			btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 
-			@Override
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				try{
-					TwitterAPI.follow(user.getScreenName());
-				}catch(Exception e){
-					System.out.print(e.getMessage());
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					try{
+						TwitterAPI.follow(user.getScreenName());
+					}catch(Exception e){
+						System.out.print(e.getMessage());
+					}
 				}
-			}
-		});
+			});
+		}else{
+			//In the other case, we change the function of the button
+			btnFollow.setText("Unfollow");
+			btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					try{
+						TwitterAPI.unfollow(user.getScreenName());
+					}catch(Exception e){
+						System.out.println(e.getMessage());
+					}
+				}
+				
+			});
+		}
 		
 		btnBlock.setOnAction(new EventHandler<ActionEvent>(){
 

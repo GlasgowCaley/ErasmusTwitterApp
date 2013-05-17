@@ -759,6 +759,44 @@ public final class TwitterAPI {
 	}
 	
 	/**
+	 * To unfollow somebody
+	 * @param unfollowed
+	 * @throws Exception
+	 */
+	public static void unfollow(String unfollowed) throws Exception{
+		String url;
+		OAuthRequest request;
+		User verif;
+		Response r;
+		
+		//We create the url
+		unfollowed = createUrlArgsFromString(unfollowed);
+		// TODO: Use Res for this String
+		url = "https://api.twitter.com/1.1/friendships/destroy.json?screen_name="+unfollowed;
+		
+		//We create the request
+		request = new OAuthRequest(Verb.POST, url);
+		
+		//We sign the request
+		AuthentificationService.signRequest(accessToken, request);
+		
+		//We execute the request
+		r = request.send();
+		System.out.print(r.getBody());
+		
+		//We create an object User to verify that he's followed
+		try{
+			verif = gson.fromJson(r.getBody(), User.class);
+			
+			if(!unfollowed.equals(verif.getName()))
+				throw new Exception("The user can't be unfollowed");
+			
+		}catch(Exception e){
+			throw new Exception("Impossible to unfollow this user");
+		}
+	}
+	
+	/**
 	 * Make a tweet a favorite
 	 * @param id ID of the tweet to set as favorite
 	 */
