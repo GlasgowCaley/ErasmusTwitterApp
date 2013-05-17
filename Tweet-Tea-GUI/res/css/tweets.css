@@ -85,6 +85,9 @@ body{
 	width: 100%;
 }
 
+.respondBar{
+	width:100%;
+}
 .respondBar input{
 	width:100%;
 }
@@ -123,4 +126,9 @@ textarea{
 .counter{
 	width: 100%;
 	text-align: center;
+}
+
+.btnReplyZone{
+	width: 100%;
+	text-align: right;
 }
