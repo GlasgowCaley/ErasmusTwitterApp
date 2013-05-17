@@ -134,5 +134,9 @@ textarea{
 }
 
 .browsableUrl{
-	color: black;
+	color: #0084ba;
+	text-decoration: none;
+}
+.browsableUrl :hover{
+	text-decoration: underline;
 }
