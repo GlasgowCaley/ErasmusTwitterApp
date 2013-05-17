@@ -1,6 +1,5 @@
-<<<<<<< HEAD
- package org.tweet_tea.model;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -993,6 +992,8 @@ public static void blockUser (String screenName) throws Exception{
 
 =======
 <<<<<<< HEAD:Tweet-Tea-GUI/src/org/tweet_tea/model/TwitterAPI.java
+=======
+>>>>>>> 60c477f1312e2d308e42d7246266bde03cc4cb68
  package org.tweet_tea.model;
 
 import java.io.BufferedReader;
@@ -1981,6 +1982,7 @@ public static void blockUser (String screenName) throws Exception{
 		return u;
 	}
 }
+<<<<<<< HEAD
 =======
 >>>>>>> e7f3776caf052be6d69333e2980ea45dc8cb91c6
 import java.io.BufferedReader;
@@ -3045,3 +3047,5 @@ public static void blockUser (String screenName) throws Exception{
 >>>>>>> origin/France:Tweet-Tea-GUI/src/TwitterAPI.java
 >>>>>>> e7f3776caf052be6d69333e2980ea45dc8cb91c6
 >>>>>>> f386e2e8e5bd41f3700cc9c067331c3cae53e283
+=======
+>>>>>>> 60c477f1312e2d308e42d7246266bde03cc4cb68
