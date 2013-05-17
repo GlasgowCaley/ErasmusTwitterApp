@@ -143,6 +143,25 @@ public class User_Popup{
 					// TODO Auto-generated method stub
 					try{
 						TwitterAPI.follow(user.getScreenName());
+						btnFollow.setText("Unfollow");
+						user.setFollowed(true);
+						
+						//We change the function of the button
+						btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+
+							@Override
+							public void handle(ActionEvent arg0) {
+								// TODO Auto-generated method stub
+								try{
+									TwitterAPI.unfollow(user.getScreenName());
+									btnFollow.setText("Follow");
+									user.setFollowed(false);
+								}catch(Exception e){
+									System.out.println(e.getMessage());
+								}
+							}
+							
+						});
 					}catch(Exception e){
 						System.out.print(e.getMessage());
 					}
@@ -158,6 +177,24 @@ public class User_Popup{
 					// TODO Auto-generated method stub
 					try{
 						TwitterAPI.unfollow(user.getScreenName());
+						btnFollow.setText("Follow");
+						user.setFollowed(false);
+						
+						//We change the function associated to the button
+						btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+
+							@Override
+							public void handle(ActionEvent arg0) {
+								// TODO Auto-generated method stub
+								try{
+									TwitterAPI.follow(user.getScreenName());
+									btnFollow.setText("Unfollow");
+									user.setFollowed(true);
+								}catch(Exception e){
+									System.out.print(e.getMessage());
+								}
+							}
+						});
 					}catch(Exception e){
 						System.out.println(e.getMessage());
 					}
