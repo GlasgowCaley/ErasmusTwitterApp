@@ -1,5 +1,10 @@
 package org.tweet_tea.model;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.tweet_tea.gui.User_Popup;
 
 public class Bridge {
@@ -80,4 +85,22 @@ public class Bridge {
 		
 		return res;
 	}
+	
+	public void browseUrl ( String href ){
+		if(Desktop.isDesktopSupported())
+		{
+			
+			 try {
+				
+				Desktop.getDesktop().browse(new URI(href));		// open a webpage in the default browser
+			} catch (IOException e) {
+				// TODO make something better - GG - FR
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO make something better - GG - FR
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

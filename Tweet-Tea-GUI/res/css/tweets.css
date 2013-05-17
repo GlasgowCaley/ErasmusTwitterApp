@@ -132,3 +132,7 @@ textarea{
 	width: 100%;
 	text-align: right;
 }
+
+.browsableUrl{
+	color: black;
+}
