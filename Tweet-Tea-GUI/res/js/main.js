@@ -194,35 +194,47 @@ function appendRespondTools( domObject ){
 		
 		var text = $(this).val();
 		var counter = $(this).siblings(".counter");
+
 		$(counter).text( 140 - text.length );
 
 		if(text.length >= 140 ){
 			$(counter).css("color","red");
 			$(counter).css("font-weight","bold");
+			$(replyBtn).attr("disabled",'disabled');
 		}
 		else{
 			$(counter).css("color","darkgreen");
 			$(counter).css("font-weight","normal");
+			$(replyBtn).removeAttr("disabled")
 		}
 
 	});
 
 
 	$(replyBtn).on("click", function(){
-
+			
+			
 			var textarea = $(this).parents(".tweetBloc").find(".respondBar > textarea");
 			var text = $(textarea).val();
 
-			
-			if (text.length >= 140){
-				$(counter).animate({
-					"font-size":"150%"
-				}, 100)
-				.animate({
-					"font-size":"normal"
-				}, 100);
-			}
+			var pos = text.indexOf("@");
 		
+
+			while( text[pos] != " " ) {pos++;}
+
+			
+			text = text.substring(pos, text.length);
+
+			var id  = $(tweet).attr("id");
+			
+			var res = java.respondTweet(id, text);
+
+			if(res){
+				$(tweet).click();
+				$(tweet).click();
+			}
+			/*$("body").prepend(pos);*/
+
 	});
 
 
