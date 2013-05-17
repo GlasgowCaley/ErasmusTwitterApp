@@ -154,6 +154,7 @@ function makeTweetBloc(jsonTweet){
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr class='replyContainer'>"
+										  
 										  +		"</tr>"
 										  +	"</table>"
 										  +"</div>";
@@ -172,8 +173,7 @@ function appendRespondTools( domObject ){
 				+		"<textarea rows='4' cols='55'>"
 				+	 		"Reply to "+$(tweet).find(".screenName").text()
 				+		"</textarea>"
-
-				
+				+		"<div class='btnReplyZone'><button>Reply</button></div>"				
 				+"</td>";
 	
 	$(tweet).find(".replyContainer").html(html);
@@ -253,13 +253,13 @@ function formatTweets(){
 			if(!$(this).hasClass('replying')){
 				appendRespondTools(this);
 				$(this).find(".respondBar").on("click", function (event){
-					event.stopPropagation();
+					event.stopPropagation();  /*Important !*/
 				});
 			}
 			else{
-				var replying = $(".replying");
-				$(replying).find(".respondBar").remove();
-				$(replying).removeClass("replying");
+				
+				$(this).find(".respondBar").remove();
+				$(this).removeClass("replying");
 			}
 			
 		});
