@@ -154,7 +154,7 @@ function makeTweetBloc(jsonTweet){
 										  +			"</td>"
 										  +		"</tr>"
 										  +		"<tr class='replyContainer'>"
-										  
+
 										  +		"</tr>"
 										  +	"</table>"
 										  +"</div>";
@@ -173,11 +173,14 @@ function appendRespondTools( domObject ){
 				+		"<textarea rows='4' cols='55'>"
 				+	 		"Reply to "+$(tweet).find(".screenName").text()
 				+		"</textarea>"
-				+		"<div class='btnReplyZone'><button>Reply</button></div>"				
+				+		"<div class='btnReplyZone'><button class='replyBtn'>Reply</button></div>"				
 				+"</td>";
 	
 	$(tweet).find(".replyContainer").html(html);
 	var textarea = $(tweet).find(".respondBar > textarea");
+
+	var replyBtn = $(tweet).find(".replyBtn");
+
 	$(textarea).on("click", function (event){
 		event.stopPropagation();
 		
@@ -187,18 +190,42 @@ function appendRespondTools( domObject ){
 		$(this).html(text);
 	}); 
 	
-	$(textarea).on('keydown', function (event){
-		
+	$(textarea).on('keydown', function (event){		
 		
 		var text = $(this).val();
-		$(this).siblings(".counter").text( 140 - text.length );
-
+		var counter = $(this).siblings(".counter");
+		$(counter).text( 140 - text.length );
 
 		if(text.length >= 140 ){
-			$(this).val( text.substring(0,139) );
+			$(counter).css("color","red");
+			$(counter).css("font-weight","bold");
 		}
+		else{
+			$(counter).css("color","darkgreen");
+			$(counter).css("font-weight","normal");
+		}
+
+	});
+
+
+	$(replyBtn).on("click", function(){
+
+			var textarea = $(this).parents(".tweetBloc").find(".respondBar > textarea");
+			var text = $(textarea).val();
+
+			
+			if (text.length >= 140){
+				$(counter).animate({
+					"font-size":"150%"
+				}, 100)
+				.animate({
+					"font-size":"normal"
+				}, 100);
+			}
 		
 	});
+
+
 	
 }
 
