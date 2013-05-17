@@ -111,6 +111,11 @@ public class User_Popup{
 		avatar = new ImageView(user.getImageURL());
 		avatar.setLayoutX(50);
 		avatar.setLayoutY(50);
+		Rectangle r = new Rectangle(50, 50);
+		r.setArcHeight(10);
+		r.setArcWidth(10);
+		avatar.setClip(r);
+		
 		avatarPlace.getChildren().add(avatar);
 		
 				
