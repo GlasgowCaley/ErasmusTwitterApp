@@ -67,4 +67,17 @@ public class Bridge {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean respondTweet(String id, String message){
+		boolean res = true;
+		
+		try {
+			TwitterAPI.respondTweet(id, message);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res = false;
+		}
+		
+		return res;
+	}
 }
