@@ -107,4 +107,5 @@
 
 #screenNameBox{
 	-fx-padding: 10px;
+	-fx-margin:10px; 
 }

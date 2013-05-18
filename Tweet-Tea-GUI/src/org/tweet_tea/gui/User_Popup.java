@@ -107,16 +107,16 @@ public class User_Popup{
 				btnCancel = (Button) root.lookup("#btnCancel");
 				
 				//We set the size of HBoxs
-				//HBox.setMargin(description, new Insets(20));
+				HBox.setMargin(description, new Insets(20));
 				
-		//popup.setHeight(800);
-		//popup.setWidth(500);
+		popup.setHeight(800);
+		popup.setWidth(500);
 		
-		for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i);
+		//for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i);
 		
 		title.setText("User's information");
 		title.setFont(new Font(20));
-		mainVBox.getChildren().add(0, header);
+		//mainVBox.getChildren().add(0, header);
 		
 		avatar = new ImageView(user.getImageURL().replace("normal", "bigger"));
 		avatar.setLayoutX(50);
@@ -132,9 +132,9 @@ public class User_Popup{
 		//We set the text of informations
 		username.setText(user.getName()+"\n");
 		username.setFont(new Font(17));
-		informations.getChildren().add(username);
+		//informations.getChildren().add(username);
 		
-		mainVBox.getChildren().add(2, informations);
+		//mainVBox.getChildren().add(2, informations);
 		/*userNameBox.getChildren().remove(0);
 		userNameBox.getChildren().add(username);
 		screenNameBox.getChildren().remove(0);
@@ -168,10 +168,6 @@ public class User_Popup{
 						
 						//We change the function of the button
 						btnFollow.setOnAction(new EventHandler<ActionEvent>(){
-<<<<<<< HEAD
-=======
-
->>>>>>> d11ccad73f01832fb7db3f2f43d4fa9f40c18bc7
 							@Override
 							public void handle(ActionEvent arg0) {
 								// TODO Auto-generated method stub
@@ -183,10 +179,7 @@ public class User_Popup{
 									System.out.println(e.getMessage());
 								}
 							}
-<<<<<<< HEAD
-=======
-							
->>>>>>> d11ccad73f01832fb7db3f2f43d4fa9f40c18bc7
+
 						});
 					}catch(Exception e){
 						System.out.print(e.getMessage());
