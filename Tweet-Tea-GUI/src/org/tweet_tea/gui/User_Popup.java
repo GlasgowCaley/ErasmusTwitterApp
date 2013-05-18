@@ -168,6 +168,10 @@ public class User_Popup{
 						
 						//We change the function of the button
 						btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+<<<<<<< HEAD
+=======
+
+>>>>>>> d11ccad73f01832fb7db3f2f43d4fa9f40c18bc7
 							@Override
 							public void handle(ActionEvent arg0) {
 								// TODO Auto-generated method stub
@@ -179,6 +183,10 @@ public class User_Popup{
 									System.out.println(e.getMessage());
 								}
 							}
+<<<<<<< HEAD
+=======
+							
+>>>>>>> d11ccad73f01832fb7db3f2f43d4fa9f40c18bc7
 						});
 					}catch(Exception e){
 						System.out.print(e.getMessage());

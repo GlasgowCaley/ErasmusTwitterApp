@@ -132,3 +132,11 @@ textarea{
 	width: 100%;
 	text-align: right;
 }
+
+.browsableUrl{
+	color: #0084ba;
+	text-decoration: none;
+}
+.browsableUrl :hover{
+	text-decoration: underline;
+}
