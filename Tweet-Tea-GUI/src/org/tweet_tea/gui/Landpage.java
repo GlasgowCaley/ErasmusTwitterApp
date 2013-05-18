@@ -135,7 +135,7 @@ public class Landpage extends Application{
 		
 		// We define the application's icon
 		// using getClass().getResourceAsStream(""); is essential! it allow us to use relative paths
-		Image icon = new Image( getClass().getResourceAsStream("/res/img/greenteaLeaf.png") );
+		Image icon = new Image( getClass().getResourceAsStream("/img/greenteaLeaf.png") );
 		landpage.getIcons().add(icon);
 		
 		
