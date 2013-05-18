@@ -221,11 +221,11 @@ public class Landpage extends Application{
         tweetView.getEngine().getLoadWorker().stateProperty().addListener(
 		        new ChangeListener<State>() {
 		           
-					public void changed(ObservableValue<? extends State> arg0,
-							State arg1, State arg2) {
+					public void changed(ObservableValue<? extends State> arg0,State arg1, State arg2) {
 						// TODO Auto-generated method stub
 						try {
-							refreshTweets = TwitterAPI.getHomeTimeline();
+							if(TwitterAPI.isConnected())
+								refreshTweets = TwitterAPI.getHomeTimeline();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -238,18 +238,22 @@ public class Landpage extends Application{
 
 			@Override
 			public void handle(ActionEvent ae) {
-				Tweet [] tweets = null;
-				try {
-					tweets = TwitterAPI.getHomeTimeline();
-				} catch (Exception e) {
-					// TODO make somthing better
-					//e.printStackTrace();
-				}
+				
+				
+				if(TwitterAPI.isConnected()){
+					Tweet [] tweets = null;
+					try {
+						tweets = TwitterAPI.getHomeTimeline();
+					} catch (Exception e) {
+						// TODO make somthing better
+						e.printStackTrace();
+					}
 
-				if(tweets[tweets.length - 1] != null){
-					if(!tweets[tweets.length - 1].equals(refreshTweets[refreshTweets.length - 1])){
-						btnNewTweets.setDisable(false);
-						btnNewTweets.setOpacity(1);
+					if(tweets[tweets.length - 1] != null){
+						if(!tweets[tweets.length - 1].equals(refreshTweets[refreshTweets.length - 1])){
+							btnNewTweets.setDisable(false);
+							btnNewTweets.setOpacity(1);
+						}
 					}
 				}
 			}
@@ -709,12 +713,10 @@ public class Landpage extends Application{
 	 */
 	
 	protected void quit(){
-			
 		Platform.exit();
 	}
 	
 	public void addUserpopup(User_Popup up){
 		user_informations = up;
 	}
-	
 }

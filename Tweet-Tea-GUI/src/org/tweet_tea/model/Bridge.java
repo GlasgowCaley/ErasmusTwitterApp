@@ -61,8 +61,10 @@ public class Bridge {
 	
 	public void createUserPopup(String screenName){
 		try {
+			
 			User u = TwitterAPI.getUserByScreenName(screenName);
-			new User_Popup(u);
+			User_Popup up = new User_Popup(u);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

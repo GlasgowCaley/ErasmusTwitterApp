@@ -56,6 +56,10 @@
   			</HBox>
   			
   			<HBox fx:id="descriptionBox" minHeight="20.0" prefHeight="30" maxWidth="100" alignment="CENTER">
+  				<HBox.margin>
+  					<Insets top="10.0"/>
+  				</HBox.margin>
+  				
   				<children>
   					<Text id="description">
   					</Text>

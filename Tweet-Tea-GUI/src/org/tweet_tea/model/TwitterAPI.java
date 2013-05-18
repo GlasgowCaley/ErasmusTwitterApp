@@ -14,7 +14,6 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
@@ -35,6 +34,7 @@ import java.net.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 /**
  * Represents the Twitter API
@@ -748,7 +748,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		r = request.send();
 		
 		//We create an object User to verify that he's followed
-		try{
+		/*try{
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!followed.equals(verif.getName()))
@@ -756,7 +756,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to follow this user");
-		}
+		}*/
 	}
 	
 	/**
@@ -786,7 +786,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		System.out.print(r.getBody());
 		
 		//We create an object User to verify that he's followed
-		try{
+		/*try{
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!unfollowed.equals(verif.getName()))
@@ -794,7 +794,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to unfollow this user");
-		}
+		}*/
 	}
 	
 	/**
@@ -985,6 +985,14 @@ public static void blockUser (String screenName) throws Exception{
 		}
 		
 		return u;
+	}
+	
+	/**
+	 * A method to know if the user is connected or not.
+	 * @return A boolean at true if the user is connected
+	 */
+	public static boolean isConnected(){
+		return accessToken != null;
 	}
 }
 

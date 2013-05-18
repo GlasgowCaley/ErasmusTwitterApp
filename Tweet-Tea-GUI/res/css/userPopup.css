@@ -101,5 +101,10 @@
 }
 
 #descriptionBox{
-	-fx-padding: 5px;
+	-fx-padding: 10px;
+	-fx-margin:10px; 
+}
+
+#screenNameBox{
+	-fx-padding: 10px;
 }
