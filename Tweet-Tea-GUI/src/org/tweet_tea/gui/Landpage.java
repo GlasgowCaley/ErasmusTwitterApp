@@ -20,10 +20,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -37,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.awt.SplashScreen;
 import java.util.Set;
 import java.util.Stack;
 
@@ -160,7 +163,48 @@ public class Landpage extends Application{
 		landpage.setTitle("Tweet'Tea");						// title  //TODO: should be in Res
 		landpage.setResizable(true);						// UseLess ? maybe , maybe not ... //TODO: discuss about that
         landpage.setScene(main);							// myJFrame.setContentPane(myJPanel);
-        landpage.show();									// myJFrame.setVisible(true);
+        landpage.show();
+        landpage.setOpacity(0.);
+        
+        
+        	final Stage splashScreen = new Stage();
+        	splashScreen.initStyle(StageStyle.TRANSPARENT);
+        	//splashScreen.initStyle(StageStyle.UNDECORATED);
+        	
+        	AnchorPane pane =  new AnchorPane();
+        	Scene splash = new Scene( pane );
+        	splash.setFill(Color.TRANSPARENT);
+        	String img = "file://" +getClass().getClassLoader().getSystemClassLoader().getResource(".").getPath() +"img/splash.png";
+        	ImageView image = new ImageView(img);
+        	image.setPickOnBounds(true);
+        	pane.getChildren().add(image);
+        	splashScreen.setScene(splash);
+        	addDraggableNode(image);
+        	
+        	splashScreen.show();
+        	
+        	
+        	
+        	Timeline splashTime = new Timeline(
+        				new KeyFrame(        						
+        						new Duration(4500), new EventHandler <ActionEvent>(){
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					splashScreen.hide();
+					landpage.setOpacity(1.);					
+				}        		
+        	}));        	
+        	splashTime.play();
+        	
+        	
+        	
+        	
+        
+        
+        
+        
+        //landpage.show();									// myJFrame.setVisible(true);
        
         //The window is ready, we can now get needed objects
         
