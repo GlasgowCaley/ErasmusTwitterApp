@@ -986,5 +986,13 @@ public static void blockUser (String screenName) throws Exception{
 		
 		return u;
 	}
+	
+	/**
+	 * A method to know if the user is connected or not.
+	 * @return A boolean at true if the user is connected
+	 */
+	public static boolean isConnected(){
+		return accessToken != null;
+	}
 }
 
