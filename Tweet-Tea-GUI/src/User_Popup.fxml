@@ -19,7 +19,7 @@
 
 
 
-<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
+<VBox fx:id="mainVbox" maxWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
   <children>
   
   	<HBox fx:id="menuBar" minHeight="41.0" prefHeight="49.0" alignment="CENTER">
@@ -34,46 +34,57 @@
   		</HBox.margin>
   	</HBox>
   	
-  	<HBox fx:id="contentPane" minHeight="100.0" prefHeight="150.0" alignment="CENTER">
+  	<HBox fx:id="contentPane" minHeight="100.0" alignment="CENTER">
   		<children>
   			<VBox id="miseEnPage">
-  			<VBox.margin>
-  				<Insets top="100.0" bottom="2.0" fx:id="x2"/>
-  			</VBox.margin>
+  				<VBox.margin>
+  					<Insets top="10.0" bottom="2.0" fx:id="x2"/>
+  				</VBox.margin>
   			
-  			<HBox fx:id="userNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
   				<children>
-  					<Text id="user_name">
-  					</Text>
-  				</children>
-  			</HBox>
   			
-  			<HBox fx:id="screenNameBox" minHeight="20.0" prefHeight="30" alignment="CENTER">
-  				<children>
-  					<Text id="screen_name">
-  					</Text>
-  				</children>
-  			</HBox>
+  					<HBox fx:id="userNameBox" minHeight="20.0" alignment="CENTER">
+  						<children>
+  							<Text id="user_name">
+  							</Text>
+  						</children>
+  					</HBox>
   			
-  			<HBox fx:id="descriptionBox" minHeight="20.0" prefHeight="30" maxWidth="100" alignment="CENTER">
-  				<HBox.margin>
-  					<Insets top="10.0"/>
-  				</HBox.margin>
+  					<HBox fx:id="screenNameBox" minHeight="20.0" alignment="CENTER">
+  						<children>
+  							<Text id="screen_name">
+  							</Text>
+  						</children>
+  					</HBox>
+  			
+  					<HBox fx:id="descriptionBox" minHeight="20.0" maxWidth="100" alignment="CENTER">
+  						<HBox.margin>
+  							<Insets top="10.0"/>
+  						</HBox.margin>
   				
-  				<children>
-  					<Text id="description">
-  					</Text>
-  				</children>
-  			</HBox>
+  						<children>
+  							<Text id="description">
+  							</Text>
+  						</children>
+  					</HBox>
   			
-  			<Text id="nbTweets">
-  	    	</Text>
+  					<HBox>
+  						<HBox.margin>
+  							<Insets right="10.0"/>
+  						</HBox.margin>
+  				
+  						<children>
+  							<Text id="nbTweets">
+  	    					</Text>
   			
-  			<Text id="nbFollowers">
-  	    	</Text>
+  							<Text id="nbFollowers">
+  	    					</Text>
   	    	
-  	    	<Text id="nbFollowed">
-  	    	</Text>
+  	    					<Text id="nbFollowed">
+  	    					</Text>
+  	    				</children>
+  	    			</HBox>
+  	    		</children>
   			</VBox>
   		</children>
   	</HBox>

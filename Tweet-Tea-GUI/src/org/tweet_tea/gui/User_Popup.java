@@ -68,7 +68,6 @@ public class User_Popup{
 	//Builder
 	public User_Popup(final User user)throws Exception{
 		popup = new Stage();
-		if(user == null) System.out.println("NULL");
 		
 		Parent fxml = FXMLLoader.load(getClass().getResource("/User_Popup.fxml"));
 		
@@ -106,11 +105,13 @@ public class User_Popup{
 				btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
 				
-				//We set the size of HBoxs
-				HBox.setMargin(description, new Insets(20));
+		//We set the size of HBoxs
+		HBox.setMargin(userNameBox, new Insets(20));
+		HBox.setMargin(screenNameBox, new Insets(20));
+		HBox.setMargin(description, new Insets(20));
+		HBox.setMargin(informations, new Insets(10));
 				
-		popup.setHeight(800);
-		popup.setWidth(500);
+		//popup.setHeight(800);
 		
 		//for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i);
 		
@@ -132,6 +133,8 @@ public class User_Popup{
 		//We set the text of informations
 		username.setText(user.getName()+"\n");
 		username.setFont(new Font(17));
+		screen_name.setText("@"+user.getScreenName()+"\n");
+		screen_name.setFont(new Font(17));
 		//informations.getChildren().add(username);
 		
 		//mainVBox.getChildren().add(2, informations);
@@ -150,6 +153,7 @@ public class User_Popup{
 		description.setText(user.getDescription());
 		description.setFont(new Font(14));
 		description.setWrappingWidth(300);
+		//descriptionBox.getChildren().add(description);
 		
 		//nbTweets.setText("Tweets : "+user.getNbTweets());
 		nbFollowers.setText("Followers : "+user.getFollowersCount());
@@ -253,6 +257,19 @@ public class User_Popup{
 			}
 			
 		});
+		
+		//We change the height of the window
+		/*System.out.println(header.getHeight());
+		System.out.println(avatarPlace.getHeight());
+		System.out.println(informations.getHeight());
+		System.out.println(footer.getHeight());*/
+		description.maxHeight(300);
+
+		System.out.println(header.getHeight() + avatarPlace.getHeight() + informations.getHeight() + footer.getHeight());
+
+		//popup.setHeight(header.getHeight() + avatarPlace.getHeight() + informations.getHeight() + footer.getHeight());
+		popup.setWidth(500);
+		popup.setHeight(400);
 		
 		addDraggableNode(mainVBox);
 	}
