@@ -155,19 +155,27 @@ public class User_Popup{
 		nbFollowers.setText("Followers : "+user.getFollowersCount());
 		nbFollowed.setText("Friends : "+user.getFollowedCount());
 		
-		if(!user.isFollowed()){
+		if(user.isFollowed())
+			btnFollow.setText("Unfollow");
+		
+		//if(!user.isFollowed()){
 			btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 				
 				@Override
 				public void handle(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					try{
-						TwitterAPI.follow(user.getScreenName());
-						btnFollow.setText("Unfollow");
-						user.setFollowed(true);
-						
+						if(!user.isFollowed()){
+							TwitterAPI.follow(user.getScreenName());
+							btnFollow.setText("Unfollow");
+							user.setFollowed(true);
+						}else{
+							TwitterAPI.unfollow(user.getScreenName());
+							btnFollow.setText("Follow");
+							user.setFollowed(false);
+						}
 						//We change the function of the button
-						btnFollow.setOnAction(new EventHandler<ActionEvent>(){
+						/*btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 							@Override
 							public void handle(ActionEvent arg0) {
 								// TODO Auto-generated method stub
@@ -180,13 +188,13 @@ public class User_Popup{
 								}
 							}
 
-						});
+						});*/
 					}catch(Exception e){
 						System.out.print(e.getMessage());
 					}
 				}
 			});
-		}else{
+		/*}else{
 			//In the other case, we change the function of the button
 			btnFollow.setText("Unfollow");
 			btnFollow.setOnAction(new EventHandler<ActionEvent>(){
@@ -220,7 +228,7 @@ public class User_Popup{
 				}
 				
 			});
-		}
+		}*/
 		
 		btnBlock.setOnAction(new EventHandler<ActionEvent>(){
 
