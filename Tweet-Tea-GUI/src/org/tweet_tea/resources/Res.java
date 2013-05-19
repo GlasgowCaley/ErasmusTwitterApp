@@ -11,7 +11,7 @@ public class Res {
 	/**
 	 * Api's domain
 	 */
-	public static final String domain="http://api.twitter.com/1/";
+	public static final String domain="https://api.twitter.com/1/";
 	
 	public static final String api_key = "ylVhrIQ6Yooukipyz1Qjw";							// comming from your twitter account
 	public static final String api_secret = "s8zxt9BNbrynTwccPdkCqUYlngLc36Ta6OPp3RHL3E";

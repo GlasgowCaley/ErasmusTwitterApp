@@ -41,7 +41,7 @@ import java.util.Scanner;
  * @author Geoffrey
  *
  */
-public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
+public final class TwitterAPI {    //MARQUEUR ï¿½!!!!!!!!!!!!!!!!!
 
 	
 	/**
@@ -167,7 +167,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 //			//throw new Exception("Need to be authenticated");
 //		}
 
-		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true&exclude_replies=true";
+		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true";
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
 		
@@ -176,6 +176,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		
 		Tweet [] parsed;
 		try{
+			System.out.println(response.getBody());
 			parsed = gson.fromJson( response.getBody() , Tweet[].class);
 		}
 		catch(Exception e){
@@ -187,7 +188,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 	
 	public static Tweet[] getPage(String lastTweetID) throws Exception{
 
-		String url = Res.domain+Res.home_timeline_prefix+"&max_id="+lastTweetID+"&count=21&include_retweets=true&exclude_replies=true";
+		String url = Res.domain+Res.home_timeline_prefix+"&max_id="+lastTweetID+"&count=21&include_retweets=true";
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
 		
