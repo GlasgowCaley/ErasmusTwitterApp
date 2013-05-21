@@ -29,7 +29,7 @@
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Button id="btnMe" disable="true" mnemonicParsing="false" text="Me">
+        <Button id="btnMe" mnemonicParsing="false" text="Me">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>

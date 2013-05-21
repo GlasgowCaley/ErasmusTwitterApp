@@ -14,7 +14,6 @@ import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
@@ -35,13 +34,14 @@ import java.net.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 /**
  * Represents the Twitter API
  * @author Geoffrey
  *
  */
-public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
+public final class TwitterAPI{
 
 	
 	/**
@@ -167,7 +167,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 //			//throw new Exception("Need to be authenticated");
 //		}
 
-		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true&exclude_replies=true";
+		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true";
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
 		
@@ -176,6 +176,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		
 		Tweet [] parsed;
 		try{
+			System.out.println(response.getBody());
 			parsed = gson.fromJson( response.getBody() , Tweet[].class);
 		}
 		catch(Exception e){
@@ -187,7 +188,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 	
 	public static Tweet[] getPage(String lastTweetID) throws Exception{
 
-		String url = Res.domain+Res.home_timeline_prefix+"&max_id="+lastTweetID+"&count=21&include_retweets=true&exclude_replies=true";
+		String url = Res.domain+Res.home_timeline_prefix+"&max_id="+lastTweetID+"&count=21&include_retweets=true";
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
 		
@@ -769,7 +770,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		r = request.send();
 		
 		//We create an object User to verify that he's followed
-		try{
+		/*try{
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!followed.equals(verif.getName()))
@@ -777,7 +778,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to follow this user");
-		}
+		}*/
 	}
 	
 	/**
@@ -807,7 +808,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		System.out.print(r.getBody());
 		
 		//We create an object User to verify that he's followed
-		try{
+		/*try{
 			verif = gson.fromJson(r.getBody(), User.class);
 			
 			if(!unfollowed.equals(verif.getName()))
@@ -815,7 +816,7 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 			
 		}catch(Exception e){
 			throw new Exception("Impossible to unfollow this user");
-		}
+		}*/
 	}
 	
 	/**
@@ -1006,6 +1007,14 @@ public static void blockUser (String screenName) throws Exception{
 		}
 		
 		return u;
+	}
+	
+	/**
+	 * A method to know if the user is connected or not.
+	 * @return A boolean at true if the user is connected
+	 */
+	public static boolean isConnected(){
+		return accessToken != null;
 	}
 }
 

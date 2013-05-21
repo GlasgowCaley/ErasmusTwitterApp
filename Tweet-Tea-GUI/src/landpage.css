@@ -28,22 +28,22 @@
 }
 
 #btnHome{	
-	-fx-graphic: url("res/img/btnHome_25.png");
+	-fx-graphic: url("img/btnHome_25.png");
 	
 }
 /* 
 #btnConnecter{	
-	-fx-graphic: url("res/img/btnConnecter_25.png");
+	-fx-graphic: url("img/btnConnecter_25.png");
 }
 #btnDecouvrir{	
-	-fx-graphic: url("res/img/btnDecouvrir_25.png");
+	-fx-graphic: url("img/btnDecouvrir_25.png");
 }
 #btnMoi{	
-	-fx-graphic: url("res/img/btnMoi_25.png");
+	-fx-graphic: url("img/btnMoi_25.png");
 }
 */
 #btnTweet{
-	-fx-graphic: url("res/img/btnTweet_25.png");
+	-fx-graphic: url("img/btnTweet_25.png");
 }
 
 #searchField{
@@ -52,7 +52,7 @@
 }
 
 #btnSearch{	
-	-fx-graphic: url("res/img/btnRecherche.png");
+	-fx-graphic: url("img/btnRecherche.png");
 }
 
 #footer{

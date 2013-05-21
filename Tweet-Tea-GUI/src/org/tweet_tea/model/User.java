@@ -98,4 +98,8 @@ public class User
 	public boolean isFollowed(){
 		return following;
 	}
+	
+	public void setFollowed(boolean b){
+		following = b;
+	}
 }

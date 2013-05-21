@@ -1,9 +1,12 @@
 package org.tweet_tea.gui;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.CodeSource;
 import java.util.Stack;
 
 
@@ -82,9 +85,12 @@ public class TweetSectionGenerator {
 		view.setCache(true);
 		
 		
-		URL html = getClass().getResource("/res/main.html");
-		engine.load(html.toExternalForm());
-		System.out.println(html.toExternalForm());
+		
+		String html = "file://" +getClass().getClassLoader().getSystemClassLoader().getResource(".").getPath() +"main.html";
+		engine.load(html);
+				
+		System.out.println( html );
+		
 		
 		
 		engine.getLoadWorker().stateProperty().addListener(
@@ -102,14 +108,6 @@ public class TweetSectionGenerator {
 						}
 					}
 		        });
-
-
-		
-	
-		
-
-		
-
 	}
 		
 	

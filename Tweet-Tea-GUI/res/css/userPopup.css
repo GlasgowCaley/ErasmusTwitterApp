@@ -25,7 +25,7 @@
 }
 
 #btnHome{	
-	-fx-graphic: url("res/img/btnHome_25.png");
+	-fx-graphic: url("img/btnHome_25.png");
 	
 }
 /* 
@@ -40,7 +40,7 @@
 }
 */
 #btnTweet{
-	-fx-graphic: url("res/img/btnTweet_25.png");
+	-fx-graphic: url("img/btnTweet_25.png");
 }
 
 #searchField{
@@ -49,7 +49,7 @@
 }
 
 #btnSearch{	
-	-fx-graphic: url("res/img/btnRecherche.png");
+	-fx-graphic: url("img/btnRecherche.png");
 }
 
 #footer{
@@ -72,15 +72,15 @@
 }
 
 #btnCancel{
-	-fx-graphic:url("../img/btnCancel.png");
+	-fx-graphic:url("res/img/btnCancel.png");
 }
 
 #btnFollow{
-	-fx-graphic:url("../img/follow.png");
+	-fx-graphic:url("res/img/follow.png");
 }
 
 #btnBlock{
-	-fx-graphic:url("../img/block.png");
+	-fx-graphic:url("res/img/block.png");
 }
 
 #title{
@@ -101,5 +101,15 @@
 }
 
 #descriptionBox{
-	-fx-padding: 5px;
+	-fx-padding: 10px;
+	-fx-margin:10px; 
+}
+
+#screenNameBox{
+	-fx-padding: 10px;
+	-fx-margin:10px; 
+}
+
+#screen_name, #user_name{
+	-fx-fill: white;
 }
