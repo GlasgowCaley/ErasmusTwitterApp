@@ -66,6 +66,10 @@ public final class TwitterAPI{
 	 */
 	public static Token accessToken;
 	
+	
+	private static boolean isBusy = false;
+	
+	
 	/**
 	 * Saves the access token
 	 */
@@ -484,9 +488,14 @@ public final class TwitterAPI{
 	      .apiKey(Res.api_key)
 	      .apiSecret(Res.api_secret)
 	      .build();
-
+		
 		Token requestToken = AuthentificationService.getRequestToken();
 		String authUrl = AuthentificationService.getAuthorizationUrl(requestToken);
+		
+		if (authUrl == "Could not reach the desired host. Check your network connection."){
+			isBusy = true;
+			return;
+		}
 		
 		
 		// Desktop in a class that manage Desktop events

@@ -38,13 +38,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-
-<<<<<<< HEAD
-
 import java.awt.event.ActionListener;
-=======
-import java.awt.SplashScreen;
->>>>>>> 7c374df2164ee4b4a590ac2d068e4eec406f36c9
 import java.util.Set;
 import java.util.Stack;
 import java.util.TimerTask;
@@ -271,7 +265,7 @@ public class Landpage extends Application{
           
         initializeTwitter();
         
-<<<<<<< HEAD
+
         Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask(){
 			/**
@@ -292,45 +286,26 @@ public class Landpage extends Application{
 					     System.out.println("DENTRO");
 					     refreshBar.setMaxHeight(30);//shows the button of new tweets
 					     refreshBar.setMinHeight(30);//shows the button of new tweets
-=======
-        //We initalize the array when the javascript is ready
-        tweetView.getEngine().getLoadWorker().stateProperty().addListener(
-		        new ChangeListener<State>() {
-		           
-					public void changed(ObservableValue<? extends State> arg0,State arg1, State arg2) {
-						// TODO Auto-generated method stub
-						try {
-							if(TwitterAPI.isConnected())
-								refreshTweets = TwitterAPI.getHomeTimeline();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-		});
-        
-        
-        Timeline tl = new Timeline(new KeyFrame(Duration.seconds(Res.refreshTime), new EventHandler <ActionEvent>(){
 
-			@Override
-			public void handle(ActionEvent ae) {
-				
-				
-				if(TwitterAPI.isConnected()){
-					Tweet [] tweets = null;
-					try {
-						tweets = TwitterAPI.getHomeTimeline();
-					} catch (Exception e) {
-						// TODO make somthing better
-						e.printStackTrace();
-					}
+				        //We initalize the array when the javascript is ready
+				        tweetView.getEngine().getLoadWorker().stateProperty().addListener(
+						        new ChangeListener<State>() {
+						           
+									public void changed(ObservableValue<? extends State> arg0,State arg1, State arg2) {
+										// TODO Auto-generated method stub
+										try {
+											if(TwitterAPI.isConnected()){
+												
+												Tweet[] refreshTweets = TwitterAPI.getHomeTimeline();
+											}
+											
+										} catch (Exception e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+									}
+						});
 
-					if(tweets[tweets.length - 1] != null){
-						if(!tweets[tweets.length - 1].equals(refreshTweets[refreshTweets.length - 1])){
-							btnNewTweets.setDisable(false);
-							btnNewTweets.setOpacity(1);
-						}
->>>>>>> 7c374df2164ee4b4a590ac2d068e4eec406f36c9
 					}
 				}
 				System.out.println("test");
