@@ -37,8 +37,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+
+import java.awt.event.ActionListener;
 import java.util.Set;
 import java.util.Stack;
+import java.util.TimerTask;
+import java.util.Timer;
+
 
 import netscape.javascript.JSObject;
 
@@ -72,8 +77,10 @@ public class Landpage extends Application{
 	
 	@FXML private 	TextField searchField;	// The search TextField
 	@FXML private 	Button btnSearch;		// To start the search
-	@FXML private  HBox newTweets;
-	@FXML private  		Button btnNewTweets;
+	
+	@FXML private   Button refreshBut;       //Refreshes the tweets
+	@FXML private HBox refreshBar;
+	
 	@FXML private  HBox contentPane;		// To main content pane
 	@FXML private  HBox footer;				// the footer
 	@FXML private  	Button btnRefold;		// Used to reduce the window height .
@@ -92,9 +99,8 @@ public class Landpage extends Application{
 	private double initialY;
 	
 	private String lastTweetID;
+	private String topTweetID;
 	
-	//An array that contains previous tweets
-	private Tweet [] refreshTweets;
 
 	
 	/**
@@ -177,15 +183,13 @@ public class Landpage extends Application{
         		btnTweet = (Button) main.lookup("#btnTweet");
         		btnMessage = (Button) main.lookup("#btnMessage");
         		
+        		refreshBar=(HBox) main.lookup("#refreshBar");
+        		refreshBut=(Button) main.lookup("#refreshBut");
+        		
         		searchField = (TextField) main.lookup("#searchField");
         		btnSearch = (Button) main.lookup("#btnSearch");
         		
-        		newTweets = (HBox) main.lookup("#newTweets");
-        		btnNewTweets = (Button) main.lookup("#btnNewTweets");
-        		
-        		//firstly this button is disabled
-        		btnNewTweets.setDisable(true);
-        		btnNewTweets.setOpacity(0.8);
+        
         		
         	contentPane = (HBox) main.lookup("#contentPane");
         	
@@ -217,66 +221,34 @@ public class Landpage extends Application{
           
         initializeTwitter();
         
-        //We initalize the array when the javascript is ready
-        tweetView.getEngine().getLoadWorker().stateProperty().addListener(
-		        new ChangeListener<State>() {
-		           
-					public void changed(ObservableValue<? extends State> arg0,
-							State arg1, State arg2) {
-						// TODO Auto-generated method stub
-						try {
-							refreshTweets = TwitterAPI.getHomeTimeline();
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-		});
-        
-        
-        Timeline tl = new Timeline(new KeyFrame(Duration.seconds(Res.refreshTime), new EventHandler <ActionEvent>(){
-
-			@Override
-			public void handle(ActionEvent ae) {
-				Tweet [] tweets = null;
+        Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask(){
+			/**
+	    	 * @author Juan
+	    	 * @Funtion The timer performed the action one time each 25 seconds
+	    	 */
+			public void run(){
+				Tweet[] tweets = null;
 				try {
-					tweets = TwitterAPI.getHomeTimeline();
-				} catch (Exception e) {
-					// TODO make somthing better
-					//e.printStackTrace();
+					System.out.println("PRIMERO");
+					tweets = TwitterAPI.getNewTweets(topTweetID);//Gets the new tweets if they exist
+					System.out.println(tweets.length);
 				}
-
-				if(tweets[tweets.length - 1] != null){
-					if(!tweets[tweets.length - 1].equals(refreshTweets[refreshTweets.length - 1])){
-						btnNewTweets.setDisable(false);
-						btnNewTweets.setOpacity(1);
+				catch (Exception e){}
+				if (tweets!=null){
+					if(tweets.length>0){
+					     //If we have new tweets
+					     System.out.println("DENTRO");
+					     refreshBar.setMaxHeight(30);//shows the button of new tweets
+					     refreshBar.setMinHeight(30);//shows the button of new tweets
 					}
 				}
+				System.out.println("test");
+				
 			}
-        	
-        }));
-        
-        //We set the cycle infinite
-        tl.setCycleCount(Timeline.INDEFINITE);
-        tl.play();
-        
-        //A timeline to initialize the array of tweets
-        /*Timeline t2 = new Timeline(new KeyFrame(Duration.seconds(Res.refreshTime - 10), new EventHandler<ActionEvent>(){
 
-			@Override
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				try {
-					refreshTweets = TwitterAPI.getHomeTimeline();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-        	
-        }));
-        
-        t2.play();*/
+		}, 0, 10000);
+
 	}
 	
 	
@@ -311,7 +283,6 @@ public class Landpage extends Application{
        	                Number old_val, Number new_val) {
        	                    if(contentScrollBar.getValue()>=contentScrollBar.getMax()*9/10)
        	                    {
-       	
        	    					// we collect tweets 
        	    					Tweet[] tweets = null;
        	    					try {       	    						
@@ -519,29 +490,8 @@ public class Landpage extends Application{
 					landpage.setIconified(true);
 				}
 			});
-	        btnNewTweets.setOnAction(new EventHandler<ActionEvent>(){
-
-				@Override
-				public void handle(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-					getHomeTimeline();
-					
-					//We set the button disabled
-					btnNewTweets.setDisable(true);
-					btnNewTweets.setOpacity(0.8);
-					
-					//We save tweets
-					try {
-						refreshTweets = TwitterAPI.getHomeTimeline();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-	        	
-	        });
+	       
 	        	        
-	        
 	        /**
 	         * Research
 	         */
@@ -616,7 +566,15 @@ public class Landpage extends Application{
 	        		
 	        	}
 	        });
-	        
+           refreshBut.setOnAction(new EventHandler<ActionEvent>() {
+	        	
+				@Override
+				public void handle(ActionEvent event) {
+					refreshBar.setMinHeight(0);//hides the button
+					refreshBar.setMaxHeight(0);//hides the button
+					getHomeTimeline();//Refresh the timeline
+				}
+			});
 	        btnMessage.setOnAction(new EventHandler<ActionEvent>(){
 	        	@Override
 	        	public void handle(ActionEvent ae){
@@ -669,7 +627,6 @@ public class Landpage extends Application{
 		Tweet[] tweets = null;
 		try {
 			tweets = TwitterAPI.getHomeTimeline();
-			refreshTweets = tweets;
 		} catch (Exception e) {
 			
 			goToAuthen();
@@ -692,6 +649,7 @@ public class Landpage extends Application{
 								}
 								
 								lastTweetID = tweetsCopy[tweetsCopy.length-1].getID();
+								topTweetID=tweetsCopy[0].getID();
 								
 								tweetSection.showTweets();
 //							}

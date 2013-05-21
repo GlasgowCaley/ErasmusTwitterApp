@@ -204,7 +204,28 @@ public final class TwitterAPI {    //MARQUEUR §!!!!!!!!!!!!!!!!!
 		
 		return java.util.Arrays.copyOfRange(parsed, 1, parsed.length);
 	}
-	
+	/**
+	 * @author Alan
+	 * @Function Similar to get page.Returns new tweets if there are
+	 */
+	public static Tweet[] getNewTweets(String topTweetID) throws Exception{
+		String url = Res.domain+Res.home_timeline_prefix+"&since_id="+topTweetID;
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, url);	// we create a request
+		
+		AuthentificationService.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		Tweet [] parsed;
+		try{
+			parsed = gson.fromJson( response.getBody() , Tweet[].class);
+		}
+		catch(Exception e){
+			throw new Exception("Unable to get this screen.");
+		}
+		
+		return parsed;
+	}
 	/**
 
 	 * Return a Json representation of a screen (auth not needed)

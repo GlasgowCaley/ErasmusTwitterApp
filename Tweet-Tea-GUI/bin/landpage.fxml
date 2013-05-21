@@ -18,13 +18,13 @@
   <children>
     <HBox fx:id="menuBar" alignment="CENTER" minHeight="41.0" prefHeight="49.0" prefWidth="950.0" VBox.vgrow="NEVER">
       <children>
-        <Button id="btnTweet" mnemonicParsing="false" text="Tweet">
+        <Button id="btnTweet" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" text="Tweet">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Button id="btnHome" mnemonicParsing="false" text="Home" HBox.margin="$x1" />
-        <Button id="btnMessage" mnemonicParsing="false" text="Message">
+        <Button id="btnHome" mnemonicParsing="false" prefWidth="98.0" text="Home" HBox.margin="$x1" />
+        <Button id="btnMessage" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" text="Message">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
@@ -46,8 +46,10 @@
       <TextField id="searchField" maxHeight="1.7976931348623157E308" promptText="Find ..." HBox.hgrow="ALWAYS" />
       <Button id="btnSearch" mnemonicParsing="false" />
     </HBox>
-    <HBox HBox.hgrow="ALWAYS" alignment="center">
-    	<Button id="btnNewTweets" mnemonicParsing="false" text="btnNewTweets" minWidth="675"  />
+    <HBox id="refreshBar" alignment="TOP_CENTER" maxHeight="30.0" maxWidth="950.0" minHeight="0.0" prefHeight="0.0" prefWidth="950.0">
+      <children>
+        <Button id="refreshBut" mnemonicParsing="false" prefHeight="30.0" prefWidth="950.0" text="You've got new tweets!" />
+      </children>
     </HBox>
     <HBox fx:id="contentPane" prefHeight="145.0" prefWidth="950.0" VBox.vgrow="ALWAYS" />
     <HBox fx:id="footer" alignment="CENTER" VBox.vgrow="NEVER">
