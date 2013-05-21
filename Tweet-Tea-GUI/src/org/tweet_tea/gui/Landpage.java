@@ -72,6 +72,7 @@ public class Landpage extends Application{
 	@FXML private  	Button btnQuit;			// Used to Quit Tweet-Tea
 	@FXML private 	Button btnTweet;		// Send a new Tweet
 	@FXML private   Button btnMessage;		// Send a private message
+	@FXML private	Button btnMe;           //To gte user info
 	
 	@FXML private 	TextField searchField;	// The search TextField
 	@FXML private 	Button btnSearch;		// To start the search
@@ -220,6 +221,7 @@ public class Landpage extends Application{
         		btnQuit = (Button) main.lookup("#btnQuit");
         		btnTweet = (Button) main.lookup("#btnTweet");
         		btnMessage = (Button) main.lookup("#btnMessage");
+        		btnMe = (Button) main.lookup("#btnMe");
         		
         		searchField = (TextField) main.lookup("#searchField");
         		btnSearch = (Button) main.lookup("#btnSearch");
@@ -676,6 +678,21 @@ public class Landpage extends Application{
 	        			System.out.println(e);
 	        		}
 	        	}
+	        });
+	        
+	        btnMe.setOnAction(new EventHandler<ActionEvent>(){
+
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					try {
+						User_Popup up = new User_Popup(TwitterAPI.getMyUserInfo());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+	        	
 	        });
 	        
 	}

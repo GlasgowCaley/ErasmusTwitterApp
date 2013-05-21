@@ -167,8 +167,8 @@ public class User_Popup{
 		//descriptionBox.getChildren().add(description);
 		
 		//nbTweets.setText("Tweets : "+user.getNbTweets());
-		nbFollowers.setText("Followers : "+user.getFollowersCount());
-		nbFollowed.setText("Friends : "+user.getFollowedCount());
+		nbFollowers.setText("Followers : "+user.getFollowersCount()+"  ");
+		nbFollowed.setText("Followed : "+user.getFollowedCount());
 		
 		if(user.isFollowed())
 			btnFollow.setText("Unfollow");
