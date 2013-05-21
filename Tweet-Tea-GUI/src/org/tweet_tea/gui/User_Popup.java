@@ -46,6 +46,7 @@ public class User_Popup{
 	@FXML private 		Text title;
 	@FXML private 	HBox informations; //Informaitions about the user : image, name, screen name, ...
 	@FXML private	HBox avatarPlace;
+	private 			ImageView background;
 	private 			ImageView avatar;
 	@FXML private 	HBox userNameBox;
 	@FXML private 		Text username;
@@ -139,6 +140,7 @@ public class User_Popup{
 		avatar.setClip(r);
 		
 		avatarPlace.getChildren().add(avatar);
+		
 		
 		//mainVBox.getChildren().add(2, informations);
 		//We set the text of informations

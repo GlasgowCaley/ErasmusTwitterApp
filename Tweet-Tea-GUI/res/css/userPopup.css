@@ -72,15 +72,15 @@
 }
 
 #btnCancel{
-	-fx-graphic:url("img/btnCancel.png");
+	-fx-graphic:url("res/img/btnCancel.png");
 }
 
 #btnFollow{
-	-fx-graphic:url("img/follow.png");
+	-fx-graphic:url("res/img/follow.png");
 }
 
 #btnBlock{
-	-fx-graphic:url("img/block.png");
+	-fx-graphic:url("res/img/block.png");
 }
 
 #title{
@@ -108,4 +108,8 @@
 #screenNameBox{
 	-fx-padding: 10px;
 	-fx-margin:10px; 
+}
+
+#screen_name, #user_name{
+	-fx-fill: white;
 }
