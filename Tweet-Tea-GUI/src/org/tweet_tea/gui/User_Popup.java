@@ -67,6 +67,10 @@ public class User_Popup{
 	
 	//Builder
 	public User_Popup(final User user)throws Exception{
+		
+		//We verify if the user is the authenticated user
+		User me = TwitterAPI.getMyUserInfo();
+		
 		popup = new Stage();
 		
 		Parent fxml = FXMLLoader.load(getClass().getResource("/User_Popup.fxml"));
@@ -101,8 +105,8 @@ public class User_Popup{
 				nbFollowers = (Text) root.lookup("#nbFollowers");
 				nbFollowed = (Text) root.lookup("#nbFollowed");
 			footer = (HBox) root.lookup("#footer");
-				btnFollow = (Button) root.lookup("#btnFollow");
-				btnBlock = (Button) root.lookup("#btnBlock");
+					btnFollow = (Button) root.lookup("#btnFollow");
+					btnBlock = (Button) root.lookup("#btnBlock");
 				btnCancel = (Button) root.lookup("#btnCancel");
 				
 		//We set the size of HBoxs
@@ -115,7 +119,14 @@ public class User_Popup{
 		
 		//for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i);
 		
-		title.setText("User's information");
+		if(!me.getName().equals(user.getName()))
+			title.setText("User's information");
+		else{
+			footer.getChildren().remove(btnFollow);
+			footer.getChildren().remove(btnBlock);
+			title.setText("My information");
+		}
+		
 		title.setFont(new Font(20));
 		//mainVBox.getChildren().add(0, header);
 		
@@ -162,7 +173,7 @@ public class User_Popup{
 		if(user.isFollowed())
 			btnFollow.setText("Unfollow");
 		
-		//if(!user.isFollowed()){
+		if(!me.getName().equals(user.getName())){
 			btnFollow.setOnAction(new EventHandler<ActionEvent>(){
 				
 				@Override
@@ -234,19 +245,20 @@ public class User_Popup{
 			});
 		}*/
 		
-		btnBlock.setOnAction(new EventHandler<ActionEvent>(){
+			btnBlock.setOnAction(new EventHandler<ActionEvent>(){
 
-			@Override
-			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				try{
-					TwitterAPI.blockUser(user.getScreenName());
-				}catch(Exception e){
-					System.out.println(e.getMessage());
+				@Override
+				public void handle(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					try{
+						TwitterAPI.blockUser(user.getScreenName());
+					}catch(Exception e){
+						System.out.println(e.getMessage());
+					}
 				}
-			}
 			
-		});
+			});
+		}
 		
 		btnCancel.setOnAction(new EventHandler<ActionEvent>(){
 
