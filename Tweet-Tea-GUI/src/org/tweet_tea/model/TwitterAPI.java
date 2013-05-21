@@ -41,7 +41,7 @@ import java.util.Scanner;
  * @author Geoffrey
  *
  */
-public final class TwitterAPI {    //MARQUEUR �!!!!!!!!!!!!!!!!!
+public final class TwitterAPI{
 
 	
 	/**
