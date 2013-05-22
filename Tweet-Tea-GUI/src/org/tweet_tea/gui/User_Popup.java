@@ -28,6 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -407,6 +408,10 @@ public class User_Popup{
 			}
 	    	
 	    });
+	    
+		 Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+		 popup.setX(screenSize.getWidth()/2 - popup.getWidth()/2);
+		 popup.setY(screenSize.getHeight() / 2 - popup.getHeight()/2);
 	}
 	
 	public void disableModify(){

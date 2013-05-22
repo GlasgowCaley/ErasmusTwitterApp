@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,6 +36,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -672,7 +674,12 @@ public class Landpage extends Application{
 			
 			
 			
-		}		
+		}
+		
+		//We set the location of the screen
+		 Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+		 landpage.setX(screenSize.getWidth() / 2 - landpage.getWidth() / 2);
+		 landpage.setY(screenSize.getHeight() / 2 - landpage.getHeight() / 2);
 	}
 	
 	
