@@ -34,6 +34,7 @@ import java.net.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.MissingResourceException;
 import java.util.Scanner;
 
 /**
@@ -167,9 +168,9 @@ public final class TwitterAPI{
 	public static Tweet[] getHomeTimeline() throws Exception{
 		
 
-//		if(accessToken==null){
-//			//throw new Exception("Need to be authenticated");
-//		}
+		if(accessToken==null){
+			throw new MissingResourceException("Need to be authenticated", null, null);
+		}
 
 		String url = Res.domain+Res.home_timeline_prefix+"&count=20&include_retweets=true";
 		

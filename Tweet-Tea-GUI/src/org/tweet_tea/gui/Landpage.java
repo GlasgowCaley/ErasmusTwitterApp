@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import java.awt.event.ActionListener;
+import java.util.MissingResourceException;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TimerTask;
@@ -301,7 +302,7 @@ public class Landpage extends Application{
 											
 										} catch (Exception e) {
 											// TODO Auto-generated catch block
-											e.printStackTrace();
+											//e.printStackTrace();
 										}
 									}
 						});
@@ -461,74 +462,7 @@ public class Landpage extends Application{
 	 * Bind events on buttons
 	 */
 	private void setBindings(){
-//	        btnRefold.setOnAction(new EventHandler<ActionEvent>() {
-//
-//				@Override
-//				public void handle(ActionEvent event) {
-//					
-//					if(contentPaneDisplayed){
-//						lastContentPaneHeight = contentPane.getHeight();
-//						Timeline hide = new Timeline();
-//						hide.getKeyFrames().addAll(
-//						        new KeyFrame(Duration.ZERO, // set start position at 0
-//						           new KeyValue( contentPane.maxHeightProperty(), contentPane.getHeight())
-//						            
-//						            
-//						        ),
-//						        new KeyFrame(new Duration(100), // set end position at 100ms
-//						        		new KeyValue( contentPane.maxHeightProperty(), 0 )
-//						        		
-//						          
-//						        )
-//						    );
-//						
-//						
-//						
-//						hide.play();
-//						hide.setOnFinished(new EventHandler<ActionEvent>() {
-//
-//							@Override
-//							public void handle(ActionEvent event) {
-//								
-//								mainVbox.getChildren().remove(contentPane);
-//							}
-//						});
-//						
-//						btnRefold.setText(">");
-//						contentPaneDisplayed = false;
-//					}
-//					else{
-//						Timeline show = new Timeline();
-//						show.getKeyFrames().addAll(
-//						        new KeyFrame(Duration.ZERO, // set start position at 0
-//						            new KeyValue( contentPane.maxHeightProperty(), 0)
-//						           
-//						            
-//						        ),
-//						        new KeyFrame(new Duration(100), // set end position at 400ms
-//						        		new KeyValue( contentPane.maxHeightProperty(), lastContentPaneHeight)
-//						        		
-//						          
-//						        )
-//						    );
-//						
-//						mainVbox.getChildren().add(2, contentPane);
-//						show.play();
-//						show.setOnFinished(new EventHandler<ActionEvent>() {
-//
-//							@Override
-//							public void handle(ActionEvent event) {
-//							
-//								contentPane.setMaxHeight(Double.MAX_VALUE);
-//							}
-//						});
-//						btnRefold.setText("<");
-//						contentPaneDisplayed = true;
-//					}
-//				}
-//	        	
-//			});
-	        
+
 	        btnHome.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -662,7 +596,7 @@ public class Landpage extends Application{
 						User_Popup up = new User_Popup(TwitterAPI.getMyUserInfo());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 	        	
@@ -707,9 +641,13 @@ public class Landpage extends Application{
 		Tweet[] tweets = null;
 		try {
 			tweets = TwitterAPI.getHomeTimeline();
-		} catch (Exception e) {
+		}
+		catch (MissingResourceException e) {
 			
 			goToAuthen();
+		}
+		catch(Exception e){
+			return;
 		}
 		
 		// if we have tweets 
