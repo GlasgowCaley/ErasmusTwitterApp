@@ -41,7 +41,7 @@ public class Bridge {
 		return result;
 	}
 	public boolean addFavorite(String tweetId){
-		System.out.println("Retweet : "+tweetId);
+		System.out.println("AddFavorite : "+tweetId);
 		boolean result = true;
 		try {
 			TwitterAPI.setFavorite(tweetId);

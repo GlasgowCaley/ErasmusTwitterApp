@@ -76,6 +76,10 @@ body{
 	border-bottom-right-radius: 10px;
 }
 
+.tweetBloc [retweet = 'true'] , .tweetBloc [favorite = 'true'] {
+	border: 2px green solid;
+}
+
 /*For a tweet*/
 
 .name{
@@ -154,3 +158,5 @@ textarea{
 .browsableUrl :hover{
 	text-decoration: underline;
 }
+
+

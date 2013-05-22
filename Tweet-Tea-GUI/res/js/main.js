@@ -143,6 +143,9 @@ function makeTweetBloc(jsonTweet){
 		var  time = new Date(jsonTweet.created_at);
 		var isoDate = ISODateString(time);
 		
+		var retweeted = jsonTweet.retweeted;
+		var favorited = jsonTweet.favorited;
+		
 
 		var formatedTime= time.getHours()+":"+time.getMinutes();
 
@@ -152,7 +155,7 @@ function makeTweetBloc(jsonTweet){
 		var profilUrl = twitterPrefix+screen_name;
 		
 		
-		var  s = 	"<div class='tweetBloc' id='"+id+"'>"
+		var  s = 	"<div class='tweetBloc' id='"+id+"' retweet='"+retweeted+"' favorite='"+favorited+"'>"
 										  +"<table>"	
 										  +		"<tr>"
 										  +		"<td></td>"
@@ -366,7 +369,8 @@ function formatTweets(){
 		// retweet binding
 
 		
-		$(optionRow).children(".retweetBtn").on("click", function(){
+		$(optionRow).children(".retweetBtn").on("click", function(event){
+			event.stopPropagation();
 			var tweet = $(this).closest(".tweetBloc");
 			if($(tweet).attr("retweet")=="true") deleteReTweet(tweet);
 			else retweet(tweet);
@@ -376,7 +380,9 @@ function formatTweets(){
 
 		// Add favorite binding
 
-		$(optionRow).children(".favoriteBtn").on("click", function(){
+		$(optionRow).children(".favoriteBtn").on("click", function(event){
+			
+			event.stopPropagation();
 			
 			var id = $(this).closest(".tweetBloc").attr("id");
 			

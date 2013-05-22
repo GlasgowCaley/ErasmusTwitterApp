@@ -21,6 +21,8 @@ public class JsonWrapper {
 	String pictureUrl;
 	String text;
 	String created_at;
+	String retweeted;
+	String favorited;
 	
 	//TODO: add date, entities etc ...
 	
@@ -32,6 +34,8 @@ public class JsonWrapper {
 		id= t.getID();
 		text = t.getMessage();
 		created_at = t.getDate();
+		retweeted = ""+ t.getRetweeted();
+		favorited = ""+ t.getFavorited();
 		User user;
 		if( (user= t.getUser())!=null ){
 			name = user.getName();

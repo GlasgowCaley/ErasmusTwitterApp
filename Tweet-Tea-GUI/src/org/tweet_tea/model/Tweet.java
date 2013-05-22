@@ -140,6 +140,13 @@ public class Tweet
 		return profile_image_url_https;
 	}
 	
+	public boolean getRetweeted(){
+		return retweeted;
+	}
+	public boolean getFavorited(){
+		return favorited;
+	}
+	
 	@Override
 	public boolean equals(Object o){
 		boolean r = true;
