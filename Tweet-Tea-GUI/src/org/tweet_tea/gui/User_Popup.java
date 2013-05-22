@@ -14,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -50,10 +52,12 @@ public class User_Popup{
 	private 			ImageView avatar;
 	@FXML private 	HBox userNameBox;
 	@FXML private 		Text username;
+	@FXML private 		TextField changeUsername;
 	@FXML private 	HBox screenNameBox;
 	@FXML private 		Text screen_name;
 	@FXML private	HBox descriptionBox;
 	@FXML private		Text description;
+	@FXML private		TextArea changeDescription;
 	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
 	@FXML private		Text nbTweets;
 	@FXML private 		Text nbFollowers;
@@ -61,6 +65,7 @@ public class User_Popup{
 	@FXML private 		Button btnFollow; //Button to follow the user
 	@FXML private 		Button btnBlock; //Button to block the user
 	@FXML private		Button btnCancel;
+	@FXML private		Button btnModify;
 	@FXML private 	HBox footer;
 	
 	private double initialX;
@@ -98,16 +103,19 @@ public class User_Popup{
 			informations = (HBox) root.lookup("#contentPane");
 				userNameBox = (HBox) root.lookup("#userNameBox");
 					username = (Text) root.lookup("#user_name");
+					changeUsername = (TextField) root.lookup("#changeUsername");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
 					screen_name = (Text) root.lookup("#screen_name");
 				descriptionBox = (HBox) root.lookup("#descriptionBox");
 					description = (Text) root.lookup("#description");
+					changeDescription = (TextArea) root.lookup("#changeDescription");
 				nbTweets = (Text) root.lookup("#nbTweets");
 				nbFollowers = (Text) root.lookup("#nbFollowers");
 				nbFollowed = (Text) root.lookup("#nbFollowed");
 			footer = (HBox) root.lookup("#footer");
 					btnFollow = (Button) root.lookup("#btnFollow");
 					btnBlock = (Button) root.lookup("#btnBlock");
+					btnModify = (Button) root.lookup("#btnModify");
 				btnCancel = (Button) root.lookup("#btnCancel");
 				
 		//We set the size of HBoxs
@@ -118,15 +126,7 @@ public class User_Popup{
 				
 		//popup.setHeight(800);
 		
-		//for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i);
-		
-		if(!me.getName().equals(user.getName()))
-			title.setText("User's information");
-		else{
-			footer.getChildren().remove(btnFollow);
-			footer.getChildren().remove(btnBlock);
-			title.setText("My information");
-		}
+		//for(int i =0; i<mainVBox.getChildren().size(); i++) mainVBox.getChildren().remove(i)
 		
 		title.setFont(new Font(20));
 		//mainVBox.getChildren().add(0, header);
@@ -144,11 +144,32 @@ public class User_Popup{
 		
 		//mainVBox.getChildren().add(2, informations);
 		//We set the text of informations
+		userNameBox.getChildren().remove(changeUsername);
 		username.setText(user.getName()+"\n");
 		username.setFont(new Font(17));
+		//username.setEditable(false);
 		screen_name.setText("@"+user.getScreenName()+"\n");
 		screen_name.setFont(new Font(17));
 		//informations.getChildren().add(username);
+		
+		btnModify.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				TwitterAPI.changeStatus(changeUsername.getText(), changeDescription.getText());
+				User u = TwitterAPI.getMyUserInfo();
+				username.setText(u.getName());
+				description.setText(u.getDescription());
+				btnModify.setDisable(false);
+				userNameBox.getChildren().remove(0);
+				userNameBox.getChildren().add(username);
+				descriptionBox.getChildren().remove(0);
+				descriptionBox.getChildren().add(description);
+			}
+			
+		});
+		footer.getChildren().remove(btnModify);
+		descriptionBox.getChildren().remove(changeDescription);
 		
 		//mainVBox.getChildren().add(2, informations);
 		/*userNameBox.getChildren().remove(0);
@@ -171,6 +192,41 @@ public class User_Popup{
 		//nbTweets.setText("Tweets : "+user.getNbTweets());
 		nbFollowers.setText("Followers : "+user.getFollowersCount()+"  ");
 		nbFollowed.setText("Followed : "+user.getFollowedCount());
+		
+		if(!me.getName().equals(user.getName()))
+			title.setText("User's information");
+		else{
+			footer.getChildren().remove(btnFollow);
+			footer.getChildren().remove(btnBlock);
+			footer.getChildren().add(0, btnModify);
+			btnModify.setDisable(true);
+			title.setText("My information");
+			username.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					userNameBox.getChildren().remove(username);
+					userNameBox.getChildren().add(changeUsername);
+					changeUsername.setText(username.getText());
+					btnModify.setDisable(false);
+				}
+			});
+			description.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					descriptionBox.getChildren().remove(0);
+					descriptionBox.getChildren().add(changeDescription);
+					changeDescription.setText(description.getText());
+					changeDescription.setMinWidth(300);
+					changeDescription.setMinHeight(100);
+					changeDescription.setMaxHeight(100);
+					changeDescription.setMaxWidth(400);
+					btnModify.setDisable(false);
+				}
+				
+			});
+		}
 		
 		if(user.isFollowed())
 			btnFollow.setText("Unfollow");
@@ -313,5 +369,28 @@ public class User_Popup{
 	            }
 	        }
 	    });
+	    description.setTextAlignment(TextAlignment.CENTER);
+	    
+	    EventHandler hand = new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				
+			}
+	    	
+	    };
+	    
+	    popup.addEventHandler(MouseEvent.MOUSE_CLICKED, hand); 
+	    
+	    userNameBox.removeEventHandler(MouseEvent.MOUSE_CLICKED, hand);
+	    descriptionBox.removeEventHandler(MouseEvent.MOUSE_CLICKED, hand);
+	}
+	
+	public void disableModify(){
+		btnModify.setDisable(true);
+		descriptionBox.getChildren().remove(0);
+		descriptionBox.getChildren().add(description);
+		userNameBox.getChildren().remove(0);
+		userNameBox.getChildren().add(username);
 	}
 }

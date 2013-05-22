@@ -113,3 +113,7 @@
 #screen_name, #user_name{
 	-fx-fill: white;
 }
+
+#descriptionBox{
+	-fx-text-align:center;
+}
