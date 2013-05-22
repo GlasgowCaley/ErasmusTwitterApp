@@ -56,6 +56,9 @@ public class User_Popup{
 	@FXML private 		TextField changeUsername;
 	@FXML private 	HBox screenNameBox;
 	@FXML private 		Text screen_name;
+	@FXML private 	HBox urlBox;
+	@FXML private		Text url;
+	@FXML private		TextField changeUrl;
 	@FXML private	HBox descriptionBox;
 	@FXML private		Text description;
 	@FXML private		TextArea changeDescription;
@@ -107,6 +110,9 @@ public class User_Popup{
 					changeUsername = (TextField) root.lookup("#changeUsername");
 				screenNameBox = (HBox) root.lookup("#screenNameBox");
 					screen_name = (Text) root.lookup("#screen_name");
+				urlBox = (HBox) root.lookup("#urlBox");
+					url = (Text) root.lookup("#url");
+					changeUrl = (TextField) root.lookup("#changeUrl"); 
 				descriptionBox = (HBox) root.lookup("#descriptionBox");
 					description = (Text) root.lookup("#description");
 					changeDescription = (TextArea) root.lookup("#changeDescription");
@@ -120,10 +126,11 @@ public class User_Popup{
 				btnCancel = (Button) root.lookup("#btnCancel");
 				
 		//We set the size of HBoxs
-		HBox.setMargin(userNameBox, new Insets(20));
-		HBox.setMargin(screenNameBox, new Insets(20));
+		/*HBox.setMargin(userNameBox, new Insets(20));
+		//HBox.setMargin(screenNameBox, new Insets(20));
 		HBox.setMargin(description, new Insets(20));
-		HBox.setMargin(informations, new Insets(10));
+		HBox.setMargin(informations, new Insets(10));*/
+		
 				
 		//popup.setHeight(800);
 		
@@ -146,25 +153,35 @@ public class User_Popup{
 		//mainVBox.getChildren().add(2, informations);
 		//We set the text of informations
 		userNameBox.getChildren().remove(changeUsername);
-		username.setText(user.getName()+"\n");
+		userNameBox.getChildren().remove(username);
+		username.setText(user.getName());
+		userNameBox.getChildren().add(username);
 		username.setFont(new Font(17));
 		//username.setEditable(false);
 		screen_name.setText("@"+user.getScreenName()+"\n");
 		screen_name.setFont(new Font(17));
 		//informations.getChildren().add(username);
+		urlBox.getChildren().remove(changeUrl);
+		urlBox.getChildren().remove(url);
+		url.setText(user.getUrl());
+		urlBox.getChildren().add(url);
+		url.setFont(new Font(15));
 		
 		btnModify.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				TwitterAPI.changeStatus(changeUsername.getText(), changeDescription.getText());
+				TwitterAPI.changeStatus(changeUsername.getText(), changeDescription.getText(), changeUrl.getText());
 				User u = TwitterAPI.getMyUserInfo();
 				username.setText(u.getName());
 				description.setText(u.getDescription());
+				url.setText(u.getUrl());
 				userNameBox.getChildren().remove(0);
 				userNameBox.getChildren().add(username);
 				descriptionBox.getChildren().remove(0);
 				descriptionBox.getChildren().add(description);
+				urlBox.getChildren().remove(0);
+				urlBox.getChildren().add(url);
 				btnModify.setDisable(true);
 			}
 			
@@ -185,6 +202,8 @@ public class User_Popup{
 		informations.getChildren().add(screenNameBox);
 		informations.getChildren().add(description);*/
 		
+		descriptionBox.getChildren().remove(description);
+		descriptionBox.getChildren().add(description);
 		description.setText(user.getDescription());
 		description.setFont(new Font(14));
 		description.setWrappingWidth(300);
@@ -202,29 +221,59 @@ public class User_Popup{
 			footer.getChildren().add(0, btnModify);
 			btnModify.setDisable(true);
 			title.setText("My information");
-			username.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+			userNameBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
 				@Override
 				public void handle(MouseEvent arg0) {
-					userNameBox.getChildren().remove(username);
+					if(userNameBox.getChildren().contains(username))
+						userNameBox.getChildren().remove(username);
+					if(userNameBox.getChildren().contains(changeUsername))
+						userNameBox.getChildren().remove(changeUsername);
+					
 					userNameBox.getChildren().add(changeUsername);
+					
 					if(changeUsername.getText()==null || changeUsername.getText().equals(""))
 						changeUsername.setText(username.getText());
 					btnModify.setDisable(false);
 				}
 			});
-			description.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+			descriptionBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
 				@Override
 				public void handle(MouseEvent arg0) {
-					descriptionBox.getChildren().remove(0);
+					if(descriptionBox.getChildren().contains(description))
+						descriptionBox.getChildren().remove(description);
+					if(descriptionBox.getChildren().contains(changeDescription))
+						descriptionBox.getChildren().remove(changeDescription);
+					
 					descriptionBox.getChildren().add(changeDescription);
+					
 					if(changeDescription.getText()==null || changeDescription.getText().equals(""))
 						changeDescription.setText(description.getText());
+					
 					changeDescription.setMinWidth(320);
 					changeDescription.setMinHeight(100);
 					changeDescription.setMaxHeight(100);
-					changeDescription.setMaxWidth(400);
+					changeDescription.setMaxWidth(350);
+					
+					btnModify.setDisable(false);
+				}
+				
+			});
+			urlBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					if(urlBox.getChildren().contains(url))
+						urlBox.getChildren().remove(url);
+					if(urlBox.getChildren().contains(changeUrl))
+						urlBox.getChildren().remove(changeUrl);
+					
+					urlBox.getChildren().add(changeUrl);
+					
+					if(changeUrl.getText()!=null || changeUrl.getText().equals(""))
+						changeUrl.setText(url.getText());
+				
 					btnModify.setDisable(false);
 				}
 				
@@ -338,7 +387,6 @@ public class User_Popup{
 		System.out.println(footer.getHeight());*/
 		description.maxHeight(300);
 
-		System.out.println(header.getHeight() + avatarPlace.getHeight() + informations.getHeight() + footer.getHeight());
 
 		//popup.setHeight(header.getHeight() + avatarPlace.getHeight() + informations.getHeight() + footer.getHeight());
 		popup.setWidth(500);
@@ -422,5 +470,7 @@ public class User_Popup{
 		descriptionBox.getChildren().add(description);
 		userNameBox.getChildren().remove(0);
 		userNameBox.getChildren().add(username);
+		urlBox.getChildren().remove(0);
+		urlBox.getChildren().add(url);
 	}
 }

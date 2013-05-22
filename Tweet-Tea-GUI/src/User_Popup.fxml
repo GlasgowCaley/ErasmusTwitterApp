@@ -36,10 +36,7 @@
   	
   	<HBox fx:id="contentPane" minHeight="100.0" alignment="CENTER">
   		<children>
-  			<VBox id="miseEnPage">
-  				<VBox.margin>
-  					<Insets top="10.0" bottom="2.0" fx:id="x2"/>
-  				</VBox.margin>
+  			<VBox id="miseEnPage">	
   			
   				<children>
   			
@@ -58,10 +55,20 @@
   							</Text>
   						</children>
   					</HBox>
+  					
+  					<HBox fx:id="urlBox" minHeight="20.0" alignment="CENTER">
+  						<children>
+  							<Text id = "url">
+  							</Text>
+  							
+  							<TextField id="changeUrl">
+  							</TextField>
+  						</children>
+  					</HBox>
   			
   					<HBox fx:id="descriptionBox" minHeight="20.0" maxWidth="100" alignment="CENTER">
   						<HBox.margin>
-  							<Insets top="10.0"/>
+  							<Insets top="10.0" bottom="10.0"/>
   						</HBox.margin>
   				
   						<children>

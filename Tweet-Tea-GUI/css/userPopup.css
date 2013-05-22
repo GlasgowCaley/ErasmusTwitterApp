@@ -100,20 +100,7 @@
    -fx-border-radius:30;
 }
 
-#descriptionBox{
-	-fx-padding: 10px;
-	-fx-margin:10px; 
-}
 
-#screenNameBox{
-	-fx-padding: 10px;
-	-fx-margin:10px; 
-}
-
-#screen_name, #user_name{
+#screen_name, #user_name, #url{
 	-fx-fill: white;
-}
-
-#descriptionBox{
-	-fx-text-align:center;
 }
