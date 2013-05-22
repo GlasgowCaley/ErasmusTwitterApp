@@ -161,11 +161,11 @@ public class User_Popup{
 				User u = TwitterAPI.getMyUserInfo();
 				username.setText(u.getName());
 				description.setText(u.getDescription());
-				btnModify.setDisable(false);
 				userNameBox.getChildren().remove(0);
 				userNameBox.getChildren().add(username);
 				descriptionBox.getChildren().remove(0);
 				descriptionBox.getChildren().add(description);
+				btnModify.setDisable(true);
 			}
 			
 		});
@@ -208,7 +208,8 @@ public class User_Popup{
 				public void handle(MouseEvent arg0) {
 					userNameBox.getChildren().remove(username);
 					userNameBox.getChildren().add(changeUsername);
-					changeUsername.setText(username.getText());
+					if(changeUsername.getText()==null || changeUsername.getText().equals(""))
+						changeUsername.setText(username.getText());
 					btnModify.setDisable(false);
 				}
 			});
@@ -218,7 +219,8 @@ public class User_Popup{
 				public void handle(MouseEvent arg0) {
 					descriptionBox.getChildren().remove(0);
 					descriptionBox.getChildren().add(changeDescription);
-					changeDescription.setText(description.getText());
+					if(changeDescription.getText()==null || changeDescription.getText().equals(""))
+						changeDescription.setText(description.getText());
 					changeDescription.setMinWidth(320);
 					changeDescription.setMinHeight(100);
 					changeDescription.setMaxHeight(100);
