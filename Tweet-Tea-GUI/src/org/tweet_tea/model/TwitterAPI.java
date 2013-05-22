@@ -43,13 +43,10 @@ import java.util.Scanner;
  *
  */
 public final class TwitterAPI{
-
-	
 	/**
 	 * Parser Google Gson
 	 */
 	private static Gson gson= new Gson();
-	
 	/**
 
 	 * Used to sign requests.
