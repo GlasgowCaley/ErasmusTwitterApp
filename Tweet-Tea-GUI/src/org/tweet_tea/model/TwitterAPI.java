@@ -379,10 +379,31 @@ public final class TwitterAPI{
 	/**
 	 * Change user status
 	 */
-	public static void changeStatus(){
+	public static void changeStatus(String name, String desc, String newUrl){
+		StringBuffer updates = new StringBuffer();
 		
-		// TODO :  everthing ^^
+		if(name!=null && !name.equals("")){
+			name = createUrlArgsFromString(name);
+			updates.append("name="+name+"&");
+		}
 		
+		if(desc!=null && !desc.equals("")){
+			desc = createUrlArgsFromString(desc);
+			updates.append("description="+desc+"&");
+		}else
+			updates.deleteCharAt(updates.length()-1); //We delete the '&'
+		
+		if(newUrl!=null && !newUrl.equals("")){
+			newUrl = createUrlArgsFromString(newUrl);
+			updates.append(newUrl);
+		}else
+			updates.deleteCharAt(updates.length() - 1);
+		
+		String url = "https://api.twitter.com/1.1/account/update_profile.json?"+updates.toString();
+		
+		OAuthRequest request = new OAuthRequest(Verb.POST, url);
+		AuthentificationService.signRequest(accessToken, request);
+		Response r = request.send();
 	}
 	
 	

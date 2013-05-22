@@ -2,6 +2,7 @@ package org.tweet_tea.console;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.scribe.builder.ServiceBuilder;
@@ -13,8 +14,10 @@ import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 import org.tweet_tea.model.DirectMessage;
+import org.tweet_tea.model.TopHashtags;
 import org.tweet_tea.model.Tweet;
 import org.tweet_tea.model.TwitterAPI;
+import org.tweet_tea.model.TwitterAnalytics;
 import org.tweet_tea.model.User;
 
 
@@ -46,6 +49,7 @@ public class Console {
 
 			
 		Tweet[] tweets = null ;
+		List<TopHashtags> hashlist = null;
 		
 		while(true){
 			
@@ -254,7 +258,22 @@ public class Console {
 				}
 				}
 				break;
+				
 			case 18:
+				try{
+					tweets=TwitterAPI.getScreen(TwitterAPI.getMyUserInfo().getScreenName());
+					hashlist = TwitterAnalytics.getTopHashtags(tweets);
+				}catch(Exception e){
+					System.out.println(e.getMessage());
+				}
+				if(hashlist!=null){
+					for(TopHashtags temphashlist : hashlist){
+						System.out.println("#" + temphashlist.getTHName() + " | Used " + temphashlist.getHTCount() + " time(s)");
+					}
+				}
+				break;
+				
+			case 19:
 				System.out.println("Enter the screen name you want to block: ");
 				try{
 					TwitterAPI.blockUser(scanner.nextLine());
@@ -262,7 +281,7 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			case 19:
+			case 20:
 				System.out.println("Enter the screen name you want to unblock: ");
 				try{
 					TwitterAPI.unblockUser(scanner.nextLine());
@@ -270,7 +289,7 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			case 20:
+			case 21:
 				try{
 					TwitterAPI.logOut();
 					TwitterAPI.loadAuthToken();
@@ -278,7 +297,7 @@ public class Console {
 					System.out.println(e.getMessage());
 				}
 				break;
-			case 21:
+			case 22:
 				clear();
 				print("Bye!");
 				System.exit(0);
@@ -330,10 +349,11 @@ public class Console {
 				   +"15- Delete a tweet\n"
 				   +"16- Get own tweets\n"
 				   +"17- Show Folowers\n"
-				   +"18- Block User\n"
-				   +"19- Unblock User\n"
-				   +"20- Log Out\n"
-				   +"21- Quit";
+				   +"18- Get Most Used Hashtags\n"
+				   +"19- Block User\n"
+				   +"20- Unblock User\n"
+				   +"21- Log Out\n"
+				   +"22- Quit";
 
 		print(menu);
 		

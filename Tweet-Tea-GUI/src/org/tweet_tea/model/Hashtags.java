@@ -14,5 +14,8 @@ public class Hashtags {
 	 * @see JSON object directly
 	 */
 	private int[] indices; 
-
+	
+	public String getText(){
+		return text;
+	}
 }
