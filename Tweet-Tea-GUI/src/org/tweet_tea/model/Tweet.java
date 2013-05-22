@@ -153,4 +153,8 @@ public class Tweet
 		return r;
 	}
 	
+	public Entities getEntities(){
+		return entities;
+	}
+	
 }
