@@ -276,15 +276,12 @@ public class Landpage extends Application{
 			public void run(){
 				Tweet[] tweets = null;
 				try {
-					System.out.println("PRIMERO");
 					tweets = TwitterAPI.getNewTweets(topTweetID);//Gets the new tweets if they exist
-					System.out.println(tweets.length);
 				}
 				catch (Exception e){}
 				if (tweets!=null){
 					if(tweets.length>0){
 					     //If we have new tweets
-					     System.out.println("DENTRO");
 					     refreshBar.setMaxHeight(30);//shows the button of new tweets
 					     refreshBar.setMinHeight(30);//shows the button of new tweets
 
@@ -309,7 +306,6 @@ public class Landpage extends Application{
 
 					}
 				}
-				System.out.println("test");
 				
 			}
 
