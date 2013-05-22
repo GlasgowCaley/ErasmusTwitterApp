@@ -368,7 +368,6 @@ function formatTweets(){
 		
 		$(optionRow).children(".retweetBtn").on("click", function(){
 			var tweet = $(this).closest(".tweetBloc");
-			$("body").prepend("|"+$(tweet).attr("retweet")+"|");
 			if($(tweet).attr("retweet")=="true") deleteReTweet(tweet);
 			else retweet(tweet);
 		});
@@ -407,14 +406,14 @@ function  retweet( domObject ){
 	}
 
 	if(!res.error){
-		$(tweet).attr("id", res.id);
+		$(tweet).attr("id", res.id_str);
 		$(tweet).attr("retweet","true");
 		
 		$(domObject).addClass("btnActivated");
 	}
 	else{
 		
-		deleteReTweet(this);
+		deleteReTweet( domObject);
 	}
 }
 
