@@ -218,7 +218,7 @@ public class User_Popup{
 					descriptionBox.getChildren().remove(0);
 					descriptionBox.getChildren().add(changeDescription);
 					changeDescription.setText(description.getText());
-					changeDescription.setMinWidth(300);
+					changeDescription.setMinWidth(320);
 					changeDescription.setMinHeight(100);
 					changeDescription.setMaxHeight(100);
 					changeDescription.setMaxWidth(400);
@@ -371,19 +371,42 @@ public class User_Popup{
 	    });
 	    description.setTextAlignment(TextAlignment.CENTER);
 	    
-	    EventHandler hand = new EventHandler<MouseEvent>(){
+	    
+	    footer.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				
+				disableModify();
 			}
 	    	
-	    };
+	    });
 	    
-	    popup.addEventHandler(MouseEvent.MOUSE_CLICKED, hand); 
+	    header.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				disableModify();
+			}
+	    	
+	    });
 	    
-	    userNameBox.removeEventHandler(MouseEvent.MOUSE_CLICKED, hand);
-	    descriptionBox.removeEventHandler(MouseEvent.MOUSE_CLICKED, hand);
+	    screenNameBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				disableModify();
+			}
+	    	
+	    });
+	    
+	    avatarPlace.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				disableModify();
+			}
+	    	
+	    });
 	}
 	
 	public void disableModify(){
