@@ -6,6 +6,10 @@
 	<classpathentry kind="lib" path="libs/gson-2.2.2.jar"/>
 	<classpathentry kind="lib" path="libs/jfxrt.jar"/>
 	<classpathentry kind="lib" path="libs/scribe-1.3.0.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+>>>>>>> f1b5173321e64ae20d9fc56b6f19e11328860456
 	<classpathentry kind="output" path="bin"/>
 </classpath>
