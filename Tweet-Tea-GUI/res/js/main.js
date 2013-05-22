@@ -27,8 +27,8 @@ var tabTweet = [];
 function initialize(){
 
 
-	$("#tweetSection").append("<div id='promptStartText' class='tweetBloc'></div>");
-	$(".tweetBloc").eq(0).text("Click Home or Search something to Start");
+	$("#tweetSection").append("<div id='promptStartText'></div>");
+	$("#promptStartText").text("Click Home or Search something to Start");
 	
 	/* doLinks script */ 
 

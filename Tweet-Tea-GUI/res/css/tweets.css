@@ -40,6 +40,20 @@ body{
 
 /*General*/
 
+#promptStartText{
+
+
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+
+
+	background-color: rgba(255,255,255,0.75);
+	width: 100%;
+	opacity: 0;	/*By default*/
+
+
+}
+
 #tweetSection{
 	position: relative;
 	z-index: 0;
