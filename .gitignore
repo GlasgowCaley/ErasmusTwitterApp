@@ -175,3 +175,4 @@ pip-log.txt
 
 # Useless Windows files
 *Thumbs.db
+.classpath
