@@ -25,22 +25,12 @@
 }
 
 #btnHome{	
-	-fx-graphic: url("img/btnHome_25.png");
+	-fx-graphic: url("../img/btnHome_25.png");
 	
 }
-/* 
-#btnConnecter{	
-	-fx-graphic: url("res/img/btnConnecter_25.png");
-}
-#btnDecouvrir{	
-	-fx-graphic: url("res/img/btnDecouvrir_25.png");
-}
-#btnMoi{	
-	-fx-graphic: url("res/img/btnMoi_25.png");
-}
-*/
+
 #btnTweet{
-	-fx-graphic: url("img/btnTweet_25.png");
+	-fx-graphic: url("../img/btnTweet_25.png");
 }
 
 #searchField{
@@ -49,7 +39,7 @@
 }
 
 #btnSearch{	
-	-fx-graphic: url("img/btnRecherche.png");
+	-fx-graphic: url("../img/btnRecherche.png");
 }
 
 #footer{
@@ -72,15 +62,15 @@
 }
 
 #btnCancel{
-	-fx-graphic:url("res/img/btnCancel.png");
+	-fx-graphic:url("../img/btnCancel.png");
 }
 
 #btnFollow{
-	-fx-graphic:url("res/img/follow.png");
+	-fx-graphic:url("../img/follow.png");
 }
 
 #btnBlock{
-	-fx-graphic:url("res/img/block.png");
+	-fx-graphic:url("../img/block.png");
 }
 
 #title{

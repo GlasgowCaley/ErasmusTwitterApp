@@ -16,7 +16,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 
-<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/css/send_tweet.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
+<VBox fx:id="mainVbox" minWidth="100.0" minHeight="200" stylesheets="/css/send_tweet.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
   <children>
   	<HBox fx:id="menuBar" minHeight="41.0" prefHeight="49.0">
   	</HBox>
