@@ -19,7 +19,11 @@
 
 
 
+<<<<<<< HEAD
 	<VBox fx:id="mainVbox" maxWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
+=======
+<VBox fx:id="mainVbox" maxWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
+>>>>>>> 74a0630cf50dda3adb6e632b3ae7ac7012209f19
   <children>
   
   	<HBox fx:id="menuBar" minHeight="41.0" prefHeight="49.0" alignment="CENTER">

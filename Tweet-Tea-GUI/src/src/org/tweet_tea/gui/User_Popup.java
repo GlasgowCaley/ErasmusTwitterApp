@@ -168,6 +168,17 @@ public class User_Popup{
 		urlBox.getChildren().add(url);
 		url.setFont(new Font(15));
 		
+		//We set margins
+		HBox.setMargin(url, new Insets(10));
+		//HBox.setMargin(username, new Insets(20));
+		//HBox.setMargin(screen_name, new Insets(20));
+		//HBox.setMargin(avatar, new Insets(20));
+		HBox.setMargin(description, new Insets(10));
+		
+		HBox.setMargin(changeUrl, new Insets(3));
+		HBox.setMargin(changeUsername, new Insets(3));
+		HBox.setMargin(changeDescription, new Insets(10));
+		
 		btnModify.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
