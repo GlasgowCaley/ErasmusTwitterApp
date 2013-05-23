@@ -387,17 +387,12 @@ public final class TwitterAPI{
 			updates.append("name="+name+"&");
 		}
 		
-		if(desc!=null && !desc.equals("")){
-			desc = createUrlArgsFromString(desc);
-			updates.append("description="+desc+"&");
-		}else if(updates.length()!=0)
-			updates.deleteCharAt(updates.length()-1); //We delete the '&'
-				
-		if(newUrl!=null && !newUrl.equals("")){
-			newUrl = createUrlArgsFromString(newUrl);
-			updates.append("url="+newUrl);
-		}else if(updates.length()!=0)
-			updates.deleteCharAt(updates.length() - 1);
+		desc = createUrlArgsFromString(desc);
+		updates.append("description="+desc+"&");
+
+
+		newUrl = createUrlArgsFromString(newUrl);
+		updates.append("url="+newUrl);
 		
 		String url = "https://api.twitter.com/1.1/account/update_profile.json?"+updates.toString();
 		

@@ -75,7 +75,7 @@
   							<Text id="description">
   							</Text>
   							
-  							<TextArea id="changeDescription" prefColumnCount="200" prefRowCount="50">
+  							<TextArea id="changeDescription" prefColumnCount="200" prefRowCount="40">
   							</TextArea>
   						</children>
   					</HBox>

@@ -1,11 +1,15 @@
 package src.org.tweet_tea.gui;
 
+import javafx.scene.input.KeyEvent;
+
+
 import src.org.tweet_tea.resources.Res;
 
 import src.org.tweet_tea.model.TwitterAPI;
 import src.org.tweet_tea.model.User;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -170,6 +175,46 @@ public class User_Popup{
 		urlBox.getChildren().add(url);
 		url.setFont(new Font(15));
 		
+		//Now we add listeners to the textfields
+		changeUsername.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+
+			@Override
+			public void handle(KeyEvent event) {
+									
+				if(event.getCode() == KeyCode.ENTER){
+					btnModify.fire();
+				}
+				
+			}
+        	
+        });	
+		
+		changeUrl.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+
+			@Override
+			public void handle(KeyEvent event) {
+									
+				if(event.getCode() == KeyCode.ENTER){
+					btnModify.fire();
+				}
+				
+			}
+        	
+        });	 
+		
+		changeDescription.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
+
+			@Override
+			public void handle(KeyEvent event) {
+									
+				if(event.getCode() == KeyCode.ENTER){
+					btnModify.fire();
+				}
+				
+			}
+        	
+        });	 
+		
 		//We set margins
 		HBox.setMargin(url, new Insets(5));
 		//HBox.setMargin(username, new Insets(20));
@@ -179,7 +224,7 @@ public class User_Popup{
 		
 		//HBox.setMargin(changeUrl, new Insets(1));
 		HBox.setMargin(changeUsername, new Insets(1));
-		HBox.setMargin(changeDescription, new Insets(5));
+		HBox.setMargin(changeDescription, new Insets(10));
 		
 		btnModify.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -188,8 +233,11 @@ public class User_Popup{
 				TwitterAPI.changeStatus(changeUsername.getText(), changeDescription.getText(), changeUrl.getText());
 				User u = TwitterAPI.getMyUserInfo();
 				username.setText(u.getName());
+				changeUsername.setText(username.getText());
 				description.setText(u.getDescription());
+				changeDescription.setText(description.getText());
 				url.setText(u.getUrl());
+				changeUrl.setText(url.getText());
 				userNameBox.getChildren().remove(0);
 				userNameBox.getChildren().add(username);
 				descriptionBox.getChildren().remove(0);
@@ -246,8 +294,7 @@ public class User_Popup{
 					
 					userNameBox.getChildren().add(changeUsername);
 					
-					if(changeUsername.getText()==null || changeUsername.getText().equals(""))
-						changeUsername.setText(username.getText());
+					changeUsername.setText(username.getText());
 					btnModify.setDisable(false);
 				}
 			});
@@ -262,8 +309,7 @@ public class User_Popup{
 					
 					descriptionBox.getChildren().add(changeDescription);
 					
-					if(changeDescription.getText()==null || changeDescription.getText().equals(""))
-						changeDescription.setText(description.getText());
+					changeDescription.setText(description.getText());
 					
 					changeDescription.setMinWidth(320);
 					changeDescription.setMinHeight(100);
@@ -285,8 +331,7 @@ public class User_Popup{
 					
 					urlBox.getChildren().add(changeUrl);
 					
-					if(changeUrl.getText()!=null || changeUrl.getText().equals(""))
-						changeUrl.setText(url.getText());
+					changeUrl.setText(url.getText());
 				
 					btnModify.setDisable(false);
 				}
