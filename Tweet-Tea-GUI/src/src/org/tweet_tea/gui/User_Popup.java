@@ -159,7 +159,9 @@ public class User_Popup{
 		userNameBox.getChildren().add(username);
 		username.setFont(new Font(17));
 		//username.setEditable(false);
-		screen_name.setText("@"+user.getScreenName()+"\n");
+		screenNameBox.getChildren().remove(screen_name);
+		screen_name.setText("@"+user.getScreenName());
+		screenNameBox.getChildren().add(screen_name);
 		screen_name.setFont(new Font(17));
 		//informations.getChildren().add(username);
 		urlBox.getChildren().remove(changeUrl);
@@ -169,15 +171,15 @@ public class User_Popup{
 		url.setFont(new Font(15));
 		
 		//We set margins
-		HBox.setMargin(url, new Insets(10));
+		HBox.setMargin(url, new Insets(5));
 		//HBox.setMargin(username, new Insets(20));
 		//HBox.setMargin(screen_name, new Insets(20));
 		//HBox.setMargin(avatar, new Insets(20));
 		HBox.setMargin(description, new Insets(10));
 		
-		HBox.setMargin(changeUrl, new Insets(3));
-		HBox.setMargin(changeUsername, new Insets(3));
-		HBox.setMargin(changeDescription, new Insets(10));
+		//HBox.setMargin(changeUrl, new Insets(1));
+		HBox.setMargin(changeUsername, new Insets(1));
+		HBox.setMargin(changeDescription, new Insets(5));
 		
 		btnModify.setOnAction(new EventHandler<ActionEvent>(){
 

@@ -34,13 +34,13 @@
 
     <HBox fx:id="footer" alignment="CENTER" VBox.vgrow="NEVER">
     	<children>
-    		<Button id="btnSend" mnemonicParsing="false"  text="Tweeter">
+    		<Button id="btnSend" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Tweeter">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
     		
-    		<Button id="btnCancel" mnemonicParsing="false"  text="Cancel">
+    		<Button id="btnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cancel">
     			<HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>

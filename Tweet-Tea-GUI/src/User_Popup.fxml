@@ -19,11 +19,7 @@
 
 
 
-<<<<<<< HEAD
 	<VBox fx:id="mainVbox" maxWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
-=======
-<VBox fx:id="mainVbox" maxWidth="100.0" minHeight="200" stylesheets="/css/userPopup.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
->>>>>>> 74a0630cf50dda3adb6e632b3ae7ac7012209f19
   <children>
   
   	<HBox fx:id="menuBar" minHeight="41.0" prefHeight="49.0" alignment="CENTER">
@@ -111,24 +107,24 @@
         </HBox.margin>
         
         <children>
-        	<Button id="btnFollow" mnemonicParsing="false"  text="Follow">
+        	<Button id="btnFollow" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Follow">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
     		
-    		<Button id="btnBlock" mnemonicParsing="false"  text="Block">
+    		<Button id="btnBlock" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Block">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
     		
-    		<Button id="btnCancel" mnemonicParsing="false"  text="Cancel">
+    		<Button id="btnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Cancel">
     			<HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
-    		<Button id="btnModify" mnemonicParsing="false"  text="Modify">
+    		<Button id="btnModify" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Modify">
     			<HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
