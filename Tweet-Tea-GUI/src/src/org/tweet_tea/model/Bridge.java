@@ -10,7 +10,6 @@ import src.org.tweet_tea.gui.User_Popup;
 public class Bridge {
 	public Bridge(){
 		super();		
-		System.out.println("Bridge init");	
 		
 	}
 	public void print( String text ){

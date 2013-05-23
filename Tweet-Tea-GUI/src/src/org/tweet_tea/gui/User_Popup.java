@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 
 import src.org.tweet_tea.resources.Res;
 
+import src.org.tweet_tea.model.Bridge;
 import src.org.tweet_tea.model.TwitterAPI;
 import src.org.tweet_tea.model.User;
 
@@ -68,7 +69,7 @@ public class User_Popup{
 	@FXML private	HBox descriptionBox;
 	@FXML private		Text description;
 	@FXML private		TextArea changeDescription;
-	@FXML private 	HBox twitterInformations; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
+	@FXML private 	HBox twitterInformation; //Informations about the twitter account : number of tweets, followers, followed, and buttons to block or follow
 	@FXML private		Text nbTweets;
 	@FXML private 		Text nbFollowers;
 	@FXML private		Text nbFollowed;
@@ -122,9 +123,10 @@ public class User_Popup{
 				descriptionBox = (HBox) root.lookup("#descriptionBox");
 					description = (Text) root.lookup("#description");
 					changeDescription = (TextArea) root.lookup("#changeDescription");
-				nbTweets = (Text) root.lookup("#nbTweets");
-				nbFollowers = (Text) root.lookup("#nbFollowers");
-				nbFollowed = (Text) root.lookup("#nbFollowed");
+				twitterInformation = (HBox) root.lookup("#infoBox");
+					nbTweets = (Text) root.lookup("#nbTweets");
+					nbFollowers = (Text) root.lookup("#nbFollowers");
+					nbFollowed = (Text) root.lookup("#nbFollowed");
 			footer = (HBox) root.lookup("#footer");
 					btnFollow = (Button) root.lookup("#btnFollow");
 					btnBlock = (Button) root.lookup("#btnBlock");
@@ -175,6 +177,18 @@ public class User_Popup{
 		urlBox.getChildren().add(url);
 		url.setFont(new Font(15));
 		
+		twitterInformation.getChildren().remove(nbFollowers);
+		nbFollowers.setText("Followers : "+user.getFollowersCount()+"  ");
+		twitterInformation.getChildren().add(nbFollowers);
+		nbFollowers.setFont(new Font(10));
+		
+		twitterInformation.getChildren().remove(nbFollowed);
+		nbFollowed.setText("Followed : "+user.getFollowedCount());
+		twitterInformation.getChildren().add(nbFollowed);
+		nbFollowed.setFont(new Font(10));
+
+		
+		
 		//Now we add listeners to the textfields
 		changeUsername.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>(){
 
@@ -221,6 +235,8 @@ public class User_Popup{
 		//HBox.setMargin(screen_name, new Insets(20));
 		//HBox.setMargin(avatar, new Insets(20));
 		HBox.setMargin(description, new Insets(10));
+		HBox.setMargin(nbFollowed, new Insets(2));
+		HBox.setMargin(nbFollowers, new Insets(2));
 		
 		//HBox.setMargin(changeUrl, new Insets(1));
 		HBox.setMargin(changeUsername, new Insets(1));
@@ -272,12 +288,21 @@ public class User_Popup{
 		//descriptionBox.getChildren().add(description);
 		
 		//nbTweets.setText("Tweets : "+user.getNbTweets());
-		nbFollowers.setText("Followers : "+user.getFollowersCount()+"  ");
-		nbFollowed.setText("Followed : "+user.getFollowedCount());
 		
-		if(!me.getName().equals(user.getName()))
+		
+		if(!me.getName().equals(user.getName())){
 			title.setText("User's information");
-		else{
+			urlBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					if(url!=null && !url.getText().equals("")){
+						new Bridge().browseUrl(url.getText());
+					}
+				}
+				
+			});
+		}else{
 			footer.getChildren().remove(btnFollow);
 			footer.getChildren().remove(btnBlock);
 			footer.getChildren().add(0, btnModify);

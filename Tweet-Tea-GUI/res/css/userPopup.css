@@ -94,3 +94,7 @@
 #screen_name, #user_name, #url{
 	-fx-fill: white;
 }
+
+#urlBox{
+	 -fx-cursor: hand;
+}

@@ -80,7 +80,7 @@
   						</children>
   					</HBox>
   			
-  					<HBox>
+  					<HBox id="infoBox">
   						<HBox.margin>
   							<Insets right="10.0"/>
   						</HBox.margin>
@@ -107,24 +107,24 @@
         </HBox.margin>
         
         <children>
-        	<Button id="btnFollow" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Follow">
+        	<Button id="btnFollow" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Follow">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
     		
-    		<Button id="btnBlock" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Block">
+    		<Button id="btnBlock" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Block">
     		   <HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
     		
-    		<Button id="btnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Cancel">
+    		<Button id="btnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Cancel">
     			<HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
     		</Button>
-    		<Button id="btnModify" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Modify">
+    		<Button id="btnModify" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Modify">
     			<HBox.margin>
             		<Insets right="10.0" fx:id="x1" />
           		</HBox.margin>
