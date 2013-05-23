@@ -1,4 +1,4 @@
-package src.org.tweet_tea.resources;
+package org.tweet_tea.resources;
 /**
  * Define Resources
  * @author Geoffrey
