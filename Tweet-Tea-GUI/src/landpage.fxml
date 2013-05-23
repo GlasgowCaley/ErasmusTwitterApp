@@ -14,7 +14,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet landpage.css?>
 
-<VBox fx:id="mainVbox" prefWidth="675.0" stylesheets="landpage.css" xmlns:fx="http://javafx.com/fxml" fx:controller="org.tweet_tea.gui.Landpage">
+<VBox fx:id="mainVbox" prefWidth="675.0" stylesheets="landpage.css" xmlns:fx="http://javafx.com/fxml" fx:controller="src.org.tweet_tea.gui.Landpage">
   <children>
     <HBox fx:id="menuBar" alignment="CENTER" minHeight="41.0" prefHeight="49.0" prefWidth="950.0" VBox.vgrow="NEVER">
       <children>
