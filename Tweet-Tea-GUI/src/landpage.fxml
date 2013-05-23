@@ -18,23 +18,23 @@
   <children>
     <HBox fx:id="menuBar" alignment="CENTER" minHeight="41.0" prefHeight="49.0" prefWidth="950.0" VBox.vgrow="NEVER">
       <children>
-        <Button id="btnTweet" mnemonicParsing="false" text="Tweet">
+        <Button id="btnTweet" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Tweet">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Button id="btnHome" mnemonicParsing="false" text="Home" HBox.margin="$x1" />
-        <Button id="btnMessage" mnemonicParsing="false" text="Message">
+        <Button id="btnHome" minWidth="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Home" HBox.margin="$x1" />
+        <Button id="btnMe" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Me">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Button id="btnMe" mnemonicParsing="false" text="Me">
+        <Button id="btnMessage" mnemonicParsing="false" prefHeight="30.0" prefWidth="91.0" text="Message">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="63.0">
+        <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="63.0" HBox.hgrow="ALWAYS">
           <children>
             <Button fx:id="btnReduce" mnemonicParsing="false" text="_" />
             <Button id="btnQuit" mnemonicParsing="false" text="X" />

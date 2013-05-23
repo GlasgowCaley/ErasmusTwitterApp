@@ -38,10 +38,11 @@
 #btnDecouvrir{	
 	-fx-graphic: url("img/btnDecouvrir_25.png");
 }
-#btnMoi{	
+*/
+#btnMe{	
 	-fx-graphic: url("img/btnMoi_25.png");
 }
-*/
+
 #btnTweet{
 	-fx-graphic: url("img/btnTweet_25.png");
 }
