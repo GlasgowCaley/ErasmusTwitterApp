@@ -153,6 +153,8 @@ function makeTweetBloc(jsonTweet){
 		var twitterPrefix = jsonTweet.twitterPrefix;
 
 		var profilUrl = twitterPrefix+screen_name;
+
+		/*$("body").prepend("<br>|"+retweeted+"|"+favorited);*/
 		
 		
 		var  s = 	"<div class='tweetBloc' id='"+id+"' retweet='"+retweeted+"' favorite='"+favorited+"'>"
@@ -303,6 +305,17 @@ function formatTweets(){
 	
 
 	$(".tweetBloc").each(function(){
+
+		/*var retweet = $(this).attr("retweet");*/
+		/*var favorite = $(this).attr("favorite");*/
+
+		/*$("body").prepend("_______");*/
+		/*$("body").prepend(retweet+"|"+favorite);*/
+
+		/*if( retweet || favorite ){
+			$(this).addClass(".retweet");
+			$(this).css("font-size","200%");
+		}*/
 
 		var screenName = $(this).find(".screenName");
 		var link = $(screenName).text().replace("@", "");

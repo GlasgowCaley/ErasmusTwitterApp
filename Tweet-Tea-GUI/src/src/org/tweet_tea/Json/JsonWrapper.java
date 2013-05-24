@@ -37,6 +37,7 @@ public class JsonWrapper {
 		created_at = t.getDate();
 		retweeted = ""+ t.getRetweeted();
 		favorited = ""+ t.getFavorited();
+		System.out.print(retweeted+"|"+favorited);
 		User user;
 		if( (user= t.getUser())!=null ){
 			name = user.getName();

@@ -312,7 +312,7 @@ public class Landpage extends Application{
 				
 			}
 
-		}, 0, 10000);
+		}, 0, 60000);
 
 	}
 	

@@ -76,8 +76,10 @@ body{
 	border-bottom-right-radius: 10px;
 }
 
-.tweetBloc [retweet = 'true'] , .tweetBloc [favorite = 'true'] {
+.retweet , .favorite {
 	border: 2px green solid;
+	background-color: red;
+	font-size: 200%;
 }
 
 /*For a tweet*/
